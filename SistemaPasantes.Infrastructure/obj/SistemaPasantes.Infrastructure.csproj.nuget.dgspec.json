@@ -1,26 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\FreddyL\\Desktop\\Universidad\\Pasantia\\AILogic\\Grupo Alpha\\Sistema Pasantes\\Backend\\SistemaPasantes.Infrastructure\\SistemaPasantes.Infrastructure.csproj": {}
+    "C:\\Users\\losto\\OneDrive\\Documents\\PROGRAMACION\\AI-Logic\\Backend\\SistemaPasantes.Infrastructure\\SistemaPasantes.Infrastructure.csproj": {}
   },
   "projects": {
-    "C:\\Users\\FreddyL\\Desktop\\Universidad\\Pasantia\\AILogic\\Grupo Alpha\\Sistema Pasantes\\Backend\\SistemaPasantes.Infrastructure\\SistemaPasantes.Infrastructure.csproj": {
+    "C:\\Users\\losto\\OneDrive\\Documents\\PROGRAMACION\\AI-Logic\\Backend\\SistemaPasantes.Core\\SistemaPasantes.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\FreddyL\\Desktop\\Universidad\\Pasantia\\AILogic\\Grupo Alpha\\Sistema Pasantes\\Backend\\SistemaPasantes.Infrastructure\\SistemaPasantes.Infrastructure.csproj",
-        "projectName": "SistemaPasantes.Infrastructure",
-        "projectPath": "C:\\Users\\FreddyL\\Desktop\\Universidad\\Pasantia\\AILogic\\Grupo Alpha\\Sistema Pasantes\\Backend\\SistemaPasantes.Infrastructure\\SistemaPasantes.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\FreddyL\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\FreddyL\\Desktop\\Universidad\\Pasantia\\AILogic\\Grupo Alpha\\Sistema Pasantes\\Backend\\SistemaPasantes.Infrastructure\\obj\\",
+        "projectUniqueName": "C:\\Users\\losto\\OneDrive\\Documents\\PROGRAMACION\\AI-Logic\\Backend\\SistemaPasantes.Core\\SistemaPasantes.Core.csproj",
+        "projectName": "SistemaPasantes.Core",
+        "projectPath": "C:\\Users\\losto\\OneDrive\\Documents\\PROGRAMACION\\AI-Logic\\Backend\\SistemaPasantes.Core\\SistemaPasantes.Core.csproj",
+        "packagesPath": "C:\\Users\\losto\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\losto\\OneDrive\\Documents\\PROGRAMACION\\AI-Logic\\Backend\\SistemaPasantes.Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\FreddyL\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\losto\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -31,6 +29,7 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -42,6 +41,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "imports": [
             "net461",
             "net462",
@@ -57,7 +57,68 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\losto\\OneDrive\\Documents\\PROGRAMACION\\AI-Logic\\Backend\\SistemaPasantes.Infrastructure\\SistemaPasantes.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\losto\\OneDrive\\Documents\\PROGRAMACION\\AI-Logic\\Backend\\SistemaPasantes.Infrastructure\\SistemaPasantes.Infrastructure.csproj",
+        "projectName": "SistemaPasantes.Infrastructure",
+        "projectPath": "C:\\Users\\losto\\OneDrive\\Documents\\PROGRAMACION\\AI-Logic\\Backend\\SistemaPasantes.Infrastructure\\SistemaPasantes.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\losto\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\losto\\OneDrive\\Documents\\PROGRAMACION\\AI-Logic\\Backend\\SistemaPasantes.Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\losto\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "C:\\Users\\losto\\OneDrive\\Documents\\PROGRAMACION\\AI-Logic\\Backend\\SistemaPasantes.Core\\SistemaPasantes.Core.csproj": {
+                "projectPath": "C:\\Users\\losto\\OneDrive\\Documents\\PROGRAMACION\\AI-Logic\\Backend\\SistemaPasantes.Core\\SistemaPasantes.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     }
