@@ -1,24 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\losto\\OneDrive\\Documents\\PROGRAMACION\\AI-Logic\\Backend\\SistemaPasantes.Api\\SistemaPasantes.Api.csproj": {}
+    "C:\\Users\\Usuario\\3D Objects\\SistemaPasantes-Api-\\SistemaPasantes.Api\\SistemaPasantes.Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\losto\\OneDrive\\Documents\\PROGRAMACION\\AI-Logic\\Backend\\SistemaPasantes.Api\\SistemaPasantes.Api.csproj": {
+    "C:\\Users\\Usuario\\3D Objects\\SistemaPasantes-Api-\\SistemaPasantes.Api\\SistemaPasantes.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\losto\\OneDrive\\Documents\\PROGRAMACION\\AI-Logic\\Backend\\SistemaPasantes.Api\\SistemaPasantes.Api.csproj",
+        "projectUniqueName": "C:\\Users\\Usuario\\3D Objects\\SistemaPasantes-Api-\\SistemaPasantes.Api\\SistemaPasantes.Api.csproj",
         "projectName": "SistemaPasantes.Api",
-        "projectPath": "C:\\Users\\losto\\OneDrive\\Documents\\PROGRAMACION\\AI-Logic\\Backend\\SistemaPasantes.Api\\SistemaPasantes.Api.csproj",
-        "packagesPath": "C:\\Users\\losto\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\losto\\OneDrive\\Documents\\PROGRAMACION\\AI-Logic\\Backend\\SistemaPasantes.Api\\obj\\",
+        "projectPath": "C:\\Users\\Usuario\\3D Objects\\SistemaPasantes-Api-\\SistemaPasantes.Api\\SistemaPasantes.Api.csproj",
+        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Usuario\\3D Objects\\SistemaPasantes-Api-\\SistemaPasantes.Api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\losto\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -31,11 +32,11 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\losto\\OneDrive\\Documents\\PROGRAMACION\\AI-Logic\\Backend\\SistemaPasantes.Core\\SistemaPasantes.Core.csproj": {
-                "projectPath": "C:\\Users\\losto\\OneDrive\\Documents\\PROGRAMACION\\AI-Logic\\Backend\\SistemaPasantes.Core\\SistemaPasantes.Core.csproj"
+              "C:\\Users\\Usuario\\3D Objects\\SistemaPasantes-Api-\\SistemaPasantes.Core\\SistemaPasantes.Core.csproj": {
+                "projectPath": "C:\\Users\\Usuario\\3D Objects\\SistemaPasantes-Api-\\SistemaPasantes.Core\\SistemaPasantes.Core.csproj"
               },
-              "C:\\Users\\losto\\OneDrive\\Documents\\PROGRAMACION\\AI-Logic\\Backend\\SistemaPasantes.Infrastructure\\SistemaPasantes.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\losto\\OneDrive\\Documents\\PROGRAMACION\\AI-Logic\\Backend\\SistemaPasantes.Infrastructure\\SistemaPasantes.Infrastructure.csproj"
+              "C:\\Users\\Usuario\\3D Objects\\SistemaPasantes-Api-\\SistemaPasantes.Infrastructure\\SistemaPasantes.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\Usuario\\3D Objects\\SistemaPasantes-Api-\\SistemaPasantes.Infrastructure\\SistemaPasantes.Infrastructure.csproj"
               }
             }
           }
@@ -83,21 +84,22 @@
         }
       }
     },
-    "C:\\Users\\losto\\OneDrive\\Documents\\PROGRAMACION\\AI-Logic\\Backend\\SistemaPasantes.Core\\SistemaPasantes.Core.csproj": {
+    "C:\\Users\\Usuario\\3D Objects\\SistemaPasantes-Api-\\SistemaPasantes.Core\\SistemaPasantes.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\losto\\OneDrive\\Documents\\PROGRAMACION\\AI-Logic\\Backend\\SistemaPasantes.Core\\SistemaPasantes.Core.csproj",
+        "projectUniqueName": "C:\\Users\\Usuario\\3D Objects\\SistemaPasantes-Api-\\SistemaPasantes.Core\\SistemaPasantes.Core.csproj",
         "projectName": "SistemaPasantes.Core",
-        "projectPath": "C:\\Users\\losto\\OneDrive\\Documents\\PROGRAMACION\\AI-Logic\\Backend\\SistemaPasantes.Core\\SistemaPasantes.Core.csproj",
-        "packagesPath": "C:\\Users\\losto\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\losto\\OneDrive\\Documents\\PROGRAMACION\\AI-Logic\\Backend\\SistemaPasantes.Core\\obj\\",
+        "projectPath": "C:\\Users\\Usuario\\3D Objects\\SistemaPasantes-Api-\\SistemaPasantes.Core\\SistemaPasantes.Core.csproj",
+        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Usuario\\3D Objects\\SistemaPasantes-Api-\\SistemaPasantes.Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\losto\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -140,21 +142,22 @@
         }
       }
     },
-    "C:\\Users\\losto\\OneDrive\\Documents\\PROGRAMACION\\AI-Logic\\Backend\\SistemaPasantes.Infrastructure\\SistemaPasantes.Infrastructure.csproj": {
+    "C:\\Users\\Usuario\\3D Objects\\SistemaPasantes-Api-\\SistemaPasantes.Infrastructure\\SistemaPasantes.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\losto\\OneDrive\\Documents\\PROGRAMACION\\AI-Logic\\Backend\\SistemaPasantes.Infrastructure\\SistemaPasantes.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\Usuario\\3D Objects\\SistemaPasantes-Api-\\SistemaPasantes.Infrastructure\\SistemaPasantes.Infrastructure.csproj",
         "projectName": "SistemaPasantes.Infrastructure",
-        "projectPath": "C:\\Users\\losto\\OneDrive\\Documents\\PROGRAMACION\\AI-Logic\\Backend\\SistemaPasantes.Infrastructure\\SistemaPasantes.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\losto\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\losto\\OneDrive\\Documents\\PROGRAMACION\\AI-Logic\\Backend\\SistemaPasantes.Infrastructure\\obj\\",
+        "projectPath": "C:\\Users\\Usuario\\3D Objects\\SistemaPasantes-Api-\\SistemaPasantes.Infrastructure\\SistemaPasantes.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Usuario\\3D Objects\\SistemaPasantes-Api-\\SistemaPasantes.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\losto\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -167,8 +170,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\losto\\OneDrive\\Documents\\PROGRAMACION\\AI-Logic\\Backend\\SistemaPasantes.Core\\SistemaPasantes.Core.csproj": {
-                "projectPath": "C:\\Users\\losto\\OneDrive\\Documents\\PROGRAMACION\\AI-Logic\\Backend\\SistemaPasantes.Core\\SistemaPasantes.Core.csproj"
+              "C:\\Users\\Usuario\\3D Objects\\SistemaPasantes-Api-\\SistemaPasantes.Core\\SistemaPasantes.Core.csproj": {
+                "projectPath": "C:\\Users\\Usuario\\3D Objects\\SistemaPasantes-Api-\\SistemaPasantes.Core\\SistemaPasantes.Core.csproj"
               }
             }
           }

@@ -7,3 +7,12 @@ C:\Users\losto\OneDrive\Documents\PROGRAMACION\AI-Logic\Backend\SistemaPasantes.
 C:\Users\losto\OneDrive\Documents\PROGRAMACION\AI-Logic\Backend\SistemaPasantes.Core\obj\Debug\netcoreapp3.1\SistemaPasantes.Core.csproj.CoreCompileInputs.cache
 C:\Users\losto\OneDrive\Documents\PROGRAMACION\AI-Logic\Backend\SistemaPasantes.Core\obj\Debug\netcoreapp3.1\SistemaPasantes.Core.dll
 C:\Users\losto\OneDrive\Documents\PROGRAMACION\AI-Logic\Backend\SistemaPasantes.Core\obj\Debug\netcoreapp3.1\SistemaPasantes.Core.pdb
+C:\Users\Usuario\3D Objects\SistemaPasantes-Api-\SistemaPasantes.Core\bin\Debug\netcoreapp3.1\SistemaPasantes.Core.deps.json
+C:\Users\Usuario\3D Objects\SistemaPasantes-Api-\SistemaPasantes.Core\bin\Debug\netcoreapp3.1\SistemaPasantes.Core.dll
+C:\Users\Usuario\3D Objects\SistemaPasantes-Api-\SistemaPasantes.Core\bin\Debug\netcoreapp3.1\SistemaPasantes.Core.pdb
+C:\Users\Usuario\3D Objects\SistemaPasantes-Api-\SistemaPasantes.Core\obj\Debug\netcoreapp3.1\SistemaPasantes.Core.csprojAssemblyReference.cache
+C:\Users\Usuario\3D Objects\SistemaPasantes-Api-\SistemaPasantes.Core\obj\Debug\netcoreapp3.1\SistemaPasantes.Core.AssemblyInfoInputs.cache
+C:\Users\Usuario\3D Objects\SistemaPasantes-Api-\SistemaPasantes.Core\obj\Debug\netcoreapp3.1\SistemaPasantes.Core.AssemblyInfo.cs
+C:\Users\Usuario\3D Objects\SistemaPasantes-Api-\SistemaPasantes.Core\obj\Debug\netcoreapp3.1\SistemaPasantes.Core.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\3D Objects\SistemaPasantes-Api-\SistemaPasantes.Core\obj\Debug\netcoreapp3.1\SistemaPasantes.Core.dll
+C:\Users\Usuario\3D Objects\SistemaPasantes-Api-\SistemaPasantes.Core\obj\Debug\netcoreapp3.1\SistemaPasantes.Core.pdb
