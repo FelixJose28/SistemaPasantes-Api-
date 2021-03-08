@@ -1,49 +1,32 @@
 {
   "version": 3,
   "targets": {
-    ".NETCoreApp,Version=v3.1": {
-      "SistemaPasantes.Core/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v3.1",
-        "compile": {
-          "bin/placeholder/SistemaPasantes.Core.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/SistemaPasantes.Core.dll": {}
-        }
-      }
-    }
+    ".NETCoreApp,Version=v3.1": {}
   },
-  "libraries": {
-    "SistemaPasantes.Core/1.0.0": {
-      "type": "project",
-      "path": "../SistemaPasantes.Core/SistemaPasantes.Core.csproj",
-      "msbuildProject": "../SistemaPasantes.Core/SistemaPasantes.Core.csproj"
-    }
-  },
+  "libraries": {},
   "projectFileDependencyGroups": {
-    ".NETCoreApp,Version=v3.1": [
-      "SistemaPasantes.Core >= 1.0.0"
-    ]
+    ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\Usuario\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\FreddyL\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Usuario\\3D Objects\\SistemaPasantes\\SistemaPasantes.Infrastructure\\SistemaPasantes.Infrastructure.csproj",
+      "projectUniqueName": "C:\\Users\\FreddyL\\Desktop\\Universidad\\Pasantia\\AILogic\\Grupo Alpha\\Sistema Pasantes\\Backend\\SistemaPasantes.Infrastructure\\SistemaPasantes.Infrastructure.csproj",
       "projectName": "SistemaPasantes.Infrastructure",
-      "projectPath": "C:\\Users\\Usuario\\3D Objects\\SistemaPasantes\\SistemaPasantes.Infrastructure\\SistemaPasantes.Infrastructure.csproj",
-      "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Usuario\\3D Objects\\SistemaPasantes\\SistemaPasantes.Infrastructure\\obj\\",
+      "projectPath": "C:\\Users\\FreddyL\\Desktop\\Universidad\\Pasantia\\AILogic\\Grupo Alpha\\Sistema Pasantes\\Backend\\SistemaPasantes.Infrastructure\\SistemaPasantes.Infrastructure.csproj",
+      "packagesPath": "C:\\Users\\FreddyL\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\FreddyL\\Desktop\\Universidad\\Pasantia\\AILogic\\Grupo Alpha\\Sistema Pasantes\\Backend\\SistemaPasantes.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\"
+        "C:\\Microsoft\\Xamarin\\NuGet\\",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\FreddyL\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
@@ -56,12 +39,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
-          "projectReferences": {
-            "C:\\Users\\Usuario\\3D Objects\\SistemaPasantes\\SistemaPasantes.Core\\SistemaPasantes.Core.csproj": {
-              "projectPath": "C:\\Users\\Usuario\\3D Objects\\SistemaPasantes\\SistemaPasantes.Core\\SistemaPasantes.Core.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {
@@ -72,7 +50,6 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
-        "targetAlias": "netcoreapp3.1",
         "imports": [
           "net461",
           "net462",
@@ -88,7 +65,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
       }
     }
   }
