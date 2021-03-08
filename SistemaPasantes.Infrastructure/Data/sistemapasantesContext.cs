@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace SistemaPasantes.Infrastructure.Data
 {
-    public partial class sistemapasantesContext : DbContext
+    public partial class SistemaPasantesContext : DbContext
     {
-        public sistemapasantesContext()
+        public SistemaPasantesContext()
         {
         }
 
-        public sistemapasantesContext(DbContextOptions<sistemapasantesContext> options)
+        public SistemaPasantesContext(DbContextOptions<SistemaPasantesContext> options)
             : base(options)
         {
         }
