@@ -75,6 +75,29 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
+      },
+      "SistemaPasantes.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/SistemaPasantes.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SistemaPasantes.Core.dll": {}
+        }
+      },
+      "SistemaPasantes.Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "SistemaPasantes.Core": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/SistemaPasantes.Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SistemaPasantes.Infrastructure.dll": {}
+        }
       }
     }
   },
@@ -185,10 +208,22 @@
         "swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512",
         "swashbuckle.aspnetcore.swaggerui.nuspec"
       ]
+    },
+    "SistemaPasantes.Core/1.0.0": {
+      "type": "project",
+      "path": "../SistemaPasantes.Core/SistemaPasantes.Core.csproj",
+      "msbuildProject": "../SistemaPasantes.Core/SistemaPasantes.Core.csproj"
+    },
+    "SistemaPasantes.Infrastructure/1.0.0": {
+      "type": "project",
+      "path": "../SistemaPasantes.Infrastructure/SistemaPasantes.Infrastructure.csproj",
+      "msbuildProject": "../SistemaPasantes.Infrastructure/SistemaPasantes.Infrastructure.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
+      "SistemaPasantes.Core >= 1.0.0",
+      "SistemaPasantes.Infrastructure >= 1.0.0",
       "Swashbuckle.AspNetCore >= 5.6.3"
     ]
   },
@@ -223,7 +258,14 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Usuario\\3D Objects\\SistemaPasantes\\SistemaPasantes.Core\\SistemaPasantes.Core.csproj": {
+              "projectPath": "C:\\Users\\Usuario\\3D Objects\\SistemaPasantes\\SistemaPasantes.Core\\SistemaPasantes.Core.csproj"
+            },
+            "C:\\Users\\Usuario\\3D Objects\\SistemaPasantes\\SistemaPasantes.Infrastructure\\SistemaPasantes.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\Usuario\\3D Objects\\SistemaPasantes\\SistemaPasantes.Infrastructure\\SistemaPasantes.Infrastructure.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
