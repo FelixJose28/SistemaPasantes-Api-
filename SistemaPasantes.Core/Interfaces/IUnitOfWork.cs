@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace SistemaPasantes.Core.Interfaces
 {
-    public interface IUnitOfWork: IDisposable
+    public interface IUnitOfWork : IDisposable
     {
         Task Commit();
     }

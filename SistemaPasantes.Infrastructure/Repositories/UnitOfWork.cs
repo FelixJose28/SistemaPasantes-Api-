@@ -10,9 +10,11 @@ namespace SistemaPasantes.Infrastructure.Repositories
     public class UnitOfWork : IUnitOfWork
     {
         private readonly SistemaPasantesContext _context;
+        public AuthenticationRepository _authenticationRepository { get; private set; }
         public UnitOfWork(SistemaPasantesContext context)
         {
             _context = context;
+            _authenticationRepository = new AuthenticationRepository(_context);
         }
         public async Task Commit()
         {
