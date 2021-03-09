@@ -10,8 +10,8 @@ namespace SistemaPasantes.Infrastructure.Repositories
     public class UnitOfWork : IUnitOfWork
     {
         private readonly SistemaPasantesContext _context;
-        public IAuthenticationRepository authenticationRepository { get; }
-        public IAuthenticationRepository _authenticationRepository { get; private set; }
+        public IAuthenticationCRepository authenticationRepository { get; }
+        public IAuthenticationCRepository _authenticationRepository { get; private set; }
 
        
 

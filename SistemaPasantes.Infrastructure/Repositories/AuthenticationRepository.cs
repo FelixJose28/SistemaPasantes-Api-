@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SistemaPasantes.Infrastructure.Repositories
 {
-    public class AuthenticationRepository: GenericRepository<Usuario>, IAuthenticationRepository
+    public class AuthenticationRepository: GenericRepository<Usuario>, IAuthenticationCRepository
     {
         private readonly SistemaPasantesContext _context;
         public AuthenticationRepository(SistemaPasantesContext context) : base(context)

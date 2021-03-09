@@ -7,7 +7,7 @@ namespace SistemaPasantes.Core.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {
-        IAuthenticationRepository authenticationRepository { get; }
+        IAuthenticationCRepository authenticationRepository { get; }
         Task CommitAsync();
         void Commit();
     }

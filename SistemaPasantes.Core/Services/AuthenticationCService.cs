@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace SistemaPasantes.Core.Services
 {
-    public class AuthenticationService : IAuthenticationService
+    public class AuthenticationCService : IAuthenticationCService
     {
         private readonly IUnitOfWork _unitOfWork;
-        public AuthenticationService(IUnitOfWork unitOfWork)
+        public AuthenticationCService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }

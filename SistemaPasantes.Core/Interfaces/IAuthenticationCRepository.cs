@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SistemaPasantes.Core.Interfaces
 {
-    public interface IAuthenticationRepository: IGenericRepository<Usuario>
+    public interface IAuthenticationCRepository: IGenericRepository<Usuario>
     {
         Task<Usuario> Loggin(Usuario usuario);
     }

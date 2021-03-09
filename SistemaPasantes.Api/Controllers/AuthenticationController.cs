@@ -15,21 +15,22 @@ namespace SistemaPasantes.Api.Controllers
     [ApiController]
     public class AuthenticationController : ControllerBase
     {
-        private readonly IAuthenticationService _authenticationService;
+        private readonly IAuthenticationCService _authenticationService;
         private readonly IMapper _mapper;
-        public AuthenticationController(IAuthenticationService authenticationService, IMapper mapper)
+        public AuthenticationController(IAuthenticationCService authenticationService, IMapper mapper)
         {
             _authenticationService = authenticationService;
             _mapper = mapper;
         }
    
 
-        [HttpPost]
+        [HttpPost(nameof(RegisterUser))]
         public async Task<IActionResult> RegisterUser(UsuarioDTO usuarioDTO)
         {
             var user = _mapper.Map<Usuario>(usuarioDTO);
             await _authenticationService.RegisterUser(user);
             return Ok(usuarioDTO);
         }
+            
     }
 }

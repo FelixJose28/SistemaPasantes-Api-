@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SistemaPasantes.Core.Interfaces
 {
-    public interface IAuthenticationService
+    public interface IAuthenticationCService
     {
         //IEnumerable<Usuario> GetAllUsers();
         Task<Usuario> GetUserById(int id);
