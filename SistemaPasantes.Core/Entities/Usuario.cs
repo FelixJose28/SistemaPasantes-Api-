@@ -10,7 +10,7 @@ namespace SistemaPasantes.Infrastructure.Data
         public Usuario()
         {
             AdminEvaluacions = new HashSet<AdminEvaluacion>();
-            Convocatoria = new HashSet<Convocatorium>();
+            Convocatoria = new HashSet<Convocatoria>();
             Entregas = new HashSet<Entrega>();
             Evaluacions = new HashSet<Evaluacion>();
             PasanteEvaluacions = new HashSet<PasanteEvaluacion>();
@@ -29,7 +29,7 @@ namespace SistemaPasantes.Infrastructure.Data
         public virtual Grupo IdGrupoNavigation { get; set; }
         public virtual Rol IdRolNavigation { get; set; }
         public virtual ICollection<AdminEvaluacion> AdminEvaluacions { get; set; }
-        public virtual ICollection<Convocatorium> Convocatoria { get; set; }
+        public virtual ICollection<Convocatoria> Convocatoria { get; set; }
         public virtual ICollection<Entrega> Entregas { get; set; }
         public virtual ICollection<Evaluacion> Evaluacions { get; set; }
         public virtual ICollection<PasanteEvaluacion> PasanteEvaluacions { get; set; }
