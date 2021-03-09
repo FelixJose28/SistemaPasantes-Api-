@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using SistemaPasantes.Core.Interfaces;
+using SistemaPasantes.Core.Services;
 using SistemaPasantes.Infrastructure.Data;
 using SistemaPasantes.Infrastructure.Repositories;
 using System;
@@ -31,6 +32,10 @@ namespace SistemaPasantes.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddTransient<IAuthenticationService, AuthenticationService>();
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

@@ -14,29 +14,47 @@ namespace SistemaPasantes.Core.Services
         {
             _unitOfWork = unitOfWork;
         }
-        public Task AddUser(Usuario usuario)
+        public async Task RegisterUser(Usuario usuario)
         {
-            throw new NotImplementedException();
+            await _unitOfWork.authenticationRepository.Add(usuario);
+            await _unitOfWork.CommitAsync();
         }
 
-        public IEnumerable<Usuario> GetAllUsers()
-        {
-            throw new NotImplementedException();
-        }
+
 
         public async Task<Usuario> GetUserById(int id)
         {
-            return await _unitOfWork.
+            var user = await _unitOfWork.authenticationRepository.GetById(id);
+            if (user == null)
+            {
+                throw new Exception("User not found");
+            }
+            return user;
         }
 
-        public Task RemoveUser(int id)
+        public async Task DeleteUser(int id)
         {
-            throw new NotImplementedException();
+            if (GetUserById(id) == null)
+            {
+                throw new Exception("User not found");
+            }
+            await _unitOfWork.authenticationRepository.Remove(id);
         }
 
-        public void UpdateUser(Usuario usuario)
+
+        public async Task<Usuario> LogginUser(Usuario usuario)
         {
-            throw new NotImplementedException();
+            Usuario userLogger = await _unitOfWork.authenticationRepository.Loggin(usuario);
+            if(userLogger == null)
+            {
+                throw new Exception("Usuario o contrasena incorrectos");
+            }
+            return userLogger;
         }
+
+        //public IEnumerable<Usuario> GetAllUsers()
+        //{
+        //    return _unitOfWork.authenticationRepository.GetAll();
+        //}
     }
 }
