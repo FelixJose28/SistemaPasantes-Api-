@@ -1,9 +1,0 @@
-C:\Users\FreddyL\Desktop\Universidad\Pasantia\AILogic\Grupo Alpha\Sistema Pasantes\Backend\SistemaPasantes.Core\bin\Debug\netcoreapp3.1\SistemaPasantes.Core.deps.json
-C:\Users\FreddyL\Desktop\Universidad\Pasantia\AILogic\Grupo Alpha\Sistema Pasantes\Backend\SistemaPasantes.Core\bin\Debug\netcoreapp3.1\SistemaPasantes.Core.dll
-C:\Users\FreddyL\Desktop\Universidad\Pasantia\AILogic\Grupo Alpha\Sistema Pasantes\Backend\SistemaPasantes.Core\bin\Debug\netcoreapp3.1\SistemaPasantes.Core.pdb
-C:\Users\FreddyL\Desktop\Universidad\Pasantia\AILogic\Grupo Alpha\Sistema Pasantes\Backend\SistemaPasantes.Core\obj\Debug\netcoreapp3.1\SistemaPasantes.Core.csprojAssemblyReference.cache
-C:\Users\FreddyL\Desktop\Universidad\Pasantia\AILogic\Grupo Alpha\Sistema Pasantes\Backend\SistemaPasantes.Core\obj\Debug\netcoreapp3.1\SistemaPasantes.Core.AssemblyInfoInputs.cache
-C:\Users\FreddyL\Desktop\Universidad\Pasantia\AILogic\Grupo Alpha\Sistema Pasantes\Backend\SistemaPasantes.Core\obj\Debug\netcoreapp3.1\SistemaPasantes.Core.AssemblyInfo.cs
-C:\Users\FreddyL\Desktop\Universidad\Pasantia\AILogic\Grupo Alpha\Sistema Pasantes\Backend\SistemaPasantes.Core\obj\Debug\netcoreapp3.1\SistemaPasantes.Core.csproj.CoreCompileInputs.cache
-C:\Users\FreddyL\Desktop\Universidad\Pasantia\AILogic\Grupo Alpha\Sistema Pasantes\Backend\SistemaPasantes.Core\obj\Debug\netcoreapp3.1\SistemaPasantes.Core.dll
-C:\Users\FreddyL\Desktop\Universidad\Pasantia\AILogic\Grupo Alpha\Sistema Pasantes\Backend\SistemaPasantes.Core\obj\Debug\netcoreapp3.1\SistemaPasantes.Core.pdb
