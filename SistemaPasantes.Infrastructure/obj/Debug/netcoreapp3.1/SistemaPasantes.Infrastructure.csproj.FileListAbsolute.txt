@@ -1,0 +1,18 @@
+C:\Users\Usuario\3D Objects\SistemaPasantes\SistemaPasantes.Infrastructure\bin\Debug\netcoreapp3.1\SistemaPasantes.Infrastructure.deps.json
+C:\Users\Usuario\3D Objects\SistemaPasantes\SistemaPasantes.Infrastructure\bin\Debug\netcoreapp3.1\SistemaPasantes.Infrastructure.dll
+C:\Users\Usuario\3D Objects\SistemaPasantes\SistemaPasantes.Infrastructure\bin\Debug\netcoreapp3.1\SistemaPasantes.Infrastructure.pdb
+C:\Users\Usuario\3D Objects\SistemaPasantes\SistemaPasantes.Infrastructure\obj\Debug\netcoreapp3.1\SistemaPasantes.Infrastructure.csprojAssemblyReference.cache
+C:\Users\Usuario\3D Objects\SistemaPasantes\SistemaPasantes.Infrastructure\obj\Debug\netcoreapp3.1\SistemaPasantes.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\Usuario\3D Objects\SistemaPasantes\SistemaPasantes.Infrastructure\obj\Debug\netcoreapp3.1\SistemaPasantes.Infrastructure.AssemblyInfo.cs
+C:\Users\Usuario\3D Objects\SistemaPasantes\SistemaPasantes.Infrastructure\obj\Debug\netcoreapp3.1\SistemaPasantes.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\3D Objects\SistemaPasantes\SistemaPasantes.Infrastructure\obj\Debug\netcoreapp3.1\SistemaPasantes.Infrastructure.dll
+C:\Users\Usuario\3D Objects\SistemaPasantes\SistemaPasantes.Infrastructure\obj\Debug\netcoreapp3.1\SistemaPasantes.Infrastructure.pdb
+C:\Users\FreddyL\Desktop\Universidad\Pasantia\AILogic\Grupo Alpha\Sistema Pasantes\Backend\SistemaPasantes.Infrastructure\bin\Debug\netcoreapp3.1\SistemaPasantes.Infrastructure.deps.json
+C:\Users\FreddyL\Desktop\Universidad\Pasantia\AILogic\Grupo Alpha\Sistema Pasantes\Backend\SistemaPasantes.Infrastructure\bin\Debug\netcoreapp3.1\SistemaPasantes.Infrastructure.dll
+C:\Users\FreddyL\Desktop\Universidad\Pasantia\AILogic\Grupo Alpha\Sistema Pasantes\Backend\SistemaPasantes.Infrastructure\bin\Debug\netcoreapp3.1\SistemaPasantes.Infrastructure.pdb
+C:\Users\FreddyL\Desktop\Universidad\Pasantia\AILogic\Grupo Alpha\Sistema Pasantes\Backend\SistemaPasantes.Infrastructure\obj\Debug\netcoreapp3.1\SistemaPasantes.Infrastructure.csprojAssemblyReference.cache
+C:\Users\FreddyL\Desktop\Universidad\Pasantia\AILogic\Grupo Alpha\Sistema Pasantes\Backend\SistemaPasantes.Infrastructure\obj\Debug\netcoreapp3.1\SistemaPasantes.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\FreddyL\Desktop\Universidad\Pasantia\AILogic\Grupo Alpha\Sistema Pasantes\Backend\SistemaPasantes.Infrastructure\obj\Debug\netcoreapp3.1\SistemaPasantes.Infrastructure.AssemblyInfo.cs
+C:\Users\FreddyL\Desktop\Universidad\Pasantia\AILogic\Grupo Alpha\Sistema Pasantes\Backend\SistemaPasantes.Infrastructure\obj\Debug\netcoreapp3.1\SistemaPasantes.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\FreddyL\Desktop\Universidad\Pasantia\AILogic\Grupo Alpha\Sistema Pasantes\Backend\SistemaPasantes.Infrastructure\obj\Debug\netcoreapp3.1\SistemaPasantes.Infrastructure.dll
+C:\Users\FreddyL\Desktop\Universidad\Pasantia\AILogic\Grupo Alpha\Sistema Pasantes\Backend\SistemaPasantes.Infrastructure\obj\Debug\netcoreapp3.1\SistemaPasantes.Infrastructure.pdb

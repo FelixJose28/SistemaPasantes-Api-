@@ -1,0 +1,4 @@
+C:\Users\FreddyL\Desktop\Universidad\Pasantia\AILogic\Grupo Alpha\Sistema Pasantes\Backend\SistemaPasantes.Api\obj\Debug\net4.0\SistemaPasantes.Api.csprojAssemblyReference.cache
+C:\Users\FreddyL\Desktop\Universidad\Pasantia\AILogic\Grupo Alpha\Sistema Pasantes\Backend\SistemaPasantes.Api\obj\Debug\net4.0\SistemaPasantes.Api.AssemblyInfoInputs.cache
+C:\Users\FreddyL\Desktop\Universidad\Pasantia\AILogic\Grupo Alpha\Sistema Pasantes\Backend\SistemaPasantes.Api\obj\Debug\net4.0\SistemaPasantes.Api.AssemblyInfo.cs
+C:\Users\FreddyL\Desktop\Universidad\Pasantia\AILogic\Grupo Alpha\Sistema Pasantes\Backend\SistemaPasantes.Api\obj\Debug\net4.0\SistemaPasantes.Api.csproj.CoreCompileInputs.cache

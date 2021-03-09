@@ -18,7 +18,7 @@ namespace SistemaPasantes.Infrastructure.Data
         }
 
         public virtual DbSet<AdminEvaluacion> AdminEvaluacions { get; set; }
-        public virtual DbSet<Convocatorium> Convocatoria { get; set; }
+        public virtual DbSet<Convocatoria> Convocatoria { get; set; }
         public virtual DbSet<Entrega> Entregas { get; set; }
         public virtual DbSet<Evaluacion> Evaluacions { get; set; }
         public virtual DbSet<Grupo> Grupos { get; set; }
@@ -52,7 +52,7 @@ namespace SistemaPasantes.Infrastructure.Data
                     .HasConstraintName("FK_IdUsuarioRelacionUCE");
             });
 
-            modelBuilder.Entity<Convocatorium>(entity =>
+            modelBuilder.Entity<Convocatoria>(entity =>
             {
                 entity.Property(e => e.Id).HasColumnName("id");
 
