@@ -3,11 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaPasantes.Infrastructure", "SistemaPasantes.Infrastructure\SistemaPasantes.Infrastructure.csproj", "{CE432BAF-5B47-45A5-BE29-21D7CE9CAE99}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SistemaPasantes.Infrastructure", "SistemaPasantes.Infrastructure\SistemaPasantes.Infrastructure.csproj", "{CE432BAF-5B47-45A5-BE29-21D7CE9CAE99}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaPasantes.Core", "SistemaPasantes.Core\SistemaPasantes.Core.csproj", "{6550139D-C361-4DB5-943C-1AA6FB7D5CEB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SistemaPasantes.Core", "SistemaPasantes.Core\SistemaPasantes.Core.csproj", "{6550139D-C361-4DB5-943C-1AA6FB7D5CEB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaPasantes.Api", "SistemaPasantes.Api\SistemaPasantes.Api.csproj", "{D3FD603B-C55A-42E3-9B77-7B2565631E4D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SistemaPasantes.Api", "SistemaPasantes.Api\SistemaPasantes.Api.csproj", "{D3FD603B-C55A-42E3-9B77-7B2565631E4D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9B5FAE2E-7222-4E1D-9682-9ED28ED1734D}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
