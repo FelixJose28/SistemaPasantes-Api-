@@ -12,5 +12,6 @@ namespace SistemaPasantes.Core.Interfaces
         Task Add(T entity);
         void Update(T entity); // TODO: Esto debería devolver una Task igual, así todo ser async
         Task Remove(int id);
+        void AddNoAsync(T entity);
     }
 }

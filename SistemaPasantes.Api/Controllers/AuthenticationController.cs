@@ -35,7 +35,7 @@ namespace SistemaPasantes.Api.Controllers
             //}
             var user = _mapper.Map<Usuario>(usuarioDTO);
             await _authenticationService.RegisterUser(user);
-            return Ok(usuarioDTO);
+            return Ok(user);
         }
         [HttpGet(nameof(GetAllUser))]
         public IEnumerable<Usuario> GetAllUser()

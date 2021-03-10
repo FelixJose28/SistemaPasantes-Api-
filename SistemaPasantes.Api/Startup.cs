@@ -31,17 +31,20 @@ namespace SistemaPasantes.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Para mapear las entidades con mapper
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+
             services.AddTransient<IAuthenticationCService, AuthenticationCService>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
 
-            //AddNewToSoft to ignore reference loop
+            //AddNewToSoft to ignore reference loop   options.SerializerSettings.ReferenceLoopHandling
             services.AddControllers().AddNewtonsoftJson(options=> 
             {
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;   
             });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SistemaPasantes.Api", Version = "v1" });
