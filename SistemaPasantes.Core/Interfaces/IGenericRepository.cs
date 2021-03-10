@@ -10,7 +10,7 @@ namespace SistemaPasantes.Core.Interfaces
         IEnumerable<T> GetAll();
         Task<T> GetById(int id);
         Task Add(T entity);
-        void Update(T entity);
+        void Update(T entity); // TODO: Esto debería devolver una Task igual, así todo ser async
         Task Remove(int id);
     }
 }

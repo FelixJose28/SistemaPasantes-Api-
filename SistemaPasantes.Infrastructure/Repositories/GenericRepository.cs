@@ -19,9 +19,10 @@ namespace SistemaPasantes.Infrastructure.Repositories
             _context = context;
             _dbSetEntities = _context.Set<T>();
         }
+
         public async Task Add(T entity)
         {
-            await _dbSetEntities.AddAsync(entity);
+            await _dbSetEntities.AddAsync(entity); // TODO: No es necesario DbContext.SaveChangesAsync()?
         }
 
         public IEnumerable<T> GetAll()
