@@ -38,7 +38,7 @@ namespace SistemaPasantes.Api.Controllers
         //    return await _convocatorias.GetById(id);
         //}
 
-        //// POST: convocatoria/id
+        // POST: convocatoria/id
         //[HttpPost]
         //public async Task AddConvocatoria(Convocatoria convocatoria)
         //{

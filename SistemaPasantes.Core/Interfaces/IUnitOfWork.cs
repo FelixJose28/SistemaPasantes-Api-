@@ -8,6 +8,7 @@ namespace SistemaPasantes.Core.Interfaces
     public interface IUnitOfWork : IDisposable
     {
         IAuthenticationCRepository authenticationRepository { get; }
+
         Task CommitAsync();
         void Commit();
     }

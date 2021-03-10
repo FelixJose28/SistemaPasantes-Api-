@@ -38,9 +38,11 @@ namespace SistemaPasantes.Api.Controllers
             return Ok(user);
         }
         [HttpGet(nameof(GetAllUser))]
-        public IEnumerable<Usuario> GetAllUser()
+        public IActionResult GetAllUser()
         {
-            return _authenticationService.GetAllUsers();
+            var users = _authenticationService.GetAllUsers();
+            var usersDto = _mapper.Map<IEnumerable<UsuarioDTO>>(users);
+            return Ok(usersDto);
         }
         [HttpPost(nameof(Loggin))]
         public async Task<IActionResult> Loggin(UserLoginDto usuario)
