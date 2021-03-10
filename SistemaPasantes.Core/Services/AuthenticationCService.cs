@@ -31,8 +31,6 @@ namespace SistemaPasantes.Core.Services
             
         }
 
-
-
         public async Task<Usuario> GetUserById(int id)
         {
             var user = await _unitOfWork.authenticationRepository.GetById(id);

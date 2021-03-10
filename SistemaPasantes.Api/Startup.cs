@@ -50,7 +50,7 @@ namespace SistemaPasantes.Api
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SistemaPasantes.Api", Version = "v1" });
             });
 
-            services.AddDbContext<sistemapasantesContext>(options =>
+            services.AddDbContext<SistemaPasantesContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("ConnectionSqlServer")));
 
             services.AddTransient<ITareaRepository, TareaRepository>(); 

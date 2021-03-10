@@ -2,60 +2,93 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using SistemaPasantes.Core.DTOs;
+using SistemaPasantes.Core.Entities;
 using SistemaPasantes.Core.Interfaces;
-using SistemaPasantes.Infrastructure.Repositories;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace SistemaPasantes.Api.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class ConvocatoriaController : ControllerBase
     {
-        //SOLO ESTA COMENTADO 
-        //private readonly IGenericRepository<Convocatoria> _convocatorias;
+        private readonly IConvocatoriaRepository _repository;
+        private readonly IMapper _mapper;
 
-        //public ConvocatoriaController(SistemaPasantesContext context)
-        //{
-        //    _convocatorias = new GenericRepository<Convocatoria>(context);
-        //}
+        public ConvocatoriaController(IConvocatoriaRepository repository, IMapper mapper)
+        {
+            _repository = repository;
+            _mapper = mapper;
+        }
 
-        //// GET: convocatoria/
-        //[HttpGet]
-        //public IEnumerable<Convocatoria> GetConvocatorias()
-        //{
-        //    return _convocatorias.GetAll();
-        //}
+        [HttpGet] // GET: api/convocatoria/
+        public ActionResult<IEnumerable<Convocatoria>> GetAllConvocatorias()
+        {
+            return Ok(_repository.GetAll());
+        }
 
-        //// GET: convocatoria/id
-        //[HttpGet]
-        //public async Task<Convocatoria> GetConvocatoria(int id)
-        //{
-        //    return await _convocatorias.GetById(id);
-        //}
+        [HttpGet("{id}")] // GET: api/convocatoria/id
+        public async Task<ActionResult<Convocatoria>> GetConvocatoria(int id)
+        {
+            var convocatoria  = await _repository.GetById(id);
 
-        // POST: convocatoria/id
-        //[HttpPost]
-        //public async Task AddConvocatoria(Convocatoria convocatoria)
-        //{
-        //    await _convocatorias.Add(convocatoria);
-        //}
+            if (convocatoria == null)
+            {
+                return NotFound();
+            }
 
-        //// POST: convocatoria/id
-        //[HttpPost]
-        //public void UpdateConvocatoria(Convocatoria convocatoria)
-        //{
-        //    _convocatorias.Update(convocatoria);
-        //}
+            return Ok(convocatoria);
+        }
 
-        //// DELETE: convocatoria/id
-        //[HttpDelete]
-        //public async Task DeleteConvocatoria(int id)
-        //{
-        //    await _convocatorias.Remove(id);
-        //}
+        [HttpPost] // POST: api/convocatoria/
+        public async Task<ActionResult<Convocatoria>> CreateConvocatoria(ConvocatoriaDTO convocatoria)
+        {
+            if (convocatoria == null)
+            {
+                return BadRequest();
+            }
+
+            var entity = _mapper.Map<Convocatoria>(convocatoria);
+            await _repository.Add(entity);
+            return Ok(convocatoria);
+        }
+
+        [HttpPut("{id}")] // PUT: api/convocatoria/id
+        public async Task<ActionResult> UpdateConvocatoria(int id, ConvocatoriaDTO newConvocatoria)
+        {
+            if (newConvocatoria == null)
+            {
+                return BadRequest();
+            }
+
+            try
+            {
+                var entity = _mapper.Map<Convocatoria>(newConvocatoria);
+                await _repository.Update(id, entity);
+            }
+            catch
+            {
+                return NotFound($"Convocatoria con id ${id} no existe");
+            }
+
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")] // DELETE: api/convocatoria/id
+        public async Task<ActionResult> DeleteConvocatoria(int id)
+        {
+            try
+            {
+                await _repository.Remove(id);
+            }
+            catch
+            {
+                return NotFound($"Convocatoria con ${id} no existe");
+            }
+
+            return NoContent();
+        }
     }
 }
