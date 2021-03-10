@@ -16,46 +16,47 @@ namespace SistemaPasantes.Api.Controllers
     [ApiController]
     public class ConvocatoriaController : ControllerBase
     {
-        private readonly IGenericRepository<Convocatoria> _convocatorias;
+        //SOLO ESTA COMENTADO 
+        //private readonly IGenericRepository<Convocatoria> _convocatorias;
 
-        public ConvocatoriaController(SistemaPasantesContext context)
-        {
-            _convocatorias = new GenericRepository<Convocatoria>(context);
-        }
+        //public ConvocatoriaController(SistemaPasantesContext context)
+        //{
+        //    _convocatorias = new GenericRepository<Convocatoria>(context);
+        //}
 
-        // GET: convocatoria/
-        [HttpGet]
-        public IEnumerable<Convocatoria> GetConvocatorias()
-        {
-            return _convocatorias.GetAll();
-        }
+        //// GET: convocatoria/
+        //[HttpGet]
+        //public IEnumerable<Convocatoria> GetConvocatorias()
+        //{
+        //    return _convocatorias.GetAll();
+        //}
 
-        // GET: convocatoria/id
-        [HttpGet]
-        public async Task<Convocatoria> GetConvocatoria(int id)
-        {
-            return await _convocatorias.GetById(id);
-        }
+        //// GET: convocatoria/id
+        //[HttpGet]
+        //public async Task<Convocatoria> GetConvocatoria(int id)
+        //{
+        //    return await _convocatorias.GetById(id);
+        //}
 
-        // POST: convocatoria/id
-        [HttpPost]
-        public async Task AddConvocatoria(Convocatoria convocatoria)
-        {
-            await _convocatorias.Add(convocatoria);
-        }
+        //// POST: convocatoria/id
+        //[HttpPost]
+        //public async Task AddConvocatoria(Convocatoria convocatoria)
+        //{
+        //    await _convocatorias.Add(convocatoria);
+        //}
 
-        // POST: convocatoria/id
-        [HttpPost]
-        public void UpdateConvocatoria(Convocatoria convocatoria)
-        {
-            _convocatorias.Update(convocatoria);
-        }
+        //// POST: convocatoria/id
+        //[HttpPost]
+        //public void UpdateConvocatoria(Convocatoria convocatoria)
+        //{
+        //    _convocatorias.Update(convocatoria);
+        //}
 
-        // DELETE: convocatoria/id
-        [HttpDelete]
-        public async Task DeleteConvocatoria(int id)
-        {
-            await _convocatorias.Remove(id);
-        }
+        //// DELETE: convocatoria/id
+        //[HttpDelete]
+        //public async Task DeleteConvocatoria(int id)
+        //{
+        //    await _convocatorias.Remove(id);
+        //}
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SistemaPasantes.Core.DTOs;
 using SistemaPasantes.Core.Interfaces;
 using SistemaPasantes.Infrastructure.Data;
 using System;
@@ -16,7 +17,7 @@ namespace SistemaPasantes.Infrastructure.Repositories
             _context = context;
         }
 
-        public async Task<Usuario> Loggin(Usuario usuario)
+        public async Task<Usuario> Loggin(UserLoginDto usuario)
         {
             Usuario userLogger = await _context.Usuarios.FirstOrDefaultAsync(x=>x.Correo == usuario.Correo && x.Clave == usuario.Clave);
             return userLogger;

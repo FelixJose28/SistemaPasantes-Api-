@@ -42,6 +42,16 @@ namespace SistemaPasantes.Api.Controllers
         {
             return _authenticationService.GetAllUsers();
         }
+        [HttpPost(nameof(Loggin))]
+        public async Task<IActionResult> Loggin(UserLoginDto usuario)
+        {
+            var user = await _authenticationService.LogginUser(usuario);
+            if(user == null)
+            {
+                return NotFound("Datos incorrectos");
+            }
+            return Ok("Validado");
+        }
             
     }
 }

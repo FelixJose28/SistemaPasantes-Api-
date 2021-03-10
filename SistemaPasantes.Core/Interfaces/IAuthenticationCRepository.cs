@@ -1,4 +1,5 @@
-﻿using SistemaPasantes.Infrastructure.Data;
+﻿using SistemaPasantes.Core.DTOs;
+using SistemaPasantes.Infrastructure.Data;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,6 +9,6 @@ namespace SistemaPasantes.Core.Interfaces
 {
     public interface IAuthenticationCRepository: IGenericRepository<Usuario>
     {
-        Task<Usuario> Loggin(Usuario usuario);
+        Task<Usuario> Loggin(UserLoginDto usuario);
     }
 }

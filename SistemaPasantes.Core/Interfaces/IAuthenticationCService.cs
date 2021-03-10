@@ -1,4 +1,5 @@
-﻿using SistemaPasantes.Infrastructure.Data;
+﻿using SistemaPasantes.Core.DTOs;
+using SistemaPasantes.Infrastructure.Data;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace SistemaPasantes.Core.Interfaces
         //IEnumerable<Usuario> GetAllUsers();
         Task<Usuario> GetUserById(int id);
         IEnumerable<Usuario> GetAllUsers();
-        Task<Usuario> LogginUser(Usuario usuario);
+        Task<Usuario> LogginUser(UserLoginDto usuario);
         Task RegisterUser(Usuario usuario);
         Task DeleteUser(int id);
     }

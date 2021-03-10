@@ -1,4 +1,5 @@
-﻿using SistemaPasantes.Core.Interfaces;
+﻿using SistemaPasantes.Core.DTOs;
+using SistemaPasantes.Core.Interfaces;
 using SistemaPasantes.Infrastructure.Data;
 using System;
 using System.Collections;
@@ -43,7 +44,7 @@ namespace SistemaPasantes.Core.Services
         }
 
 
-        public async Task<Usuario> LogginUser(Usuario usuario)
+        public async Task<Usuario> LogginUser(UserLoginDto usuario)
         {
             Usuario userLogger = await _unitOfWork.authenticationRepository.Loggin(usuario);
             if(userLogger == null)
