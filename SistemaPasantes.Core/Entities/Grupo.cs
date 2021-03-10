@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace SistemaPasantes.Infrastructure.Data
+namespace SistemaPasantes.Core.Entities
 {
     public partial class Grupo
     {

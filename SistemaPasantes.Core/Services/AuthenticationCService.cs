@@ -1,6 +1,6 @@
 ﻿using SistemaPasantes.Core.DTOs;
+using SistemaPasantes.Core.Entities;
 using SistemaPasantes.Core.Interfaces;
-using SistemaPasantes.Infrastructure.Data;
 using System;
 using System.Collections;
 using System.Collections.Generic;

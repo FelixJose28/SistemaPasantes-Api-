@@ -1,20 +1,18 @@
-﻿ /*Paquete IdentityUser*/
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 #nullable disable
 
-namespace SistemaPasantes.Infrastructure.Data
+namespace SistemaPasantes.Core.Entities
 {
     public partial class Usuario
     {
         public Usuario()
         {
-            AdminEvaluacions = new HashSet<AdminEvaluacion>();
-            Convocatoria = new HashSet<Convocatoria>();
+            Convocatoria = new HashSet<Convocatorium>();
             Entregas = new HashSet<Entrega>();
             Evaluacions = new HashSet<Evaluacion>();
-            PasanteEvaluacions = new HashSet<PasanteEvaluacion>();
+            Repuesta = new HashSet<Repuestum>();
             Tareas = new HashSet<Tarea>();
         }
 
@@ -25,15 +23,14 @@ namespace SistemaPasantes.Infrastructure.Data
         public string Clave { get; set; }
         public string Telefono { get; set; }
         public int IdRol { get; set; }
-        public int IdGrupo { get; set; }
+        public int? IdGrupo { get; set; }
 
         public virtual Grupo IdGrupoNavigation { get; set; }
         public virtual Rol IdRolNavigation { get; set; }
-        public virtual ICollection<AdminEvaluacion> AdminEvaluacions { get; set; }
-        public virtual ICollection<Convocatoria> Convocatoria { get; set; }
+        public virtual ICollection<Convocatorium> Convocatoria { get; set; }
         public virtual ICollection<Entrega> Entregas { get; set; }
         public virtual ICollection<Evaluacion> Evaluacions { get; set; }
-        public virtual ICollection<PasanteEvaluacion> PasanteEvaluacions { get; set; }
+        public virtual ICollection<Repuestum> Repuesta { get; set; }
         public virtual ICollection<Tarea> Tareas { get; set; }
     }
 }

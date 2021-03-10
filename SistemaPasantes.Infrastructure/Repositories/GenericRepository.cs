@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SistemaPasantes.Core.Interfaces;
-using SistemaPasantes.Infrastructure.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +10,10 @@ namespace SistemaPasantes.Infrastructure.Repositories
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        private readonly SistemaPasantesContext _context;
+        private readonly sistemapasantesContext _context;
 
         private readonly DbSet<T> _dbSetEntities;
-        public GenericRepository(SistemaPasantesContext context)
+        public GenericRepository(sistemapasantesContext context)
         {
             _context = context;
             _dbSetEntities = _context.Set<T>();

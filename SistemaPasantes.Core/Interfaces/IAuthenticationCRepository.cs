@@ -1,5 +1,5 @@
 ﻿using SistemaPasantes.Core.DTOs;
-using SistemaPasantes.Infrastructure.Data;
+using SistemaPasantes.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;

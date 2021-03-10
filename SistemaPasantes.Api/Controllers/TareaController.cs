@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SistemaPasantes.Core.Entities;
 using SistemaPasantes.Core.Interfaces;
-using SistemaPasantes.Infrastructure.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;

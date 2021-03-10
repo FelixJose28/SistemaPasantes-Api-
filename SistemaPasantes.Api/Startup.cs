@@ -10,7 +10,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using SistemaPasantes.Core.Interfaces;
 using SistemaPasantes.Core.Services;
-using SistemaPasantes.Infrastructure.Data;
+using SistemaPasantes.Infrastructure;
 using SistemaPasantes.Infrastructure.Repositories;
 using System;
 using System.Collections.Generic;
@@ -50,7 +50,7 @@ namespace SistemaPasantes.Api
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SistemaPasantes.Api", Version = "v1" });
             });
 
-            services.AddDbContext<SistemaPasantesContext>(options =>
+            services.AddDbContext<sistemapasantesContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("ConnectionSqlServer")));
 
             services.AddTransient<ITareaRepository, TareaRepository>(); 

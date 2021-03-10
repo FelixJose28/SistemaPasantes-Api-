@@ -1,59 +1,43 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using SistemaPasantes.Core.Entities;
 
 #nullable disable
 
-namespace SistemaPasantes.Infrastructure.Data
+namespace SistemaPasantes.Infrastructure
 {
-    public partial class SistemaPasantesContext : DbContext
+    public partial class sistemapasantesContext : DbContext
     {
-        public SistemaPasantesContext()
+        public sistemapasantesContext()
         {
         }
 
-        public SistemaPasantesContext(DbContextOptions<SistemaPasantesContext> options)
+        public sistemapasantesContext(DbContextOptions<sistemapasantesContext> options)
             : base(options)
         {
         }
 
-        public virtual DbSet<AdminEvaluacion> AdminEvaluacions { get; set; }
-        public virtual DbSet<Convocatoria> Convocatoria { get; set; }
+        public virtual DbSet<Convocatorium> Convocatoria { get; set; }
         public virtual DbSet<Entrega> Entregas { get; set; }
+        public virtual DbSet<EstadoTarea> EstadoTareas { get; set; }
         public virtual DbSet<Evaluacion> Evaluacions { get; set; }
+        public virtual DbSet<Formulario> Formularios { get; set; }
         public virtual DbSet<Grupo> Grupos { get; set; }
-        public virtual DbSet<PasanteEvaluacion> PasanteEvaluacions { get; set; }
+        public virtual DbSet<Repuestum> Repuesta { get; set; }
         public virtual DbSet<Rol> Rols { get; set; }
         public virtual DbSet<Tarea> Tareas { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
 
-   
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
 
-            modelBuilder.Entity<AdminEvaluacion>(entity =>
+            modelBuilder.Entity<Convocatorium>(entity =>
             {
-                entity.HasKey(e => e.IdAsignaEvaluacion)
-                    .HasName("PK__adminEva__B0AB3F4B92F9194F");
+                entity.ToTable("convocatoria");
 
-                entity.ToTable("adminEvaluacion");
-
-                entity.HasOne(d => d.IdEvaluacionNavigation)
-                    .WithMany(p => p.AdminEvaluacions)
-                    .HasForeignKey(d => d.IdEvaluacion)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_IdEvaluacionRelacionUCE");
-
-                entity.HasOne(d => d.IdUsuarioNavigation)
-                    .WithMany(p => p.AdminEvaluacions)
-                    .HasForeignKey(d => d.IdUsuario)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_IdUsuarioRelacionUCE");
-            });
-
-            modelBuilder.Entity<Convocatoria>(entity =>
-            {
                 entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.Cupo).HasColumnName("cupo");
@@ -68,72 +52,128 @@ namespace SistemaPasantes.Infrastructure.Data
 
                 entity.Property(e => e.FechaInicio)
                     .HasColumnType("date")
-                    .HasColumnName("fecha_inicio");
+                    .HasColumnName("fecha_inicio")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.IdFormulario).HasColumnName("idFormulario");
 
                 entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");
+
+                entity.Property(e => e.Titulo)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("titulo");
+
+                entity.HasOne(d => d.IdFormularioNavigation)
+                    .WithMany(p => p.Convocatoria)
+                    .HasForeignKey(d => d.IdFormulario)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_convocatoria_formulario");
 
                 entity.HasOne(d => d.IdUsuarioNavigation)
                     .WithMany(p => p.Convocatoria)
                     .HasForeignKey(d => d.IdUsuario)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_IdUsuarioCo");
+                    .HasConstraintName("fk_convocatoria_usuario");
             });
 
             modelBuilder.Entity<Entrega>(entity =>
             {
-                entity.ToTable("Entrega");
+                entity.ToTable("entrega");
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.Archivo)
-                    .HasColumnType("text")
-                    .HasColumnName("archivo");
-
                 entity.Property(e => e.Fecha)
                     .HasColumnType("datetime")
-                    .HasColumnName("fecha");
+                    .HasColumnName("fecha")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.IdTarea).HasColumnName("idTarea");
 
                 entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");
 
+                entity.Property(e => e.RutaArchivo)
+                    .HasColumnType("text")
+                    .HasColumnName("ruta_archivo");
+
                 entity.HasOne(d => d.IdTareaNavigation)
                     .WithMany(p => p.Entregas)
                     .HasForeignKey(d => d.IdTarea)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_IdTareaUE");
+                    .HasConstraintName("fk_entrega_tarea");
 
                 entity.HasOne(d => d.IdUsuarioNavigation)
                     .WithMany(p => p.Entregas)
                     .HasForeignKey(d => d.IdUsuario)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_IdUsuarioUE");
+                    .HasConstraintName("fk_entrega_usuario");
+            });
+
+            modelBuilder.Entity<EstadoTarea>(entity =>
+            {
+                entity.ToTable("estadoTarea");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.NombreEstado)
+                    .IsRequired()
+                    .HasMaxLength(16)
+                    .IsUnicode(false)
+                    .HasColumnName("nombre_estado");
             });
 
             modelBuilder.Entity<Evaluacion>(entity =>
             {
-                entity.ToTable("Evaluacion");
+                entity.ToTable("evaluacion");
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.Calificacion).HasColumnName("calificacion");
+                entity.Property(e => e.Descripcion)
+                    .HasColumnType("text")
+                    .HasColumnName("descripcion");
 
                 entity.Property(e => e.Fecha)
                     .HasColumnType("date")
                     .HasColumnName("fecha");
 
+                entity.Property(e => e.IdFormulario).HasColumnName("idFormulario");
+
                 entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");
+
+                entity.Property(e => e.Titulo)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("titulo");
 
                 entity.HasOne(d => d.IdUsuarioNavigation)
                     .WithMany(p => p.Evaluacions)
                     .HasForeignKey(d => d.IdUsuario)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_IdUsuarioE");
+                    .HasConstraintName("fk_evaluacion_formulario");
+
+                entity.HasOne(d => d.IdUsuario1)
+                    .WithMany(p => p.Evaluacions)
+                    .HasForeignKey(d => d.IdUsuario)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_evaluacion_usuario");
+            });
+
+            modelBuilder.Entity<Formulario>(entity =>
+            {
+                entity.ToTable("formulario");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Ruta)
+                    .HasMaxLength(500)
+                    .IsUnicode(false)
+                    .HasColumnName("ruta");
             });
 
             modelBuilder.Entity<Grupo>(entity =>
             {
-                entity.ToTable("Grupo");
+                entity.ToTable("grupo");
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
@@ -143,36 +183,44 @@ namespace SistemaPasantes.Infrastructure.Data
                     .HasColumnName("nombre");
             });
 
-            modelBuilder.Entity<PasanteEvaluacion>(entity =>
+            modelBuilder.Entity<Repuestum>(entity =>
             {
-                entity.ToTable("PasanteEvaluacion");
+                entity.ToTable("repuesta");
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.Fecha)
-                    .HasColumnType("datetime")
-                    .HasColumnName("fecha");
+                entity.Property(e => e.Calificacion).HasColumnName("calificacion");
 
-                entity.Property(e => e.IdEvaluacion).HasColumnName("idEvaluacion");
+                entity.Property(e => e.Data)
+                    .HasColumnType("text")
+                    .HasColumnName("data");
+
+                entity.Property(e => e.FechaEntrega)
+                    .HasColumnType("datetime")
+                    .HasColumnName("fecha_entrega");
+
+                entity.Property(e => e.IdFormulario).HasColumnName("idFormulario");
 
                 entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");
 
-                entity.HasOne(d => d.IdEvaluacionNavigation)
-                    .WithMany(p => p.PasanteEvaluacions)
-                    .HasForeignKey(d => d.IdEvaluacion)
+                entity.Property(e => e.TipoRespuesta).HasColumnName("tipo_respuesta");
+
+                entity.HasOne(d => d.IdFormularioNavigation)
+                    .WithMany(p => p.Repuesta)
+                    .HasForeignKey(d => d.IdFormulario)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_IdEvaluacionCE");
+                    .HasConstraintName("fk_respuesta_formulario");
 
                 entity.HasOne(d => d.IdUsuarioNavigation)
-                    .WithMany(p => p.PasanteEvaluacions)
+                    .WithMany(p => p.Repuesta)
                     .HasForeignKey(d => d.IdUsuario)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_IdUsuarioCE");
+                    .HasConstraintName("fk_respuesta_usuario");
             });
 
             modelBuilder.Entity<Rol>(entity =>
             {
-                entity.ToTable("Rol");
+                entity.ToTable("rol");
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
@@ -184,17 +232,20 @@ namespace SistemaPasantes.Infrastructure.Data
 
             modelBuilder.Entity<Tarea>(entity =>
             {
-                entity.ToTable("Tarea");
+                entity.ToTable("tarea");
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.Descripcion)
+                    .IsRequired()
                     .HasColumnType("text")
                     .HasColumnName("descripcion");
 
-                entity.Property(e => e.FechaEntreaga)
+                entity.Property(e => e.FechaEntrega)
                     .HasColumnType("datetime")
-                    .HasColumnName("fecha_entreaga");
+                    .HasColumnName("fecha_entrega");
+
+                entity.Property(e => e.IdEstado).HasColumnName("idEstado");
 
                 entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");
 
@@ -203,20 +254,27 @@ namespace SistemaPasantes.Infrastructure.Data
                     .HasColumnName("ruta_archivo");
 
                 entity.Property(e => e.Titulo)
-                    .HasMaxLength(50)
+                    .IsRequired()
+                    .HasMaxLength(255)
                     .IsUnicode(false)
                     .HasColumnName("titulo");
+
+                entity.HasOne(d => d.IdEstadoNavigation)
+                    .WithMany(p => p.Tareas)
+                    .HasForeignKey(d => d.IdEstado)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_tarea_estadoTarea");
 
                 entity.HasOne(d => d.IdUsuarioNavigation)
                     .WithMany(p => p.Tareas)
                     .HasForeignKey(d => d.IdUsuario)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_IdUsuario");
+                    .HasConstraintName("fk_tarea_usuario");
             });
 
             modelBuilder.Entity<Usuario>(entity =>
             {
-                entity.ToTable("Usuario");
+                entity.ToTable("usuario");
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
@@ -225,9 +283,14 @@ namespace SistemaPasantes.Infrastructure.Data
                     .IsUnicode(false)
                     .HasColumnName("apellido");
 
-                entity.Property(e => e.Clave).HasColumnName("clave");
+                entity.Property(e => e.Clave)
+                    .IsRequired()
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnName("clave");
 
                 entity.Property(e => e.Correo)
+                    .IsRequired()
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasColumnName("correo");
@@ -237,11 +300,13 @@ namespace SistemaPasantes.Infrastructure.Data
                 entity.Property(e => e.IdRol).HasColumnName("idRol");
 
                 entity.Property(e => e.Nombre)
+                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasColumnName("nombre");
 
                 entity.Property(e => e.Telefono)
+                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("telefono");
@@ -249,18 +314,18 @@ namespace SistemaPasantes.Infrastructure.Data
                 entity.HasOne(d => d.IdGrupoNavigation)
                     .WithMany(p => p.Usuarios)
                     .HasForeignKey(d => d.IdGrupo)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_IdGrupoU");
+                    .HasConstraintName("fk_grupo_usuario");
 
                 entity.HasOne(d => d.IdRolNavigation)
                     .WithMany(p => p.Usuarios)
                     .HasForeignKey(d => d.IdRol)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_IdRolU");
+                    .HasConstraintName("fk_rol_usuairo");
             });
 
-        
+            OnModelCreatingPartial(modelBuilder);
         }
-         
+
+        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }

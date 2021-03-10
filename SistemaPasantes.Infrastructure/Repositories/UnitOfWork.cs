@@ -1,5 +1,4 @@
 ﻿using SistemaPasantes.Core.Interfaces;
-using SistemaPasantes.Infrastructure.Data;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,13 +8,13 @@ namespace SistemaPasantes.Infrastructure.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly SistemaPasantesContext _context;
+        private readonly sistemapasantesContext _context;
         public IAuthenticationCRepository authenticationRepository { get; }
         public IAuthenticationCRepository _authenticationRepository { get; private set; }
 
        
 
-        public UnitOfWork(SistemaPasantesContext context)
+        public UnitOfWork(sistemapasantesContext context)
         {
             _context = context;
             authenticationRepository = new AuthenticationCRepository(_context);
