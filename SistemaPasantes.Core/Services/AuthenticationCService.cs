@@ -18,12 +18,12 @@ namespace SistemaPasantes.Core.Services
         }
         public async Task RegisterUser(Usuario usuario)
         {
-            //var validateUser = await _unitOfWork.authenticationRepository.ValidateCorreo(usuario);
+            var validateUser = await _unitOfWork.authenticationRepository.ValidateCorreo(usuario);
 
-            //if (validateUser.Correo != null && validateUser.Correo == usuario.Correo)
-            //{
-            //    throw new Exception("Este usuario ya existe");
-            //}
+            if (validateUser != null && validateUser.Correo == usuario.Correo)
+            {
+                throw new Exception("Este correo ya esta registrado, pruebe con otro correo.");
+            }
 
 
             await _unitOfWork.authenticationRepository.Add(usuario);
