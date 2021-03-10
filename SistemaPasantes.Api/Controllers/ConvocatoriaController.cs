@@ -14,10 +14,10 @@ namespace SistemaPasantes.Api.Controllers
     [ApiController]
     public class ConvocatoriaController : ControllerBase
     {
-        private readonly IConvocatoriaRepository _repository;
+        private readonly IConvocatoriaService _repository;
         private readonly IMapper _mapper;
 
-        public ConvocatoriaController(IConvocatoriaRepository repository, IMapper mapper)
+        public ConvocatoriaController(IConvocatoriaService repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
@@ -26,13 +26,13 @@ namespace SistemaPasantes.Api.Controllers
         [HttpGet] // GET: api/convocatoria/
         public ActionResult<IEnumerable<Convocatoria>> GetAllConvocatorias()
         {
-            return Ok(_repository.GetAll());
+            return Ok(_repository.GetAllConvocatorias());
         }
 
         [HttpGet("{id}")] // GET: api/convocatoria/id
         public async Task<ActionResult<Convocatoria>> GetConvocatoria(int id)
         {
-            var convocatoria  = await _repository.GetById(id);
+            var convocatoria  = await _repository.GetConvocatoriaById(id);
 
             if (convocatoria == null)
             {
@@ -51,7 +51,7 @@ namespace SistemaPasantes.Api.Controllers
             }
 
             var entity = _mapper.Map<Convocatoria>(convocatoria);
-            await _repository.Add(entity);
+            await _repository.CreateConvocatoria(entity);
             return Ok(convocatoria);
         }
 
@@ -66,7 +66,7 @@ namespace SistemaPasantes.Api.Controllers
             try
             {
                 var entity = _mapper.Map<Convocatoria>(newConvocatoria);
-                await _repository.Update(id, entity);
+                await _repository.UpdateConvocatoria(id, entity);
             }
             catch
             {
@@ -81,7 +81,7 @@ namespace SistemaPasantes.Api.Controllers
         {
             try
             {
-                await _repository.Remove(id);
+                await _repository.RemoveConvocatoria(id);
             }
             catch
             {

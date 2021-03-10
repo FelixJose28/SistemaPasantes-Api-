@@ -1,46 +1,64 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using SistemaPasantes.Core.Entities;
 using SistemaPasantes.Core.Interfaces;
-
-#nullable enable
 
 namespace SistemaPasantes.Core.Services
 {
     public class ConvocatoriaService : IConvocatoriaService
     {
-        private readonly IConvocatoriaRepository _repository;
+        private readonly IUnitOfWork _unitOfWork;
 
         public ConvocatoriaService(IUnitOfWork unitOfWork)
         {
-            _repository = unitOfWork.convocatoriaRepository;
+            _unitOfWork = unitOfWork;
         }
 
-        public Task<Convocatoria> CreateConvocatoria(Convocatoria convocatoria)
+        public async Task<Convocatoria> CreateConvocatoria(Convocatoria convocatoria)
         {
-            throw new NotImplementedException();
+            await _unitOfWork.convocatoriaRepository.Add(convocatoria);
+            await _unitOfWork.CommitAsync();
+            return convocatoria;
         }
 
         public IEnumerable<Convocatoria> GetAllConvocatorias()
         {
-            throw new NotImplementedException();
+            return _unitOfWork.convocatoriaRepository.GetAll();
         }
 
-        public Task<Convocatoria> GetConvocatoriaById(int id)
+        public async Task<Convocatoria> GetConvocatoriaById(int id)
         {
-            throw new NotImplementedException();
+            return await _unitOfWork.convocatoriaRepository.GetById(id);
         }
 
-        public Task<Convocatoria> RemoveConvocatoria(int id)
+        public async Task RemoveConvocatoria(int id)
         {
-            throw new NotImplementedException();
+            var entityToRemove = await _unitOfWork.convocatoriaRepository.GetById(id);
+            if (entityToRemove == null)
+            {
+                throw new Exception($"No se encontró la convocatoria con id: {id}");
+            }
+
+            await _unitOfWork.convocatoriaRepository.Remove(id);
+            await _unitOfWork.CommitAsync();
         }
 
-        public Task<Convocatoria> UpdateConvocatoria(int id, Convocatoria convocatoria)
+        public async Task UpdateConvocatoria(int id, Convocatoria convocatoria)
         {
-            throw new NotImplementedException();
+            var entityToUpdate = await _unitOfWork.convocatoriaRepository.GetById(id);
+            if (entityToUpdate == null)
+            {
+                throw new Exception($"No se encontró la convocatoria con id: {id}");
+            }
+
+            if(entityToUpdate.Id != convocatoria.Id)
+            {
+                throw new Exception("El id de la nueva convocatoria no corresponde con la convocatoria a actualizar");
+            }
+
+            await _unitOfWork.convocatoriaRepository.Update(id, convocatoria);
+            await _unitOfWork.CommitAsync();
         }
     }
 }
