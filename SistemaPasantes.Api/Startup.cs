@@ -36,7 +36,12 @@ namespace SistemaPasantes.Api
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddTransient<IAuthenticationCService, AuthenticationCService>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
-            services.AddControllers();
+
+            //AddNewToSoft to ignore reference loop
+            services.AddControllers().AddNewtonsoftJson(options=> 
+            {
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;   
+            });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SistemaPasantes.Api", Version = "v1" });

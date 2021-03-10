@@ -1,6 +1,7 @@
 ﻿using SistemaPasantes.Core.Interfaces;
 using SistemaPasantes.Infrastructure.Data;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -50,6 +51,11 @@ namespace SistemaPasantes.Core.Services
                 throw new Exception("Usuario o contrasena incorrectos");
             }
             return userLogger;
+        }
+
+        public IEnumerable<Usuario> GetAllUsers()
+        {
+            return _unitOfWork.authenticationRepository.GetAll();
         }
 
         //public IEnumerable<Usuario> GetAllUsers()

@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace SistemaPasantes.Infrastructure.Repositories
 {
-    public class AuthenticationRepository: GenericRepository<Usuario>, IAuthenticationCRepository
+    public class AuthenticationCRepository: GenericRepository<Usuario>, IAuthenticationCRepository
     {
         private readonly SistemaPasantesContext _context;
-        public AuthenticationRepository(SistemaPasantesContext context) : base(context)
+        public AuthenticationCRepository(SistemaPasantesContext context) : base(context)
         {
             _context = context;
         }

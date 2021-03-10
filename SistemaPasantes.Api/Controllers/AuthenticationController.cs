@@ -25,11 +25,22 @@ namespace SistemaPasantes.Api.Controllers
    
 
         [HttpPost(nameof(RegisterUser))]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> RegisterUser(UsuarioDTO usuarioDTO)
         {
+            //if (!ModelState.IsValid)
+            //{
+            //    return BadRequest();
+            //}
             var user = _mapper.Map<Usuario>(usuarioDTO);
             await _authenticationService.RegisterUser(user);
             return Ok(usuarioDTO);
+        }
+        [HttpGet(nameof(GetAllUser))]
+        public IEnumerable<Usuario> GetAllUser()
+        {
+            return _authenticationService.GetAllUsers();
         }
             
     }

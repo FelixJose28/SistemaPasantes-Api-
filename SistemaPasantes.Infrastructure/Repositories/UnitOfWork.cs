@@ -18,7 +18,7 @@ namespace SistemaPasantes.Infrastructure.Repositories
         public UnitOfWork(SistemaPasantesContext context)
         {
             _context = context;
-            authenticationRepository = new AuthenticationRepository(_context);
+            authenticationRepository = new AuthenticationCRepository(_context);
         }
 
         public async Task CommitAsync()
