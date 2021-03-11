@@ -1,61 +1,92 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using SistemaPasantes.Core.DTOs;
+using SistemaPasantes.Core.Entities;
 using SistemaPasantes.Core.Interfaces;
-using SistemaPasantes.Infrastructure.Repositories;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace SistemaPasantes.Api.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
-    public class ConvocatoriaController : ControllerBase
+    public class FormularioController : ControllerBase
     {
-        //SOLO ESTA COMENTADO 
-        //private readonly IGenericRepository<Convocatoria> _convocatorias;
+        private readonly IFormularioService _repository;
+        private readonly IMapper _mapper;
 
-        //public ConvocatoriaController(SistemaPasantesContext context)
-        //{
-        //    _convocatorias = new GenericRepository<Convocatoria>(context);
-        //}
+        public FormularioController(IFormularioService repository, IMapper mapper)
+        {
+            _repository = repository;
+            _mapper = mapper;
+        }
 
-        //// GET: convocatoria/
-        //[HttpGet]
-        //public IEnumerable<Convocatoria> GetConvocatorias()
-        //{
-        //    return _convocatorias.GetAll();
-        //}
+        [HttpGet] // GET: api/formulario/
+        public ActionResult<IEnumerable<Formulario>> GetAllFormularios() //TODO: Return FormularioDTO
+        {
+            return Ok(_repository.GetAllFormularios());
+        }
 
-        //// GET: convocatoria/id
-        //[HttpGet]
-        //public async Task<Convocatoria> GetConvocatoria(int id)
-        //{
-        //    return await _convocatorias.GetById(id);
-        //}
+        [HttpGet("{id}")] // GET: api/formulario/id
+        public async Task<ActionResult<Formulario>> GetFormulario(int id)
+        {
+            var formulario  = await _repository.GetFormularioById(id);
 
-        // POST: convocatoria/id
-        //[HttpPost]
-        //public async Task AddConvocatoria(Convocatoria convocatoria)
-        //{
-        //    await _convocatorias.Add(convocatoria);
-        //}
+            if (formulario == null)
+            {
+                return NotFound();
+            }
 
-        //// POST: convocatoria/id
-        //[HttpPost]
-        //public void UpdateConvocatoria(Convocatoria convocatoria)
-        //{
-        //    _convocatorias.Update(convocatoria);
-        //}
+            return Ok(formulario);
+        }
 
-        //// DELETE: convocatoria/id
-        //[HttpDelete]
-        //public async Task DeleteConvocatoria(int id)
-        //{
-        //    await _convocatorias.Remove(id);
-        //}
+        [HttpPost] // POST: api/formulario/
+        public async Task<ActionResult<Formulario>> CreateFormulario(FormularioDTO formulario)
+        {
+            if (formulario == null)
+            {
+                return BadRequest();
+            }
+
+            var entity = _mapper.Map<Formulario>(formulario);
+            await _repository.CreateFormulario(entity);
+            return Ok(formulario);
+        }
+
+        [HttpPut("{id}")] // PUT: api/formulario/id
+        public async Task<ActionResult> UpdateFormulario(int id, FormularioDTO newFormulario)
+        {
+            if (newFormulario == null)
+            {
+                return BadRequest();
+            }
+
+            try
+            {
+                var entity = _mapper.Map<Formulario>(newFormulario);
+                await _repository.UpdateFormulario(id, entity);
+            }
+            catch
+            {
+                return NotFound($"Formulario con id ${id} no existe");
+            }
+
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")] // DELETE: api/formulario/id
+        public async Task<ActionResult> DeleteFormulario(int id)
+        {
+            try
+            {
+                await _repository.RemoveFormulario(id);
+            }
+            catch
+            {
+                return NotFound($"Formulario con ${id} no existe");
+            }
+
+            return NoContent();
+        }
     }
 }

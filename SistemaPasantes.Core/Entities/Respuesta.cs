@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace SistemaPasantes.Core.Entities
 {
-    public partial class Repuestum
+    public partial class Respuesta
     {
         public int Id { get; set; }
         public DateTime? FechaEntrega { get; set; }

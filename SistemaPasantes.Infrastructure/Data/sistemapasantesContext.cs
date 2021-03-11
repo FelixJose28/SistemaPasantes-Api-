@@ -7,24 +7,24 @@ using SistemaPasantes.Core.Entities;
 
 namespace SistemaPasantes.Infrastructure
 {
-    public partial class sistemapasantesContext : DbContext
+    public partial class SistemaPasantesContext : DbContext
     {
-        public sistemapasantesContext()
+        public SistemaPasantesContext()
         {
         }
 
-        public sistemapasantesContext(DbContextOptions<sistemapasantesContext> options)
+        public SistemaPasantesContext(DbContextOptions<SistemaPasantesContext> options)
             : base(options)
         {
         }
 
-        public virtual DbSet<Convocatorium> Convocatoria { get; set; }
+        public virtual DbSet<Convocatoria> Convocatoria { get; set; }
         public virtual DbSet<Entrega> Entregas { get; set; }
         public virtual DbSet<EstadoTarea> EstadoTareas { get; set; }
         public virtual DbSet<Evaluacion> Evaluacions { get; set; }
         public virtual DbSet<Formulario> Formularios { get; set; }
         public virtual DbSet<Grupo> Grupos { get; set; }
-        public virtual DbSet<Repuestum> Repuesta { get; set; }
+        public virtual DbSet<Respuesta> Repuesta { get; set; }
         public virtual DbSet<Rol> Rols { get; set; }
         public virtual DbSet<Tarea> Tareas { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
@@ -34,7 +34,7 @@ namespace SistemaPasantes.Infrastructure
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
 
-            modelBuilder.Entity<Convocatorium>(entity =>
+            modelBuilder.Entity<Convocatoria>(entity =>
             {
                 entity.ToTable("convocatoria");
 
@@ -183,7 +183,7 @@ namespace SistemaPasantes.Infrastructure
                     .HasColumnName("nombre");
             });
 
-            modelBuilder.Entity<Repuestum>(entity =>
+            modelBuilder.Entity<Respuesta>(entity =>
             {
                 entity.ToTable("repuesta");
 
