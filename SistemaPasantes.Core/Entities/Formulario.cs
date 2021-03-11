@@ -9,16 +9,16 @@ namespace SistemaPasantes.Core.Entities
     {
         public Formulario()
         {
-            Convocatoria = new HashSet<Convocatorium>();
+            Convocatoria = new HashSet<Convocatoria>();
             Evaluacions = new HashSet<Evaluacion>();
-            Repuesta = new HashSet<Repuestum>();
+            Repuesta = new HashSet<Respuesta>();
         }
 
         public int Id { get; set; }
         public string Ruta { get; set; }
 
-        public virtual ICollection<Convocatorium> Convocatoria { get; set; }
+        public virtual ICollection<Convocatoria> Convocatoria { get; set; }
         public virtual ICollection<Evaluacion> Evaluacions { get; set; }
-        public virtual ICollection<Repuestum> Repuesta { get; set; }
+        public virtual ICollection<Respuesta> Repuesta { get; set; }
     }
 }

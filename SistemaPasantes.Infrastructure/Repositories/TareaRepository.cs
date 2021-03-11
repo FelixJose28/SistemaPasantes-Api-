@@ -1,56 +1,79 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SistemaPasantes.Core.Entities;
-using SistemaPasantes.Core.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SistemaPasantes.Infrastructure.Repositories
 {
-    public class TareaRepository : IGenericRepository<Tarea>
-    {
-        private readonly IGenericRepository<Tarea> _context;
 
-        public TareaRepository(IGenericRepository<Tarea> context)
+    public class TareaRepository
+    {
+
+        private readonly SistemaPasantesContext _context;
+
+        public TareaRepository(SistemaPasantesContext context)
         {
             _context = context;
         }
 
-        public async Task Add(Tarea entity)
+       
+        public async Task<IEnumerable<Tarea>> GetTarea()
         {
-         /*   await _context.Add(entity);
-
-            var saveResult = await _context.SaveChangesAsync(); 
-
-           return  saveResult == 1 ; 
-         */
+            var tareas = await _context.Tareas.ToListAsync();
+            return tareas;
         }
 
-        public void AddNoAsync(Tarea entity)
+
+
+        public async Task<Tarea> GetTarea(int id)
         {
-            throw new NotImplementedException();
+            var tarea = await _context.Tareas.FirstOrDefaultAsync(x => x.Id == id);
+            return tarea;
         }
 
-        public IEnumerable<Tarea> GetAll()
+
+
+        public async Task<Tarea> PostTarea(Tarea tarea)
         {
-            throw new NotImplementedException();
+            _context.Tareas.Add(tarea);
+            var saveResult = await _context.SaveChangesAsync();
+
+
+            var check = await _context.Tareas.FirstOrDefaultAsync(x => x.Id == tarea.Id);
+            if (check == null) return null;
+
+            return tarea;
+
         }
 
-        public Task<Tarea> GetById(int id)
+
+
+        public async Task<Tarea> PutTarea(Tarea tarea)
         {
-            throw new NotImplementedException();
+            var item = await _context.Tareas
+               .Where(x => x.Id == tarea.Id)
+               .SingleOrDefaultAsync();
+
+            if (item == null) return null;
+
+            _context.Entry(item).CurrentValues.SetValues(tarea);
+            var saveResult = await _context.SaveChangesAsync();
+
+            return tarea;
         }
 
-        public Task Remove(int id)
-        {
-            throw new NotImplementedException();
-        }
 
-        public void Update(Tarea entity)
+        public async Task<bool> DeleteTarea(int id)
         {
-            throw new NotImplementedException();
-        }
+            var item = await _context.Tareas
+                .Where(x => x.Id == id).FirstOrDefaultAsync();
+
+            _context.Entry(item).State = EntityState.Deleted;
+            var saveResult = await _context.SaveChangesAsync();
+
+            return saveResult == 1;
+        } 
     }
 
 }

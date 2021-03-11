@@ -37,6 +37,7 @@ namespace SistemaPasantes.Api
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
             services.AddTransient<IAuthenticationCService, AuthenticationCService>();
+            services.AddTransient<IConvocatoriaService, ConvocatoriaService>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
 
             //AddNewToSoft to ignore reference loop   options.SerializerSettings.ReferenceLoopHandling
@@ -50,10 +51,9 @@ namespace SistemaPasantes.Api
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SistemaPasantes.Api", Version = "v1" });
             });
 
-            services.AddDbContext<sistemapasantesContext>(options =>
+            services.AddDbContext<SistemaPasantesContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("ConnectionSqlServer")));
 
-            services.AddTransient<ITareaRepository, TareaRepository>(); 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

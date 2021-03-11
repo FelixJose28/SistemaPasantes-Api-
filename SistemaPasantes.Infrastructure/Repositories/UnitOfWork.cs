@@ -8,22 +8,24 @@ namespace SistemaPasantes.Infrastructure.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly sistemapasantesContext _context;
-        public IAuthenticationCRepository authenticationRepository { get; }
-        public IAuthenticationCRepository _authenticationRepository { get; private set; }
+        private readonly SistemaPasantesContext _context;
 
-       
+        public IAuthenticationCRepository authenticationRepository { get; private set; }
 
-        public UnitOfWork(sistemapasantesContext context)
+        public IConvocatoriaRepository convocatoriaRepository { get; private set; }
+
+        public UnitOfWork(SistemaPasantesContext context)
         {
             _context = context;
             authenticationRepository = new AuthenticationCRepository(_context);
+            convocatoriaRepository = new ConvocatoriaRepository(_context);
         }
 
         public async Task CommitAsync()
         {
             await _context.SaveChangesAsync();
         }
+
         public void Commit()
         {
             _context.SaveChanges();

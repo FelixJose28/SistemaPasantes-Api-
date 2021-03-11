@@ -10,10 +10,11 @@ namespace SistemaPasantes.Infrastructure.Repositories
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        private readonly sistemapasantesContext _context;
+        private readonly SistemaPasantesContext _context;
 
         private readonly DbSet<T> _dbSetEntities;
-        public GenericRepository(sistemapasantesContext context)
+
+        public GenericRepository(SistemaPasantesContext context)
         {
             _context = context;
             _dbSetEntities = _context.Set<T>();
@@ -21,12 +22,7 @@ namespace SistemaPasantes.Infrastructure.Repositories
 
         public async Task Add(T entity)
         {
-            await _dbSetEntities.AddAsync(entity); // TODO: No es necesario DbContext.SaveChangesAsync()?
-        }
-
-        public void AddNoAsync(T entity)
-        {
-            _dbSetEntities.Add(entity);
+            await _dbSetEntities.AddAsync(entity);
         }
 
         public IEnumerable<T> GetAll()
@@ -46,9 +42,10 @@ namespace SistemaPasantes.Infrastructure.Repositories
             _dbSetEntities.Remove(entity);
         }
 
-        public void Update(T entity)
+        public async Task Update(int id, T entity)
         {
-            _dbSetEntities.Update(entity);
+            var entityToUpdate = await _dbSetEntities.FindAsync(id);
+            _dbSetEntities.Update(entityToUpdate);
         }
     }
 }
