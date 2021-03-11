@@ -50,7 +50,7 @@ namespace SistemaPasantes.Api.Controllers
 
 
         [HttpPost(nameof(Loggin))]
-        public async Task<IActionResult> Loggin(UserLoginDto usuario)
+        public async Task<IActionResult> Loggin(UserLoginCustom usuario)
         {
             var user = await _authenticationService.LogginUser(usuario);
             if(user == null)

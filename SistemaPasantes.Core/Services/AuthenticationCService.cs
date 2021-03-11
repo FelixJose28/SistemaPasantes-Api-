@@ -53,7 +53,7 @@ namespace SistemaPasantes.Core.Services
         }
 
 
-        public async Task<Usuario> LogginUser(UserLoginDto usuario)
+        public async Task<Usuario> LogginUser(UserLoginCustom usuario)
         {
             Usuario userLogger = await _unitOfWork.authenticationRepository.Loggin(usuario);
             if(userLogger == null)
