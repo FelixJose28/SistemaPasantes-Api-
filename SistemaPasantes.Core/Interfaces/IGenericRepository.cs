@@ -9,10 +9,10 @@ namespace SistemaPasantes.Core.Interfaces
 
         Task<T> GetById(int id);
 
-        Task<T> Add(T entity);
+        Task Add(T entity);
 
-        Task<T> Update(int id, T entity);
+        Task Update(int id, T entity);
 
-        Task<T> Remove(int id);
+        Task Remove(int id);
     }
 }

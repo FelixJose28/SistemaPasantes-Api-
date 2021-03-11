@@ -13,7 +13,7 @@ namespace SistemaPasantes.Core.Interfaces
         //IEnumerable<Usuario> GetAllUsers();
         Task<Usuario> GetUserById(int id);
         IEnumerable<Usuario> GetAllUsers();
-        Task<Usuario> LogginUser(UserLoginDto usuario);
+        Task<Usuario> LogginUser(UserLoginCustom usuario);
         Task RegisterUser(Usuario usuario);
         Task DeleteUser(int id);
     }
