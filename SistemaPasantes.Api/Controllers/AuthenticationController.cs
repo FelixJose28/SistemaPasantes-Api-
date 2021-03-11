@@ -54,18 +54,25 @@ namespace SistemaPasantes.Api.Controllers
 
 
         [HttpPost(nameof(Loggin))]
-        public async Task<IActionResult> Loggin(UserLoginCustom usuario)
+        public async Task<IActionResult> Loggin(UserLoginCustom logginusuario)
         {
-            var user = await _authenticationService.LogginUser(usuario);
-            if(user == null)
+            //si el usuario es valido 
+            var validation = await IsValidUser(logginusuario);
+            if (validation.Item1)
             {
-                return NotFound("Datos incorrectos");
+                var token = GenerateToken(validation.Item2);
+                return Ok(new { token = token });
             }
-            var token = GenerateToken();
-            return Ok(new { token });
+            return NotFound();
         }
 
-        private string GenerateToken()
+        private async Task<(bool, Usuario)> IsValidUser(UserLoginCustom login)
+        {
+            var user = await _authenticationService.LogginUser(login);
+            return (user != null, user);
+        }
+
+        private string GenerateToken(Usuario usuario)
         {
             //Header
             var symetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Authentication:SecretKey"]));
@@ -75,9 +82,9 @@ namespace SistemaPasantes.Api.Controllers
             //Claims
             var claims = new[]
             {
-                new Claim(ClaimTypes.Name, "Felix"),
-                new Claim(ClaimTypes.Email, "fj@gmail.com"),
-                new Claim(ClaimTypes.Role, "Administrador")
+                new Claim(ClaimTypes.Name, usuario.Nombre),
+                new Claim(ClaimTypes.Email, usuario.Correo),
+                new Claim(ClaimTypes.Role, usuario.IdRol.ToString())
             };
 
             //Payload

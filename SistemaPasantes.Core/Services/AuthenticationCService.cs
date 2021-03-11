@@ -67,10 +67,5 @@ namespace SistemaPasantes.Core.Services
         {
             return _unitOfWork.authenticationRepository.GetAll();
         }
-
-        //public IEnumerable<Usuario> GetAllUsers()
-        //{
-        //    return _unitOfWork.authenticationRepository.GetAll();
-        //}
     }
 }
