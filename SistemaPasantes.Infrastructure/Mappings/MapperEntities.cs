@@ -10,6 +10,7 @@ namespace SistemaPasantes.Infrastructure.Mappings
         {
             CreateMap<Usuario, UsuarioDTO>().ReverseMap();
             CreateMap<Convocatoria, ConvocatoriaDTO>().ReverseMap();
+            CreateMap<Formulario, FormularioDTO>().ReverseMap();
         }
     }
 }

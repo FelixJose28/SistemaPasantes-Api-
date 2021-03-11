@@ -9,7 +9,7 @@ namespace SistemaPasantes.Core.Interfaces
 {
     public interface IAuthenticationCRepository: IGenericRepository<Usuario>
     {
-        Task<Usuario> Loggin(UserLoginDto usuario);
+        Task<Usuario> Loggin(UserLoginCustom usuario);
         Task<Usuario> ValidateCorreo(Usuario usuario);
     }
 }
