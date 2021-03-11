@@ -10,6 +10,8 @@ namespace SistemaPasantes.Core.Interfaces
         IAuthenticationCRepository authenticationRepository { get; }
         IConvocatoriaRepository convocatoriaRepository { get; }
 
+        IPerfilRepository perfilRepository { get; }
+
         Task CommitAsync();
         void Commit();
     }
