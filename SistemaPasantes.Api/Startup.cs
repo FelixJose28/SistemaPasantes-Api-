@@ -95,9 +95,11 @@ namespace SistemaPasantes.Api
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
             //Agregando la autenticacion
             app.UseAuthentication();
 
+            //Agregando la autorizacion
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
