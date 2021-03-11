@@ -13,9 +13,6 @@ using SistemaPasantes.Core.Services;
 using SistemaPasantes.Infrastructure;
 using SistemaPasantes.Infrastructure.Repositories;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SistemaPasantes.Api
 {
@@ -34,10 +31,15 @@ namespace SistemaPasantes.Api
             //Para mapear las entidades con mapper
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
+            //
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
+            // Services
             services.AddTransient<IAuthenticationCService, AuthenticationCService>();
             services.AddTransient<IConvocatoriaService, ConvocatoriaService>();
+            services.AddTransient<IFormularioService, FormularioService>();
+
+            // UnitOfWork
             services.AddTransient<IUnitOfWork, UnitOfWork>();
 
             //AddNewToSoft to ignore reference loop   options.SerializerSettings.ReferenceLoopHandling
@@ -46,14 +48,17 @@ namespace SistemaPasantes.Api
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;   
             });
 
+            // Swagger para debugging/testing
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SistemaPasantes.Api", Version = "v1" });
             });
 
+            // Base de datos
             services.AddDbContext<SistemaPasantesContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("ConnectionSqlServer")));
 
+            // ?
             services.AddTransient<ITareaRepository, TareaRepository>(); 
 
         }
