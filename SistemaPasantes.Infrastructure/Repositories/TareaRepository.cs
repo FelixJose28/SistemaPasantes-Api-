@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SistemaPasantes.Core.Entities;
+using SistemaPasantes.Core.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 namespace SistemaPasantes.Infrastructure.Repositories
 {
 
-    public class TareaRepository
+    public class TareaRepository : ITareaRepository 
     {
 
         private readonly SistemaPasantesContext _context;

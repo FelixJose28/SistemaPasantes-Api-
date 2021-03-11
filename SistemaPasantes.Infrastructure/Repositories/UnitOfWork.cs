@@ -1,7 +1,5 @@
 ﻿using SistemaPasantes.Core.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SistemaPasantes.Infrastructure.Repositories
@@ -14,11 +12,14 @@ namespace SistemaPasantes.Infrastructure.Repositories
 
         public IConvocatoriaRepository convocatoriaRepository { get; private set; }
 
+        public IFormularioRepository formularioRepository { get; private set; }
+
         public UnitOfWork(SistemaPasantesContext context)
         {
             _context = context;
             authenticationRepository = new AuthenticationCRepository(_context);
             convocatoriaRepository = new ConvocatoriaRepository(_context);
+            formularioRepository = new FormularioRepository(_context);
         }
 
         public async Task CommitAsync()
