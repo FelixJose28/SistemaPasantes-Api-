@@ -37,6 +37,8 @@ namespace SistemaPasantes.Api.Controllers
             await _authenticationService.RegisterUser(user);
             return Ok(user);
         }
+
+
         [HttpGet(nameof(GetAllUser))]
         public IActionResult GetAllUser()
         {
@@ -44,6 +46,9 @@ namespace SistemaPasantes.Api.Controllers
             var usersDto = _mapper.Map<IEnumerable<UsuarioDTO>>(users);
             return Ok(usersDto);
         }
+
+
+
         [HttpPost(nameof(Loggin))]
         public async Task<IActionResult> Loggin(UserLoginDto usuario)
         {
