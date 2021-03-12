@@ -9,6 +9,9 @@ namespace SistemaPasantes.Core.Interfaces
 
         IConvocatoriaRepository convocatoriaRepository { get; }
 
+        IPerfilRepository perfilRepository { get; }
+
+
         Task CommitAsync();
 
         void Commit();
