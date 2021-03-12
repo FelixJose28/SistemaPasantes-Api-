@@ -13,8 +13,6 @@ namespace SistemaPasantes.Core.Interfaces
 
         IPerfilRepository perfilRepository { get; }
 
-        IFormularioRepository formularioRepository { get; }
-
         ITareaRepository tareaRepository { get; }
 
         Task CommitAsync();

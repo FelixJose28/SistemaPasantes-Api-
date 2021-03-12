@@ -19,10 +19,7 @@ namespace SistemaPasantes.Core.Services
             return _unitOfWork.perfilRepository.GetAll();
         }
 
-        public async Task<Usuario> GetPerfilUsuario(int id,string Nombre,string Apellido)
-        {
-            return await _unitOfWork.perfilRepository.GetById(id);
-        }
+     
         public async Task<Usuario> GetUsuarioById(int id)
         {
             return await _unitOfWork.perfilRepository.GetById(id);
