@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using SistemaPasantes.Core.Entities;
 using SistemaPasantes.Core.Interfaces;
 using System;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace SistemaPasantes.Api.Controllers
 {
+    [EnableCors("CorsApi")]
     [ApiController]
     [Route("[controller]")]
     public class TareaController : Controller
@@ -39,7 +41,7 @@ namespace SistemaPasantes.Api.Controllers
         }
 
 
-        [HttpPost("{tarea}")]
+        [HttpPost]
         public async Task<IActionResult> PostTarea(Tarea tarea)
         {
             if (!ModelState.IsValid) return BadRequest("invalid data");
@@ -51,12 +53,13 @@ namespace SistemaPasantes.Api.Controllers
         }
 
 
-        [HttpPut("{tarea}")]
+        [HttpPut]
         public async Task<IActionResult> PutTarea(Tarea tarea) 
         {
             if (!ModelState.IsValid) return BadRequest("invalid data");
 
             var result = await _service.PutTarea(tarea);
+            if (result == null) return BadRequest("No se puede cambiar la tarea");
 
             return Ok(result);
         }
@@ -67,6 +70,9 @@ namespace SistemaPasantes.Api.Controllers
         public async Task<IActionResult> DeleteTarea(int id) 
         {
             if (id < 0) return BadRequest("invalid id ");
+
+            var tarea  =  await _service.GetTarea(id);
+            if (tarea == null) return NotFound(); 
 
             var result =  await _service.DeleteTarea(id);
             if (!result) return BadRequest("Can't delete tarea");
