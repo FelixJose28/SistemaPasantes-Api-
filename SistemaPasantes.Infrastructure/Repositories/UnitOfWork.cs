@@ -14,6 +14,8 @@ namespace SistemaPasantes.Infrastructure.Repositories
 
         public IFormularioRepository formularioRepository { get; private set; }
 
+        public IPerfilRepository perfilRepository => throw new NotImplementedException();
+
         public UnitOfWork(SistemaPasantesContext context)
         {
             _context = context;

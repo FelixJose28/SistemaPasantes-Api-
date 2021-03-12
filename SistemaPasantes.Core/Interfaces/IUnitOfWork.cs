@@ -9,6 +9,8 @@ namespace SistemaPasantes.Core.Interfaces
 
         IConvocatoriaRepository convocatoriaRepository { get; }
 
+        IFormularioRepository formularioRepository { get; }
+
         IPerfilRepository perfilRepository { get; }
 
 
