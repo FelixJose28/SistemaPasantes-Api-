@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,7 +13,9 @@ using SistemaPasantes.Core.Services;
 using SistemaPasantes.Infrastructure;
 using SistemaPasantes.Infrastructure.Repositories;
 using System;
+
 using System.Text;
+
 
 namespace SistemaPasantes.Api
 {
@@ -34,7 +34,6 @@ namespace SistemaPasantes.Api
             services.AddCors();
             //Para mapear las entidades con mapper
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
 
 
             //Inyectar JWT Authentication
@@ -57,14 +56,16 @@ namespace SistemaPasantes.Api
                 };
             });
 
-
-
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
             // Services
             services.AddTransient<IAuthenticationCRepository, AuthenticationCRepository>();
             services.AddTransient<IConvocatoriaService, ConvocatoriaService>();
+
             //services.AddTransient<IFormularioService, FormularioService>();
+            services.AddTransient<ITareaRepository, TareaRepository>();
+            services.AddTransient<IPerfilRepository, PerfilRepository>();
+
 
             // UnitOfWork
             services.AddTransient<IUnitOfWork, UnitOfWork>();
@@ -87,8 +88,15 @@ namespace SistemaPasantes.Api
             services.AddDbContext<SistemaPasantesContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("ConnectionSqlServer")));
 
-            // ?
-            services.AddTransient<ITareaRepository, TareaRepository>(); 
+
+            // configuracion para los cors
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsApi",
+                    builder => builder.WithOrigins("http://localhost:4200", "http://mywebsite.com")
+                .AllowAnyHeader()
+                .AllowAnyMethod());
+            });
 
         }
 
@@ -115,6 +123,8 @@ namespace SistemaPasantes.Api
 
             //Agregando la autenticacion
             app.UseAuthentication();
+
+            app.UseCors("CorsApi");
 
             //Agregando la autorizacion
             app.UseAuthorization();

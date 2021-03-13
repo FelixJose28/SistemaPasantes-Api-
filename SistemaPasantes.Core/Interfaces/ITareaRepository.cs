@@ -8,6 +8,15 @@ namespace SistemaPasantes.Core.Interfaces
 {
     public interface ITareaRepository
     {
-        Task<IEnumerable<Tarea>> GetTarea(); 
+        Task<IEnumerable<Tarea>> GetTarea();
+
+        Task<Tarea> GetTarea(int id);
+
+        Task<Tarea> PostTarea(Tarea tarea);
+
+        Task<Tarea> PutTarea(Tarea tarea);
+
+        Task<bool> DeleteTarea(int id);
+
     }
 }
