@@ -21,32 +21,47 @@ namespace SistemaPasantes.Api.Controllers
     [ApiController]
     public class AuthenticationController : ControllerBase
     {
-        private readonly IAuthenticationCService _authenticationService;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly IConfiguration _configuration;
-        public AuthenticationController(IAuthenticationCService authenticationService, IMapper mapper, IConfiguration configuration)
+        public AuthenticationController(IMapper mapper, IConfiguration configuration, IUnitOfWork unitOfWork)
         {
-            _authenticationService = authenticationService;
             _mapper = mapper;
             _configuration = configuration;
+            _unitOfWork = unitOfWork;
         }
    
 
         [HttpPost(nameof(RegisterUser))]
         [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> RegisterUser(UsuarioDTO usuarioDTO)
         {
+
             var user = _mapper.Map<Usuario>(usuarioDTO);
-            await _authenticationService.RegisterUser(user);
-            return Ok(user);
+            
+            var validateUser = await _unitOfWork.authenticationRepository.ValidateCorreo(user);
+            if (validateUser != null && validateUser.Correo == user.Correo)
+            {
+                NotFound("Este correo ya esta registrado, pruebe con otro correo.");
+            }
+            await _unitOfWork.authenticationRepository.Add(user);
+            var usertoDto = _mapper.Map<UsuarioDTO>(user);
+            return Ok(usertoDto);
         }
 
         [Authorize]
         [HttpGet(nameof(GetAllUser))]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult GetAllUser()
         {
-            var users = _authenticationService.GetAllUsers();
+            var users = _unitOfWork.authenticationRepository.GetAll();
+            if(users == null)
+            {
+                return Ok("No hay usuarios registrados");
+            }
             var usersDto = _mapper.Map<IEnumerable<UsuarioDTO>>(users);
             return Ok(usersDto);
         }
@@ -54,21 +69,27 @@ namespace SistemaPasantes.Api.Controllers
 
 
         [HttpPost(nameof(Loggin))]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Loggin(UserLoginCustom logginusuario)
         {
             //si el usuario es valido 
             var validation = await IsValidUser(logginusuario);
+            if(validation.Item1 == false)
+            {
+                return NotFound("Usuario o contrasena incorrectos");
+            }
             if (validation.Item1)
             {
                 var token = GenerateToken(validation.Item2);
                 return Ok(new { token = token });
             }
-            return NotFound();
+            return NotFound("Ocurrio un error");
         }
 
         private async Task<(bool, Usuario)> IsValidUser(UserLoginCustom login)
         {
-            var user = await _authenticationService.LogginUser(login);
+            var user = await _unitOfWork.authenticationRepository.Loggin(login);
             return (user != null, user);
         }
 

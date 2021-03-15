@@ -13,8 +13,9 @@ using SistemaPasantes.Core.Services;
 using SistemaPasantes.Infrastructure;
 using SistemaPasantes.Infrastructure.Repositories;
 using System;
- using System.Text;
- 
+
+using System.Text;
+
 
 namespace SistemaPasantes.Api
 {
@@ -30,10 +31,11 @@ namespace SistemaPasantes.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             //Para mapear las entidades con mapper
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
- 
+
             //Inyectar JWT Authentication
             services.AddAuthentication(options =>
             {
@@ -43,7 +45,6 @@ namespace SistemaPasantes.Api
             {
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
-                    //Los primeros dos se pueden comentar
                     //Los Parametros del objeto que queremos validar
                     ValidateIssuer = true,
                     ValidateAudience = true,
@@ -54,15 +55,17 @@ namespace SistemaPasantes.Api
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Authentication:SecretKey"]))
                 };
             });
- 
+
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
             // Services
-            services.AddTransient<IAuthenticationCService, AuthenticationCService>();
+            services.AddTransient<IAuthenticationCRepository, AuthenticationCRepository>();
             services.AddTransient<IConvocatoriaService, ConvocatoriaService>();
-            services.AddTransient<IFormularioService, FormularioService>();
+
+            //services.AddTransient<IFormularioService, FormularioService>();
             services.AddTransient<ITareaRepository, TareaRepository>();
             services.AddTransient<IPerfilRepository, PerfilRepository>();
+
 
             // UnitOfWork
             services.AddTransient<IUnitOfWork, UnitOfWork>();
@@ -72,6 +75,8 @@ namespace SistemaPasantes.Api
             {
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;   
             });
+
+
 
             // Swagger para debugging/testing
             services.AddSwaggerGen(c =>
@@ -98,6 +103,12 @@ namespace SistemaPasantes.Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseCors(options =>
+            {
+                options.WithOrigins("http://localhost:4200")
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+            });
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -108,6 +119,7 @@ namespace SistemaPasantes.Api
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
 
             //Agregando la autenticacion
             app.UseAuthentication();
