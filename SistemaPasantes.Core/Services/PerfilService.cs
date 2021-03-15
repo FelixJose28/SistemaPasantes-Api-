@@ -19,11 +19,6 @@ namespace SistemaPasantes.Core.Services
         {
             return _unitOfWork.perfilRepository.GetAll();
         }
-
-        public async Task<Usuario> GetPerfilUsuario(int id, string Nombre, string Apellido)
-        {
-            return await _unitOfWork.perfilRepository.GetById(id);
-        }
         public async Task<Usuario> GetUsuarioById(int id)
         {
             return await _unitOfWork.perfilRepository.GetById(id);
@@ -35,7 +30,15 @@ namespace SistemaPasantes.Core.Services
             {
                 throw new Exception($"No se encontró el usuario con id: {id}");
             }
+            if (entityToUpdate.Id != usuario.Id)
+            {
+                throw new Exception("El id del nuevo usuario no corresponde con el usuario a actualizar");
+            }
+
+            await _unitOfWork.perfilRepository.Update(id, usuario);
+            await _unitOfWork.CommitAsync();
+            
         }
 
-    }
+    } 
 }

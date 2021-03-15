@@ -54,6 +54,7 @@ namespace SistemaPasantes.Api.Controllers
 
         [Authorize]
         [HttpGet(nameof(GetAllUser))]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult GetAllUser()
         {
             var users = _unitOfWork.authenticationRepository.GetAll();
