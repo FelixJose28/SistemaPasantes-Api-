@@ -46,24 +46,24 @@ namespace SistemaPasantes.Api.Controllers
 
 
         [HttpPut("{id}")] // PUT: api/usuario/id
-        public async Task<ActionResult> UpdateUsuario(int id, UsuarioDTO newUsuario)
+        public async Task<ActionResult<Usuario>> UpdateUsuario(UsuarioDTO newUsuario)
         {
             if (newUsuario == null)
             {
                 return BadRequest();
             }
 
+            var entity = _mapper.Map<Usuario>(newUsuario);
+
             try
             {
-                var entity = _mapper.Map<Usuario>(newUsuario);
-                await _repository.UpdateUsuario(id, entity);
+                var updatedUsuario = await _repository.UpdateUsuario(entity);
+                return Ok(updatedUsuario);
             }
             catch
             {
-                return NotFound($"Usuario con id ${id} no existe");
+                return NotFound($"Usuario con id ${entity.Id} no existe");
             }
-
-            return NoContent();
         }
     }
 }

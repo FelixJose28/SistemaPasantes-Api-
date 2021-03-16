@@ -10,7 +10,7 @@ namespace SistemaPasantes.Core.Interfaces
 
         public Task<Usuario> GetUsuarioById(int id);
 
-        public Task UpdateUsuario(int id, Usuario usuario);
+        public Task<Usuario> UpdateUsuario(Usuario usuario);
 
     }
 }
