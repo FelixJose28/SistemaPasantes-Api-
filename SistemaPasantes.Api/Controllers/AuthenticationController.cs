@@ -39,20 +39,51 @@ namespace SistemaPasantes.Api.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> RegisterUser(UsuarioDTO usuarioDTO)
         {
-
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("Faltan algunos datos");
+            }
             var user = _mapper.Map<Usuario>(usuarioDTO);
+            
             
             var validateUser = await _unitOfWork.authenticationRepository.ValidateCorreo(user);
             if (validateUser != null && validateUser.Correo == user.Correo)
             {
                 return NotFound("Este correo ya esta registrado, pruebe con otro correo.");
             }
+
             await _unitOfWork.authenticationRepository.Add(user);
             await _unitOfWork.CommitAsync();
-            var usertoDto = _mapper.Map<UsuarioDTO>(user);
-            return Ok(usertoDto);
+
+            var userToken = GenerateToken(user);
+
+            return Ok(new { token = userToken });
+            //var usertoDto = _mapper.Map<UsuarioDTO>(user);
+            //return Ok(usertoDto);
         }
 
+
+        [HttpPost(nameof(Loggin))]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> Loggin(UserLoginCustom logginusuario)
+        {
+            //si el usuario es valido 
+            var validation = await IsValidUser(logginusuario);
+            if (validation.Item1 == false)
+            {
+                return NotFound("Usuario o contrasena incorrectos");
+            }
+            if (validation.Item1)
+            {
+                var token = GenerateToken(validation.Item2);
+                return Ok(new { token = token });
+            }
+            return NotFound("Ocurrio un error");
+        }
+
+
+        //[Authorize]
         [HttpDelete(nameof(DeleteUser)+"/{id}")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -61,7 +92,7 @@ namespace SistemaPasantes.Api.Controllers
             var userFind = await _unitOfWork.authenticationRepository.GetById(id);
             if (userFind == null)
             {
-                return NotFound("Usuario no encontrado");
+                return NotFound($"Usuario con el id: {id} no encontrado");
             }
 
             await _unitOfWork.authenticationRepository.Remove(userFind.Id);
@@ -69,7 +100,7 @@ namespace SistemaPasantes.Api.Controllers
             return NoContent();
         }
 
-
+        //[Authorize]
         [HttpGet(nameof(GetAllUser))]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -87,24 +118,7 @@ namespace SistemaPasantes.Api.Controllers
 
 
 
-        [HttpPost(nameof(Loggin))]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> Loggin(UserLoginCustom logginusuario)
-        {
-            //si el usuario es valido 
-            var validation = await IsValidUser(logginusuario);
-            if(validation.Item1 == false)
-            {
-                return NotFound("Usuario o contrasena incorrectos");
-            }
-            if (validation.Item1)
-            {
-                var token = GenerateToken(validation.Item2);
-                return Ok(new { token = token });
-            }
-            return NotFound("Ocurrio un error");
-        }
+
 
         private async Task<(bool, Usuario)> IsValidUser(UserLoginCustom login)
         {
