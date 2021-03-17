@@ -45,22 +45,41 @@ namespace SistemaPasantes.Api.Controllers
             var validateUser = await _unitOfWork.authenticationRepository.ValidateCorreo(user);
             if (validateUser != null && validateUser.Correo == user.Correo)
             {
-                NotFound("Este correo ya esta registrado, pruebe con otro correo.");
+                return NotFound("Este correo ya esta registrado, pruebe con otro correo.");
             }
             await _unitOfWork.authenticationRepository.Add(user);
+            await _unitOfWork.CommitAsync();
             var usertoDto = _mapper.Map<UsuarioDTO>(user);
             return Ok(usertoDto);
         }
 
-        [Authorize]
+        [HttpDelete(nameof(DeleteUser)+"/{id}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<IActionResult> DeleteUser(int id)
+        {
+            var userFind = await _unitOfWork.authenticationRepository.GetById(id);
+            if (userFind == null)
+            {
+                return NotFound("Usuario no encontrado");
+            }
+
+            await _unitOfWork.authenticationRepository.Remove(userFind.Id);
+            await _unitOfWork.CommitAsync();
+            return NoContent();
+        }
+
+
         [HttpGet(nameof(GetAllUser))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult GetAllUser()
         {
             var users = _unitOfWork.authenticationRepository.GetAll();
             if(users == null)
             {
-                return Ok("No hay usuarios registrados");
+                return NotFound("No hay usuarios registrados");
             }
             var usersDto = _mapper.Map<IEnumerable<UsuarioDTO>>(users);
             return Ok(usersDto);
