@@ -13,7 +13,7 @@ namespace SistemaPasantes.Core.Interfaces
 
         public Task<Formulario> CreateFormulario(Formulario convocatoria);
 
-        public Task UpdateFormulario(int id, Formulario convocatoria);
+        public Task UpdateFormulario(Formulario convocatoria);
 
         public Task RemoveFormulario(int id);
     }

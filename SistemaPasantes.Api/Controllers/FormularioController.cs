@@ -54,22 +54,10 @@ namespace SistemaPasantes.Api.Controllers
         }
 
         [HttpPut("{id}")] // PUT: api/formulario/id
-        public async Task<ActionResult> UpdateFormulario(int id, FormularioDTO newFormulario)
+        public async Task<ActionResult> UpdateFormulario(FormularioDTO newFormulario)
         {
-            if (newFormulario == null)
-            {
-                return BadRequest();
-            }
-
-            try
-            {
-                var entity = _mapper.Map<Formulario>(newFormulario);
-                await _repository.UpdateFormulario(id, entity);
-            }
-            catch
-            {
-                return NotFound($"Formulario con id ${id} no existe");
-            }
+            var entity = _mapper.Map<Formulario>(newFormulario);
+            await _repository.UpdateFormulario(entity);
 
             return NoContent();
         }
