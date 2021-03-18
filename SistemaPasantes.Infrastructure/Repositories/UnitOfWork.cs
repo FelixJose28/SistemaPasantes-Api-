@@ -1,4 +1,5 @@
 ﻿using SistemaPasantes.Core.Interfaces;
+using SistemaPasantes.Infrastructure.Data;
 using System;
 using System.Threading.Tasks;
 
@@ -6,7 +7,7 @@ namespace SistemaPasantes.Infrastructure.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly SistemaPasantesContext _context;
+        private readonly sistemapasanteContext _context;
 
         public IAuthenticationCRepository authenticationRepository { get; private set; }
 
@@ -18,7 +19,7 @@ namespace SistemaPasantes.Infrastructure.Repositories
 
         public ITareaRepository tareaRepository { get; private set; }
 
-        public UnitOfWork(SistemaPasantesContext context)
+        public UnitOfWork(sistemapasanteContext context)
         {
             _context = context;
             authenticationRepository = new AuthenticationCRepository(_context);

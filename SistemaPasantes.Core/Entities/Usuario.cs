@@ -3,16 +3,16 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace SistemaPasantes.Core.Entities
+namespace SistemaPasantes.Core.entities
 {
     public partial class Usuario
     {
         public Usuario()
         {
-            Convocatoria = new HashSet<Convocatoria>();
-            Entregas = new HashSet<Entrega>();
+            Convocatoria = new HashSet<Convocatorium>();
             Evaluacions = new HashSet<Evaluacion>();
-            Repuesta = new HashSet<Respuesta>();
+            RespuestaFormularios = new HashSet<RespuestaFormulario>();
+            TareaEntregas = new HashSet<TareaEntrega>();
             Tareas = new HashSet<Tarea>();
         }
 
@@ -27,10 +27,11 @@ namespace SistemaPasantes.Core.Entities
 
         public virtual Grupo IdGrupoNavigation { get; set; }
         public virtual Rol IdRolNavigation { get; set; }
-        public virtual ICollection<Convocatoria> Convocatoria { get; set; }
-        public virtual ICollection<Entrega> Entregas { get; set; }
+        public virtual Pasante Pasante { get; set; }
+        public virtual ICollection<Convocatorium> Convocatoria { get; set; }
         public virtual ICollection<Evaluacion> Evaluacions { get; set; }
-        public virtual ICollection<Respuesta> Repuesta { get; set; }
+        public virtual ICollection<RespuestaFormulario> RespuestaFormularios { get; set; }
+        public virtual ICollection<TareaEntrega> TareaEntregas { get; set; }
         public virtual ICollection<Tarea> Tareas { get; set; }
     }
 }

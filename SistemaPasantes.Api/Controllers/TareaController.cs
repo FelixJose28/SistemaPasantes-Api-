@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SistemaPasantes.Core.DTOs;
-using SistemaPasantes.Core.Entities;
+using SistemaPasantes.Core.entities;
 using SistemaPasantes.Core.Interfaces;
 using System;
 using System.Collections.Generic;

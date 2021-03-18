@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SistemaPasantes.Core.DTOs;
+using SistemaPasantes.Core.entities;
 using SistemaPasantes.Core.Entities;
 using SistemaPasantes.Core.Interfaces;
 
@@ -62,7 +63,7 @@ namespace SistemaPasantes.Api.Controllers
 
             try
             {
-                var entity = _mapper.Map<Convocatoria>(convocatoria);
+                var entity = _mapper.Map<Convocatorium>(convocatoria);
                 var newConvocatoria = await _repository.CreateConvocatoria(entity);
                 var convocatoriaDTO = _mapper.Map<ConvocatoriaDTO>(newConvocatoria);
                 return Created($"api/convocatorias/${convocatoria.Id}", convocatoriaDTO);
@@ -97,7 +98,7 @@ namespace SistemaPasantes.Api.Controllers
 
             try
             {
-                var entity = _mapper.Map<Convocatoria>(newConvocatoria);
+                var entity = _mapper.Map<Convocatorium>(newConvocatoria);
                 var updatedConvocatoria = await _repository.UpdateConvocatoria(entity);
                 var convocatoriaDTO = _mapper.Map<ConvocatoriaDTO>(updatedConvocatoria);
                 return Ok(convocatoriaDTO);

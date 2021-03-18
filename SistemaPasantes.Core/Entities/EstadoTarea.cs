@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace SistemaPasantes.Core.Entities
+namespace SistemaPasantes.Core.entities
 {
     public partial class EstadoTarea
     {

@@ -11,6 +11,7 @@ using Microsoft.OpenApi.Models;
 using SistemaPasantes.Core.Interfaces;
 using SistemaPasantes.Core.Services;
 using SistemaPasantes.Infrastructure;
+using SistemaPasantes.Infrastructure.Data;
 using SistemaPasantes.Infrastructure.Repositories;
 using System;
 
@@ -86,7 +87,7 @@ namespace SistemaPasantes.Api
             });
 
             // Base de datos
-            services.AddDbContext<SistemaPasantesContext>(options =>
+            services.AddDbContext<sistemapasanteContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("ConnectionSqlServer")));
 
 

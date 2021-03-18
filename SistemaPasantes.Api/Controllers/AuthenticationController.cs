@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using SistemaPasantes.Core.DTOs;
+using SistemaPasantes.Core.entities;
 using SistemaPasantes.Core.Entities;
 using SistemaPasantes.Core.Interfaces;
 using System;

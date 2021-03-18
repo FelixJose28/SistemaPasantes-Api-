@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SistemaPasantes.Core.DTOs;
+using SistemaPasantes.Core.entities;
 using SistemaPasantes.Core.Entities;
 using SistemaPasantes.Core.Interfaces;
 

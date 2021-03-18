@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using SistemaPasantes.Core.entities;
 using SistemaPasantes.Core.Entities;
 
 
