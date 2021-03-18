@@ -44,5 +44,28 @@ namespace SistemaPasantes.Api.Controllers
             await _unitOfWork.CommitAsync();
             return Ok(tareaEntregaDTO);
         }
+        [HttpDelete("/{id}")]
+        public async Task<IActionResult> DeleteTareaEntregada(int id)
+        {
+            var existeTarea = await _unitOfWork.tareaEntregaRepository.GetById(id);
+            if(existeTarea == null)
+            {
+                return NotFound($"La tarea con el id {id} que desea borrar no existe");
+            }
+            await _unitOfWork.tareaEntregaRepository.Remove(id);
+            await _unitOfWork.CommitAsync();
+            return NoContent();
+        }
+        [HttpGet("/{id}")]
+        public async Task<IActionResult> GetTareaEntregada(int id)
+        {
+            var existeTarea = await _unitOfWork.tareaEntregaRepository.GetById(id);
+            if (existeTarea == null)
+            {
+                return NotFound($"La tarea con el id {id} que desea buscar no existe");
+            }
+            var tarea = _mapper.Map<TareaEntregaDTO>(existeTarea);
+            return Ok(tarea);
+        }
     }
 }
