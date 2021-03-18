@@ -48,7 +48,16 @@ namespace SistemaPasantes.Api.Controllers
             await _unitOfWork.CommitAsync();
             return Ok(tareaDTO);
         }
-        
+        [HttpGet("/{id}")]
+        public async Task<IActionResult> GetTarea(int id)
+        {
+            var tarea = await _unitOfWork.tareaRepository.GetById(id);
+            if (tarea == null)
+            {
+                return NotFound("Tarea no encontrada");
+            }
+            return Ok(tarea);
+        }
 
        
 
