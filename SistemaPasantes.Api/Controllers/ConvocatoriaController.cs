@@ -63,7 +63,7 @@ namespace SistemaPasantes.Api.Controllers
 
             try
             {
-                var entity = _mapper.Map<Convocatorium>(convocatoria);
+                var entity = _mapper.Map<Convocatoria>(convocatoria);
                 var newConvocatoria = await _repository.CreateConvocatoria(entity);
                 var convocatoriaDTO = _mapper.Map<ConvocatoriaDTO>(newConvocatoria);
                 return Created($"api/convocatorias/${convocatoria.Id}", convocatoriaDTO);
@@ -98,7 +98,7 @@ namespace SistemaPasantes.Api.Controllers
 
             try
             {
-                var entity = _mapper.Map<Convocatorium>(newConvocatoria);
+                var entity = _mapper.Map<Convocatoria>(newConvocatoria);
                 var updatedConvocatoria = await _repository.UpdateConvocatoria(entity);
                 var convocatoriaDTO = _mapper.Map<ConvocatoriaDTO>(updatedConvocatoria);
                 return Ok(convocatoriaDTO);

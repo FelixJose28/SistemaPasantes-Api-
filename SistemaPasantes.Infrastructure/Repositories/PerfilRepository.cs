@@ -11,7 +11,7 @@ namespace SistemaPasantes.Infrastructure.Repositories
     public class PerfilRepository :  GenericRepository<Usuario>, IPerfilRepository
     {
 
-        public PerfilRepository(sistemapasanteContext context) : base (context)
+        public PerfilRepository(SistemaPasantesContext context) : base (context)
         {
             
         }

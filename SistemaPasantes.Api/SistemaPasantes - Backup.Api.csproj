@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.3">
@@ -20,6 +19,10 @@
   <ItemGroup>
     <ProjectReference Include="..\SistemaPasantes.Core\SistemaPasantes.Core.csproj" />
     <ProjectReference Include="..\SistemaPasantes.Infrastructure\SistemaPasantes.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="entiaties\" />
   </ItemGroup>
 
 </Project>
