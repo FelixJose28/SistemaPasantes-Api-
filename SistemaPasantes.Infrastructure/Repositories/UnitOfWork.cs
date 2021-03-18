@@ -18,6 +18,9 @@ namespace SistemaPasantes.Infrastructure.Repositories
         public IPerfilRepository perfilRepository  { get; private set; }
 
         public ITareaRepository tareaRepository { get; private set; }
+        public ITareaEntregaRepository tareaEntregaRepository { get; private set; }
+
+
 
         public UnitOfWork(sistemapasanteContext context)
         {
@@ -27,6 +30,7 @@ namespace SistemaPasantes.Infrastructure.Repositories
             formularioRepository = new FormularioRepository(_context);
             perfilRepository = new PerfilRepository(_context);
             tareaRepository = new TareaRepository(_context);
+            tareaEntregaRepository = new TareaEntregaRepository(_context);
         }
 
         public async Task CommitAsync()
