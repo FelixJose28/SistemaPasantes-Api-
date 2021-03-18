@@ -5,8 +5,8 @@ using SistemaPasantes.Infrastructure.Data;
 
 namespace SistemaPasantes.Infrastructure.Repositories
 {
-    public class ConvocatoriaRepository : GenericRepository<Convocatorium>, IConvocatoriaRepository
+    public class ConvocatoriaRepository : GenericRepository<Convocatoria>, IConvocatoriaRepository
     {
-        public ConvocatoriaRepository(sistemapasanteContext context) : base(context) { }
+        public ConvocatoriaRepository(SistemaPasantesContext context) : base(context) { }
     }
 }

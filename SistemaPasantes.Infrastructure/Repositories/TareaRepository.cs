@@ -12,9 +12,9 @@ namespace SistemaPasantes.Infrastructure.Repositories
 
     public class TareaRepository : GenericRepository<Tarea>, ITareaRepository
     {
-        private readonly sistemapasanteContext _context;
+        private readonly SistemaPasantesContext _context;
 
-        public TareaRepository(sistemapasanteContext context): base(context)
+        public TareaRepository(SistemaPasantesContext context): base(context)
         {
             _context = context;
         }

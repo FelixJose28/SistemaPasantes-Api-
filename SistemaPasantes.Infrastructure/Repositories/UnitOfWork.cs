@@ -7,7 +7,7 @@ namespace SistemaPasantes.Infrastructure.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly sistemapasanteContext _context;
+        private readonly SistemaPasantesContext _context;
 
         public IAuthenticationCRepository authenticationRepository { get; private set; }
 
@@ -19,7 +19,7 @@ namespace SistemaPasantes.Infrastructure.Repositories
 
         public ITareaRepository tareaRepository { get; private set; }
 
-        public UnitOfWork(sistemapasanteContext context)
+        public UnitOfWork(SistemaPasantesContext context)
         {
             _context = context;
             authenticationRepository = new AuthenticationCRepository(_context);

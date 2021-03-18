@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace SistemaPasantes.Core.entities
 {
-    public partial class Convocatorium
+    public partial class Convocatoria
     {
-        public Convocatorium()
+        public Convocatoria()
         {
             Pasantes = new HashSet<Pasante>();
         }

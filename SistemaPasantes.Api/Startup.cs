@@ -85,7 +85,7 @@ namespace SistemaPasantes.Api
             });
 
             // Base de datos
-            services.AddDbContext<sistemapasanteContext>(options =>
+            services.AddDbContext<SistemaPasantesContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("ConnectionSqlServer")));
 
 
