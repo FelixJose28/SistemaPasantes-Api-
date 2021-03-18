@@ -12,7 +12,7 @@ namespace SistemaPasantes.Api.Controllers
     [EnableCors("CorsApi")]
     [ApiController]
     [Route("[controller]")]
-    public class TareaController : Controller
+    public class TareaController : ControllerBase
     {
         private readonly ITareaRepository _service;
 

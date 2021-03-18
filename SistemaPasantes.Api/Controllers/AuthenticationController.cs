@@ -100,6 +100,7 @@ namespace SistemaPasantes.Api.Controllers
             return NoContent();
         }
 
+
         //[Authorize]
         [HttpGet(nameof(GetAllUser))]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
