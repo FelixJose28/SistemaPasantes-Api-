@@ -66,7 +66,18 @@ namespace SistemaPasantes.Api.Controllers
             await _unitOfWork.CommitAsync();
             return Ok(tarea);
         }
-
+        [HttpDelete("/{id}")]
+        public async Task<IActionResult> DeleteTarea(int id) 
+        {
+            var tarea = await _unitOfWork.tareaRepository.GetById(id);
+            if(tarea == null)
+            {
+                return NotFound($"La tarea con el id {id} no existe");
+            }
+            await _unitOfWork.tareaRepository.Remove(id);
+            await _unitOfWork.CommitAsync();
+            return NoContent();
+        }
        
 
     }
