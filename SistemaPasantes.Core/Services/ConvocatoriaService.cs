@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using SistemaPasantes.Core.entities;
 using SistemaPasantes.Core.Entities;
 using SistemaPasantes.Core.Interfaces;
 
@@ -17,24 +18,24 @@ namespace SistemaPasantes.Core.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<Convocatoria> CreateConvocatoria(Convocatoria convocatoria)
+        public async Task<Convocatorium> CreateConvocatoria(Convocatorium convocatoria)
         {
             await _unitOfWork.convocatoriaRepository.Add(convocatoria);
             await _unitOfWork.CommitAsync();
             return convocatoria;
         }
 
-        public IEnumerable<Convocatoria> GetAllConvocatorias()
+        public IEnumerable<Convocatorium> GetAllConvocatorias()
         {
             return _unitOfWork.convocatoriaRepository.GetAll();
         }
 
-        public Task<Convocatoria?> GetConvocatoriaById(int id)
+        public Task<Convocatorium?> GetConvocatoriaById(int id)
         {
             return _unitOfWork.convocatoriaRepository.GetById(id);
         }
 
-        public async Task<Convocatoria?> RemoveConvocatoria(int id)
+        public async Task<Convocatorium?> RemoveConvocatoria(int id)
         {
             var entityToRemove = await _unitOfWork.convocatoriaRepository.GetById(id);
             if (entityToRemove == null)
@@ -47,7 +48,7 @@ namespace SistemaPasantes.Core.Services
             return removedConvocatoria;
         }
 
-        public async Task<Convocatoria?> UpdateConvocatoria(Convocatoria convocatoria)
+        public async Task<Convocatorium?> UpdateConvocatoria(Convocatorium convocatoria)
         {
             var updatedConvocatoria = await _unitOfWork.convocatoriaRepository.Update(convocatoria);
             await _unitOfWork.CommitAsync();

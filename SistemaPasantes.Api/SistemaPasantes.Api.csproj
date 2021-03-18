@@ -21,4 +21,8 @@
     <ProjectReference Include="..\SistemaPasantes.Infrastructure\SistemaPasantes.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="entiaties\" />
+  </ItemGroup>
+
 </Project>

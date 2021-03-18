@@ -13,6 +13,6 @@ namespace SistemaPasantes.Core.DTOs
         public string Clave { get; set; }
         public string Telefono { get; set; }
         public int IdRol { get; set; }
-        public int IdGrupo { get; set; }
+        public int? IdGrupo { get; set; }
     }
 }

@@ -3,13 +3,14 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace SistemaPasantes.Core.Entities
+namespace SistemaPasantes.Core.entities
 {
-    public partial class Entrega
+    public partial class TareaEntrega
     {
         public int Id { get; set; }
-        public DateTime? Fecha { get; set; }
+        public DateTime? FechaEntrega { get; set; }
         public string RutaArchivo { get; set; }
+        public string Comentarios { get; set; }
         public int IdUsuario { get; set; }
         public int IdTarea { get; set; }
 
