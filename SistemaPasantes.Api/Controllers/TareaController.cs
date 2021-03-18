@@ -27,7 +27,8 @@ namespace SistemaPasantes.Api.Controllers
 
 
         [HttpGet(nameof(GetAllTareas))]
-        //[ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult GetAllTareas()
         {
             var allTarea = _unitOfWork.tareaRepository.GetAll();
@@ -38,7 +39,11 @@ namespace SistemaPasantes.Api.Controllers
             var cleanData = _mapper.Map<IEnumerable<TareaDTO>>(allTarea);
             return Ok(cleanData);
         }
-        [HttpPost]
+
+
+        [HttpPost(nameof(CreateTarea))]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CreateTarea(TareaDTO tareaDTO)
         {
             if (!ModelState.IsValid) BadRequest("Modelo de tarea no valido");
@@ -48,7 +53,11 @@ namespace SistemaPasantes.Api.Controllers
             await _unitOfWork.CommitAsync();
             return Ok(tareaDTO);
         }
-        [HttpGet("/{id}")]
+
+        [HttpGet(nameof(GetTarea)+"/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+
         public async Task<IActionResult> GetTarea(int id)
         {
             var tarea = await _unitOfWork.tareaRepository.GetById(id);
@@ -58,15 +67,32 @@ namespace SistemaPasantes.Api.Controllers
             }
             return Ok(tarea);
         }
-        [HttpPut]
-        public async Task<IActionResult> EditTarea(TareaDTO tareaDTO)
+
+        [HttpPut(nameof(UpdateTarea))]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> UpdateTarea(TareaDTO tareaDTO)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("Modelo de tarea no valido");
+            }
             var tarea = _mapper.Map<Tarea>(tareaDTO);
+            if(tareaDTO == null)
+            {
+                return NotFound("Debe de enviar los datos de la tarea a editar");
+            }
             await _unitOfWork.tareaRepository.Update(tarea);
             await _unitOfWork.CommitAsync();
+
             return Ok(tarea);
         }
-        [HttpDelete("/{id}")]
+
+
+        [HttpDelete(nameof(DeleteTarea)+"/{id}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> DeleteTarea(int id) 
         {
             var tarea = await _unitOfWork.tareaRepository.GetById(id);
