@@ -15,7 +15,7 @@ namespace SistemaPasantes.Core.Entities
         }
 
         public int Id { get; set; }
-        public string Ruta { get; set; }
+        public string Ruta { get; set; } // JSON
 
         public virtual ICollection<Convocatoria> Convocatoria { get; set; }
         public virtual ICollection<Evaluacion> Evaluacions { get; set; }

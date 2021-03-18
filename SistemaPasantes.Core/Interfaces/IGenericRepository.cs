@@ -5,14 +5,14 @@ namespace SistemaPasantes.Core.Interfaces
 {
     public interface IGenericRepository<T> where T: class
     {
-        IEnumerable<T> GetAll();
+        Task<T> Add(T entity);
+
+        Task<T> Update(T entity);
+
+        Task<T> Remove(int id);
 
         Task<T> GetById(int id);
 
-        Task Add(T entity);
-
-        Task Update(int id, T entity);
-
-        Task Remove(int id);
+        IEnumerable<T> GetAll();
     }
 }

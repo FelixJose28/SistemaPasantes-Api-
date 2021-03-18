@@ -1,9 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SistemaPasantes.Core.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SistemaPasantes.Infrastructure.Repositories
@@ -20,14 +18,23 @@ namespace SistemaPasantes.Infrastructure.Repositories
             _dbSetEntities = _context.Set<T>();
         }
 
-        public async Task Add(T entity)
+        public async Task<T> Add(T entity)
         {
-            await _dbSetEntities.AddAsync(entity);
+            var entityEntry = await _dbSetEntities.AddAsync(entity);
+            return entityEntry.Entity;
         }
 
-        public IEnumerable<T> GetAll()
+        public Task<T> Update(T entity)
         {
-            return _dbSetEntities.AsEnumerable();
+            _context.Entry(entity).State = EntityState.Modified;
+            return Task.FromResult(entity);
+        }
+
+        public async Task<T> Remove(int id)
+        {
+            T entity = await GetById(id);
+            var entityEntry = _dbSetEntities.Remove(entity);
+            return entityEntry.Entity;
         }
 
         public async Task<T> GetById(int id)
@@ -36,16 +43,9 @@ namespace SistemaPasantes.Infrastructure.Repositories
             return entity;
         }
 
-        public async Task Remove(int id)
+        public IEnumerable<T> GetAll()
         {
-            T entity = await GetById(id);
-            _dbSetEntities.Remove(entity);
-        }
-
-        public async Task Update(int id, T entity)
-        {
-            var entityToUpdate = await _dbSetEntities.FindAsync(id);
-            _dbSetEntities.Update(entityToUpdate);
+            return _dbSetEntities.AsEnumerable();
         }
     }
 }
