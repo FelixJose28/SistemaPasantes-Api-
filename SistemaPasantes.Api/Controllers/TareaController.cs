@@ -58,6 +58,14 @@ namespace SistemaPasantes.Api.Controllers
             }
             return Ok(tarea);
         }
+        [HttpPut]
+        public async Task<IActionResult> EditTarea(TareaDTO tareaDTO)
+        {
+            var tarea = _mapper.Map<Tarea>(tareaDTO);
+            await _unitOfWork.tareaRepository.Update(tarea);
+            await _unitOfWork.CommitAsync();
+            return Ok(tarea);
+        }
 
        
 
