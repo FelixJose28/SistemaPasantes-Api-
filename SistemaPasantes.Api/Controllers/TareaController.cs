@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SistemaPasantes.Core.DTOs;
 using SistemaPasantes.Core.Entities;
@@ -23,7 +24,10 @@ namespace SistemaPasantes.Api.Controllers
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
+
+
         [HttpGet(nameof(GetAllTareas))]
+        //[ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult GetAllTareas()
         {
             var allTarea = _unitOfWork.tareaRepository.GetAll();
@@ -33,6 +37,16 @@ namespace SistemaPasantes.Api.Controllers
             }
             var cleanData = _mapper.Map<IEnumerable<TareaDTO>>(allTarea);
             return Ok(cleanData);
+        }
+        [HttpPost]
+        public async Task<IActionResult> CreateTarea(TareaDTO tareaDTO)
+        {
+            if (!ModelState.IsValid) BadRequest("Modelo de tarea no valido");
+
+            var tarea = _mapper.Map<Tarea>(tareaDTO);
+            await _unitOfWork.tareaRepository.Add(tarea);
+            await _unitOfWork.CommitAsync();
+            return Ok(tareaDTO);
         }
         
 
