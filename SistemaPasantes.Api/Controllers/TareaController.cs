@@ -29,7 +29,7 @@ namespace SistemaPasantes.Api.Controllers
         [HttpGet(nameof(GetAllTareas))]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult GetAllTareas()
+        public ActionResult<TareaDTO> GetAllTareas()
         {
             var allTarea = _unitOfWork.tareaRepository.GetAll();
             if (allTarea == null)
@@ -44,7 +44,7 @@ namespace SistemaPasantes.Api.Controllers
         [HttpPost(nameof(CreateTarea))]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> CreateTarea(TareaDTO tareaDTO)
+        public async Task<ActionResult<TareaDTO>> CreateTarea(TareaDTO tareaDTO)
         {
             if (!ModelState.IsValid) BadRequest("Modelo de tarea no valido");
 
@@ -58,7 +58,7 @@ namespace SistemaPasantes.Api.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
 
-        public async Task<IActionResult> GetTarea(int id)
+        public async Task<ActionResult<Tarea>> GetTarea(int id)
         {
             var tarea = await _unitOfWork.tareaRepository.GetById(id);
             if (tarea == null)
@@ -72,7 +72,7 @@ namespace SistemaPasantes.Api.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> UpdateTarea(TareaDTO tareaDTO)
+        public async Task<ActionResult<Tarea>> UpdateTarea(TareaDTO tareaDTO)
         {
             if (!ModelState.IsValid)
             {
@@ -93,7 +93,7 @@ namespace SistemaPasantes.Api.Controllers
         [HttpDelete(nameof(DeleteTarea)+"/{id}")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> DeleteTarea(int id) 
+        public async Task<ActionResult<Tarea>> DeleteTarea(int id) 
         {
             var tarea = await _unitOfWork.tareaRepository.GetById(id);
             if(tarea == null)
@@ -102,7 +102,7 @@ namespace SistemaPasantes.Api.Controllers
             }
             await _unitOfWork.tareaRepository.Remove(id);
             await _unitOfWork.CommitAsync();
-            return NoContent();
+            return Ok(tarea);
         }
        
 
