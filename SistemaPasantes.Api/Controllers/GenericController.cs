@@ -12,7 +12,7 @@ using SistemaPasantes.Core.Interfaces;
 namespace SistemaPasantes.Api.Controllers
 {
     /// <summary>
-    /// A generic implementation of a <a cref="ControllerBase"/>
+    /// A generic implementation of a <a cref="ControllerBase"/> with a mapper.
     /// </summary>
     /// <typeparam name="TEntity">The type of the entity to store in the repositoy.</typeparam>
     /// <typeparam name="TEntityDTO">The type of the entity data transfer object, don't needed must be the same as TEntity.</typeparam>
@@ -29,10 +29,17 @@ namespace SistemaPasantes.Api.Controllers
 
         public GenericController(IUnitOfWork unitOfWork, TRepository repository, IMapper mapper)
         {
+            if (typeof(TEntity) != typeof(TEntityDTO) && mapper == null)
+            {
+                throw new ArgumentNullException($"A mapper must be provided if a DTO is specified");
+            }
+
             this.unitOfWork = unitOfWork;
             this.repository = repository;
             this.mapper = mapper;
         }
+
+        public GenericController(IUnitOfWork unitOfWork, TRepository repository) : this(unitOfWork, repository, null) { }
 
         [HttpGet("{id}")] // GET: api/[controller]/id
         [ProducesResponseType(StatusCodes.Status200OK)]

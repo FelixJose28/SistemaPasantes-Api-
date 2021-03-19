@@ -9,18 +9,19 @@ namespace SistemaPasantes.Infrastructure.Repositories
     {
         private readonly SistemaPasantesContext _context;
 
-        public IAuthenticationCRepository authenticationRepository { get; private set; }
+        public IAuthenticationCRepository authenticationRepository { get;  }
 
-        public IConvocatoriaRepository convocatoriaRepository { get; private set; }
+        public IConvocatoriaRepository convocatoriaRepository { get; }
 
-        public IFormularioRepository formularioRepository { get; private set; }
+        public IFormularioRepository formularioRepository { get; }
 
-        public IPerfilRepository perfilRepository  { get; private set; }
+        public IPerfilRepository perfilRepository  { get;  }
 
-        public ITareaRepository tareaRepository { get; private set; }
-        public ITareaEntregaRepository tareaEntregaRepository { get; private set; }
+        public ITareaRepository tareaRepository { get;  }
 
+        public ITareaEntregaRepository tareaEntregaRepository { get;  }
 
+        public IRespuestaFormularioRepository respuestaFormulario { get;  }
 
         public UnitOfWork(SistemaPasantesContext context)
         {
@@ -31,6 +32,7 @@ namespace SistemaPasantes.Infrastructure.Repositories
             perfilRepository = new PerfilRepository(_context);
             tareaRepository = new TareaRepository(_context);
             tareaEntregaRepository = new TareaEntregaRepository(_context);
+            respuestaFormulario = new RespuestaFormularioRepository(_context);
         }
 
         public async Task CommitAsync()

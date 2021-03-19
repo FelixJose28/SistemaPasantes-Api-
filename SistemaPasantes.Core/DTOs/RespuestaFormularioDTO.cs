@@ -2,7 +2,7 @@
 
 namespace SistemaPasantes.Core.entities
 {
-    public partial class RespuestaFormulario
+    public partial class RespuestaFormularioDTO
     {
         public int Id { get; set; }
         public DateTime FechaEntrega { get; set; }
@@ -11,9 +11,5 @@ namespace SistemaPasantes.Core.entities
         public int IdTipoRespuesta { get; set; }
         public int IdUsuario { get; set; }
         public int IdFormulario { get; set; }
-
-        public virtual Formulario IdFormularioNavigation { get; set; }
-        public virtual TipoRespuestaEvaluacion IdTipoRespuestaNavigation { get; set; }
-        public virtual Usuario IdUsuarioNavigation { get; set; }
     }
 }

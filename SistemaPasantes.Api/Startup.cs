@@ -66,6 +66,9 @@ namespace SistemaPasantes.Api
             services.AddTransient<ITareaRepository, TareaRepository>();
             services.AddTransient<IPerfilRepository, PerfilRepository>();
             services.AddTransient<IConvocatoriaRepository, ConvocatoriaRepository>();
+            services.AddTransient<IFormularioRepository, FormularioRepository>();
+            services.AddTransient<IRespuestaFormularioRepository, RespuestaFormularioRepository>();
+            services.AddTransient<IEvaluacionRepository, EvaluacionRepository>();
 
             // UnitOfWork
             services.AddTransient<IUnitOfWork, UnitOfWork>();

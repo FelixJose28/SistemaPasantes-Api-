@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using SistemaPasantes.Core.DTOs;
 using SistemaPasantes.Core.entities;
-using SistemaPasantes.Core.Entities;
 
 namespace SistemaPasantes.Infrastructure.Mappings
 {
@@ -14,6 +13,8 @@ namespace SistemaPasantes.Infrastructure.Mappings
             CreateMap<Formulario, FormularioDTO>().ReverseMap();
             CreateMap<Tarea, TareaDTO>().ReverseMap();
             CreateMap<TareaEntrega, TareaEntregaDTO>().ReverseMap();
+            CreateMap<RespuestaFormulario, RespuestaFormularioDTO>().ReverseMap();
+            CreateMap<Evaluacion, EvaluacionDTO>().ReverseMap();
         }
     }
 }
