@@ -1,4 +1,5 @@
 ﻿using System;
+using SistemaPasantes.Core.Entities;
 
 namespace SistemaPasantes.Core.DTOs
 {

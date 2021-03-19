@@ -60,12 +60,12 @@ namespace SistemaPasantes.Api
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
             // Services
+
+            // Repositories
             services.AddTransient<IAuthenticationCRepository, AuthenticationCRepository>();
-            services.AddTransient<IConvocatoriaService, ConvocatoriaService>();
-            services.AddTransient<IFormularioService, FormularioService>();
             services.AddTransient<ITareaRepository, TareaRepository>();
             services.AddTransient<IPerfilRepository, PerfilRepository>();
-
+            services.AddTransient<IConvocatoriaRepository, ConvocatoriaRepository>();
 
             // UnitOfWork
             services.AddTransient<IUnitOfWork, UnitOfWork>();
@@ -85,9 +85,9 @@ namespace SistemaPasantes.Api
             });
 
             // Base de datos
-            services.AddDbContext<SistemaPasantesContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("ConnectionSqlServer")));
-
+            //services.AddDbContext<SistemaPasantesContext>(options =>
+            //options.UseSqlServer(Configuration.GetConnectionString("ConnectionSqlServer")));
+            services.AddDbContext<SistemaPasantesContext>(options => options.UseInMemoryDatabase("SistemaDePasantes"));
 
             // configuracion para los cors
             services.AddCors(options =>
