@@ -41,6 +41,11 @@ namespace SistemaPasantes.Api.Controllers
         {
             TEntity entity = await repository.GetById(id);
 
+            if(entity == null)
+            {
+                return NotFound();
+            }
+
             if (typeof(TEntity) == typeof(TEntityDTO))
             {
                 var entityFound = entity as TEntityDTO;
@@ -148,7 +153,7 @@ namespace SistemaPasantes.Api.Controllers
             }
             catch
             {
-                return EntityNotFound404(entity.Id);
+                return NotFound();
             }
         }
 
@@ -162,7 +167,7 @@ namespace SistemaPasantes.Api.Controllers
                 var removed = await repository.Remove(id);
                 if (removed == null)
                 {
-                    return EntityNotFound404(id);
+                    return NotFound();
                 }
 
                 await unitOfWork.CommitAsync();
@@ -172,13 +177,8 @@ namespace SistemaPasantes.Api.Controllers
             }
             catch
             {
-                return EntityNotFound404(id);
+                return NotFound();
             }
-        }
-
-        private ActionResult EntityNotFound404(int id)
-        {
-            return NotFound($"No se encontró {typeof(TEntity)} con id {id}");
         }
     }
 
