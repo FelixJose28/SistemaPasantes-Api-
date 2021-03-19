@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SistemaPasantes.Core.DTOs;
 using SistemaPasantes.Core.entities;
 using SistemaPasantes.Core.Entities;
@@ -23,13 +26,16 @@ namespace SistemaPasantes.Api.Controllers
         }
 
         [HttpGet] // GET: api/formulario/
-        public ActionResult<IEnumerable<Formulario>> GetAllFormularios() //TODO: Return FormularioDTO
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public ActionResult<IEnumerable<FormularioDTO>> GetAllFormularios()
         {
             return Ok(_repository.GetAllFormularios());
         }
 
         [HttpGet("{id}")] // GET: api/formulario/id
-        public async Task<ActionResult<Formulario>> GetFormulario(int id)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<FormularioDTO>> GetFormulario(int id)
         {
             var formulario  = await _repository.GetFormularioById(id);
 
@@ -38,29 +44,62 @@ namespace SistemaPasantes.Api.Controllers
                 return NotFound();
             }
 
-            return Ok(formulario);
+            var formularioDTO = _mapper.Map<FormularioDTO>(formulario);
+            return Ok(formularioDTO);
         }
 
         [HttpPost] // POST: api/formulario/
-        public async Task<ActionResult<Formulario>> CreateFormulario(FormularioDTO formulario)
+        public async Task<ActionResult<FormularioDTO>> CreateFormulario(FormularioDTO formulario)
         {
             if (formulario == null)
             {
                 return BadRequest();
             }
 
-            var entity = _mapper.Map<Formulario>(formulario);
-            await _repository.CreateFormulario(entity);
-            return Ok(formulario);
+            try
+            {
+                var entity = _mapper.Map<Formulario>(formulario);
+                var newFormulario = await _repository.CreateFormulario(entity);
+                var formularioDTO = _mapper.Map<FormularioDTO>(newFormulario);
+                return Created($"api/formulario/${formulario.Id}", formularioDTO);
+            }
+            catch (DbUpdateException e)
+            {
+                if (e.InnerException is not null)
+                {
+                    // The inner message contains the exact reason of the error, like a missing column
+                    return BadRequest(e.InnerException.Message);
+                }
+                else
+                {
+                    return BadRequest(e.ToString());
+                }
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.ToString());
+            }
         }
 
         [HttpPut("{id}")] // PUT: api/formulario/id
-        public async Task<ActionResult> UpdateFormulario(FormularioDTO newFormulario)
+        public async Task<ActionResult<FormularioDTO>> UpdateFormulario(FormularioDTO newFormulario)
         {
-            var entity = _mapper.Map<Formulario>(newFormulario);
-            await _repository.UpdateFormulario(entity);
+            if (newFormulario == null)
+            {
+                return NotFound();
+            }
 
-            return NoContent();
+            try
+            {
+                var entity = _mapper.Map<Formulario>(newFormulario);
+                var updatedConvocatoria = await _repository.UpdateFormulario(entity);
+                var convocatoriaDTO = _mapper.Map<ConvocatoriaDTO>(updatedConvocatoria);
+                return Ok(convocatoriaDTO);
+            }
+            catch
+            {
+                return NotFound($"Formulario con id {newFormulario.Id} no fue encontrada");
+            }
         }
 
         [HttpDelete("{id}")] // DELETE: api/formulario/id

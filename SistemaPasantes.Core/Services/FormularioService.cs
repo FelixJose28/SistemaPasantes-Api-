@@ -18,8 +18,26 @@ namespace SistemaPasantes.Core.Services
 
         public async Task<Formulario> CreateFormulario(Formulario formulario)
         {
-            await _unitOfWork.formularioRepository.Add(formulario);
+            var newFormulario = await _unitOfWork.formularioRepository.Add(formulario);
             await _unitOfWork.CommitAsync();
+            return newFormulario;
+        }
+
+        public async Task<Formulario> UpdateFormulario(Formulario formulario)
+        {
+            var updatedFormulario = await _unitOfWork.formularioRepository.Update(formulario);
+            await _unitOfWork.CommitAsync();
+            return updatedFormulario;
+        }
+
+        public async Task<Formulario> RemoveFormulario(int id)
+        {
+            var formulario = await _unitOfWork.formularioRepository.Remove(id);
+            if (formulario == null)
+            {
+                return null;
+            }
+
             return formulario;
         }
 
@@ -28,27 +46,14 @@ namespace SistemaPasantes.Core.Services
             return _unitOfWork.formularioRepository.GetAll();
         }
 
-        public async Task<Formulario> GetFormularioById(int id)
+        public Task<Formulario> GetFormularioById(int id)
         {
-            return await _unitOfWork.formularioRepository.GetById(id);
+            return _unitOfWork.formularioRepository.GetById(id);
         }
 
-        public async Task RemoveFormulario(int id)
+        public async Task<RespuestaFormulario> GetRespuestaFormulario(int formularioId)
         {
-            var entityToRemove = await _unitOfWork.formularioRepository.GetById(id);
-            if (entityToRemove == null)
-            {
-                throw new Exception($"No se encontró el formulario con id: {id}");
-            }
-
-            await _unitOfWork.formularioRepository.Remove(id);
-            await _unitOfWork.CommitAsync();
-        }
-
-        public async Task UpdateFormulario(Formulario formulario)
-        {
-            await _unitOfWork.formularioRepository.Update(formulario);
-            await _unitOfWork.CommitAsync();
+            throw new NotImplementedException();
         }
     }
 }

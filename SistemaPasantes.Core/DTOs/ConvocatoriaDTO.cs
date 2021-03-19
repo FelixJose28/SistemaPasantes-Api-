@@ -1,8 +1,9 @@
 ﻿using System;
+using SistemaPasantes.Core.Entities;
 
 namespace SistemaPasantes.Core.DTOs
 {
-    public class ConvocatoriaDTO
+    public class ConvocatoriaDTO : IEntity
     {
         public int Id { get; set; }
         public int Cupo { get; set; }
