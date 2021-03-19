@@ -67,5 +67,23 @@ namespace SistemaPasantes.Api.Controllers
             var tarea = _mapper.Map<TareaEntregaDTO>(existeTarea);
             return Ok(tarea);
         }
+        [HttpPut]
+        public async Task<IActionResult> UpdateTareaEntregada(TareaEntregaDTO tareaEntregaDTO)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("Modelo de tarea no valido");
+            }
+
+            //var existeTarea = await _unitOfWork.tareaEntregaRepository.GetById(tareaEntregaDTO.Id);
+            //if (existeTarea == null)
+            //{
+            //    return NotFound($"La tarea con el id {tareaEntregaDTO.Id} que desea actualizar no existe");
+            //}
+            var entregatarea = _mapper.Map<TareaEntrega>(tareaEntregaDTO);
+            await _unitOfWork.tareaEntregaRepository.Update(entregatarea);
+            await _unitOfWork.CommitAsync();
+            return Ok(entregatarea);
+        }
     }
 }
