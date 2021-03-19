@@ -15,6 +15,8 @@ namespace SistemaPasantes.Core.Interfaces
 
         ITareaRepository tareaRepository { get; }
 
+        ITareaEntregaRepository tareaEntregaRepository {get;}
+
         Task CommitAsync();
 
         void Commit();
