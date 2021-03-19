@@ -18,7 +18,7 @@ namespace SistemaPasantes.Infrastructure.Repositories
 
         public async Task<Usuario> Loggin(UserLoginCustom usuario)
         {   
-            Usuario userLogger = await _context.Usuarios.FirstOrDefaultAsync(x=>x.Correo == usuario.Correo && x.Clave.ToString() == usuario.Clave.ToString() );
+            Usuario userLogger = await _context.Usuarios.FirstOrDefaultAsync(x=>x.Correo == usuario.Correo && x.Clave == usuario.Clave);
             return userLogger;
         }
 
