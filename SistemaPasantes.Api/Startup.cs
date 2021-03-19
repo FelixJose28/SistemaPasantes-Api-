@@ -60,11 +60,9 @@ namespace SistemaPasantes.Api
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
             // Services
-            services.AddTransient<IAuthenticationCRepository, AuthenticationCRepository>();
-            services.AddTransient<IConvocatoriaService, ConvocatoriaService>();
-            services.AddTransient<IFormularioService, FormularioService>();
 
             // Repositories
+            services.AddTransient<IAuthenticationCRepository, AuthenticationCRepository>();
             services.AddTransient<ITareaRepository, TareaRepository>();
             services.AddTransient<IPerfilRepository, PerfilRepository>();
             services.AddTransient<IConvocatoriaRepository, ConvocatoriaRepository>();

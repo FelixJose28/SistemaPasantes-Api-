@@ -3,7 +3,7 @@ using SistemaPasantes.Core.Entities;
 
 namespace SistemaPasantes.Core.DTOs
 {
-    public class ConvocatoriaDTO : IEntity
+    public class ConvocatoriaDTO
     {
         public int Id { get; set; }
         public int Cupo { get; set; }

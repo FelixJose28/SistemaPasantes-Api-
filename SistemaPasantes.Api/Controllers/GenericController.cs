@@ -20,8 +20,8 @@ namespace SistemaPasantes.Api.Controllers
     /// <seealso cref="ControllerBase" />
     public abstract class GenericController<TEntity, TEntityDTO, TRepository> : ControllerBase 
         where TRepository : IGenericRepository<TEntity> 
-        where TEntity : class, IEntity
-        where TEntityDTO : class, IEntity
+        where TEntity : class
+        where TEntityDTO : class
     {
         protected readonly IUnitOfWork unitOfWork;
         protected readonly TRepository repository;
@@ -184,7 +184,7 @@ namespace SistemaPasantes.Api.Controllers
 
     public abstract class GenericController<TEntity, TRepository> : GenericController<TEntity, TEntity, TRepository> 
         where TRepository : IGenericRepository<TEntity>
-        where TEntity : class, IEntity
+        where TEntity : class
     {
         public GenericController(IUnitOfWork unitOfWork, TRepository repository, IMapper mapper) : base(unitOfWork, repository, mapper) { }
     }

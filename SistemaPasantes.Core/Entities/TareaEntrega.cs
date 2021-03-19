@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using SistemaPasantes.Core.Entities;
 
 #nullable disable
 
 namespace SistemaPasantes.Core.entities
 {
-    public partial class TareaEntrega
+    public partial class TareaEntrega 
     {
         public int Id { get; set; }
         public DateTime? FechaEntrega { get; set; }
