@@ -25,6 +25,9 @@ namespace SistemaPasantes.Infrastructure.Repositories
 
         public IGrupoRepository grupoRepository { get; }
 
+        public IPasanteRepository pasanteRepository { get; }
+
+
 
         public UnitOfWork(SistemaPasantesContext context)
         {
@@ -37,6 +40,8 @@ namespace SistemaPasantes.Infrastructure.Repositories
             tareaEntregaRepository = new TareaEntregaRepository(_context);
             respuestaFormulario = new RespuestaFormularioRepository(_context);
             grupoRepository = new GrupoRepository(_context);
+            pasanteRepository = new PasanteRepository(_context);
+
 
         }
 

@@ -21,6 +21,8 @@ namespace SistemaPasantes.Core.Interfaces
 
         IGrupoRepository grupoRepository { get; }
 
+        IPasanteRepository pasanteRepository { get; }
+
 
         Task CommitAsync();
 
