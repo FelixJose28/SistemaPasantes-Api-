@@ -23,6 +23,9 @@ namespace SistemaPasantes.Infrastructure.Repositories
 
         public IRespuestaFormularioRepository respuestaFormulario { get;  }
 
+        public IGrupoRepository grupoRepository { get; }
+
+
         public UnitOfWork(SistemaPasantesContext context)
         {
             _context = context;
@@ -33,6 +36,8 @@ namespace SistemaPasantes.Infrastructure.Repositories
             tareaRepository = new TareaRepository(_context);
             tareaEntregaRepository = new TareaEntregaRepository(_context);
             respuestaFormulario = new RespuestaFormularioRepository(_context);
+            grupoRepository = new GrupoRepository(_context);
+
         }
 
         public async Task CommitAsync()

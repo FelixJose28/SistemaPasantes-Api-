@@ -19,6 +19,9 @@ namespace SistemaPasantes.Core.Interfaces
 
         IRespuestaFormularioRepository respuestaFormulario { get; }
 
+        IGrupoRepository grupoRepository { get; }
+
+
         Task CommitAsync();
 
         void Commit();
