@@ -4,10 +4,12 @@ using System.Text;
 using SistemaPasantes.Core.Entities;
 using SistemaPasantes.Core.DTOs;
 using SistemaPasantes.Core.entities;
+using System.Threading.Tasks;
 
 namespace SistemaPasantes.Core.Interfaces
 {
     public interface IPerfilRepository : IGenericRepository<Usuario>
     {
+        Task<Usuario> GetDataByCredentials(UserLoginCustom usuario);
     }
 }

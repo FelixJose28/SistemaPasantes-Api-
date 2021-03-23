@@ -136,7 +136,7 @@ namespace SistemaPasantes.Api.Controllers
                 _configuration["Authentication:Audience"],
                 claims,
                 DateTime.Now,
-                DateTime.UtcNow.AddMinutes(3)
+                DateTime.UtcNow.AddHours(16)
             );
             var token = new JwtSecurityToken(header, payload);
             return new JwtSecurityTokenHandler().WriteToken(token);
