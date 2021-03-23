@@ -102,21 +102,7 @@ namespace SistemaPasantes.Api.Controllers
         }
 
 
-        //[Authorize]
-        [HttpGet(nameof(GetAllUser))]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult GetAllUser()
-        {
-            var users = _unitOfWork.authenticationRepository.GetAll();
-            if(users == null)
-            {
-                return NotFound("No hay usuarios registrados");
-            }
-            var usersDto = _mapper.Map<IEnumerable<UsuarioDTO>>(users);
-            return Ok(usersDto);
-        }
+
 
 
 

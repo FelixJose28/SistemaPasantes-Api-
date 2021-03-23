@@ -9,7 +9,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using SistemaPasantes.Core.Interfaces;
-using SistemaPasantes.Core.Services;
 using SistemaPasantes.Infrastructure;
 using SistemaPasantes.Infrastructure.Data;
 using SistemaPasantes.Infrastructure.Repositories;

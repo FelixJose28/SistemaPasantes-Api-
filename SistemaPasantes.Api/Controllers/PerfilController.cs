@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SistemaPasantes.Core.DTOs;
 using SistemaPasantes.Core.entities;
@@ -15,55 +16,88 @@ namespace SistemaPasantes.Api.Controllers
     public class PerfilController : ControllerBase
     {
 
-        private readonly IPerfilService _repository;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public PerfilController(IPerfilService repository, IMapper mapper)
+        public PerfilController(IUnitOfWork unitOfWork, IMapper mapper)
         {
-            _repository = repository;
+            _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
 
-        [HttpGet] // GET: api/usuario/
 
-        public ActionResult<IEnumerable<Usuario>> GetAllUsuario() //TODO: Return UsuarioDTO
+
+        //[Authorize]
+        [HttpDelete(nameof(DeleteUser) + "/{id}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<IActionResult> DeleteUser(int id)
         {
-            return Ok(_repository.GetAllUsuario());
+            var userFind = await _unitOfWork.perfilRepository.GetById(id);
+            if (userFind == null)
+            {
+                return NotFound($"Usuario con el id: {id} no encontrado");
+            }
+
+            await _unitOfWork.perfilRepository.Remove(userFind.Id);
+            await _unitOfWork.CommitAsync();
+            return NoContent();
         }
 
-        [HttpGet("{id}")] // GET: api/usuario/id
+        //SOLO ADMIN
+        //[Authorize]
+        [HttpGet(nameof(GetAllUser))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public IActionResult GetAllUser()
+        {
+            var users = _unitOfWork.perfilRepository.GetAll();
+            if (users == null)
+            {
+                return NotFound("No hay usuarios registrados");
+            }
+            var usersDto = _mapper.Map<IEnumerable<UsuarioDTO>>(users);
+            return Ok(usersDto);
+        }
+
+
+
+
+        [HttpGet(nameof(GetUsuarioById)+"/{id}")] // GET: api/usuario/id
 
         public async Task<ActionResult<Usuario>> GetUsuarioById(int id)
         {
-            var usuario = await _repository.GetUsuarioById(id);
+            var usuario = await _unitOfWork.perfilRepository.GetById(id);
 
             if (usuario == null)
             {
-                return NotFound();
+                return NotFound("Usuario no econtrado");
             }
-
-            return Ok(usuario);
+            var usuarioDTO = _mapper.Map<UsuarioDTO>(usuario);
+            return Ok(usuarioDTO);
         }
 
 
-        [HttpPut("{id}")] // PUT: api/usuario/id
-        public async Task<ActionResult<Usuario>> UpdateUsuario(UsuarioDTO newUsuario)
+        [HttpPut(nameof(UpdateUsuario))] // PUT: api/usuario/id
+        public async Task<ActionResult<Usuario>> UpdateUsuario(UsuarioDTO usuarioDTO)
         {
-            if (newUsuario == null)
+            if (usuarioDTO == null)
             {
                 return BadRequest();
             }
 
-            var entity = _mapper.Map<Usuario>(newUsuario);
+            var usuario = _mapper.Map<Usuario>(usuarioDTO);
 
             try
             {
-                var updatedUsuario = await _repository.UpdateUsuario(entity);
-                return Ok(updatedUsuario);
+                var updatedUsuario = await _unitOfWork.perfilRepository.Update(usuario);
+                await _unitOfWork.CommitAsync();
+                return Ok(usuarioDTO);
             }
             catch
             {
-                return NotFound($"Usuario con id ${entity.Id} no existe");
+                return NotFound($"A ocurrido un error con el Usuario con id ${usuario.Id}");
             }
         }
     }
