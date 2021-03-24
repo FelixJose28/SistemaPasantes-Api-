@@ -2,10 +2,11 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SistemaPasantes.Core.DTOs;
-using SistemaPasantes.Core.entities;
+using SistemaPasantes.Core.Entities;
 using SistemaPasantes.Core.Interfaces;
 using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
+using SistemaPasantes.Core.entities;
 
 namespace SistemaPasantes.Api.Controllers
 {

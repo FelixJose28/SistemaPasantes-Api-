@@ -4,14 +4,14 @@ using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SistemaPasantes.Core.DTOs;
-using SistemaPasantes.Core.entities;
+using SistemaPasantes.Core.Entities;
 using SistemaPasantes.Core.Interfaces;
 
 namespace SistemaPasantes.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ConvocatoriaController : GenericController<Convocatoria, ConvocatoriaDTO, IConvocatoriaRepository>
+    public class ConvocatoriaController : GenericController<Convocatorium, ConvocatoriaDTO, IConvocatoriaRepository>
     {
         public ConvocatoriaController(IUnitOfWork unitOfWork, IConvocatoriaRepository repository, IMapper mapper) 
             : base(unitOfWork, repository, mapper) { }

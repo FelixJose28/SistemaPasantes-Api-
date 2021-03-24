@@ -7,6 +7,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Http;
 using SistemaPasantes.Core.DTOs;
 using System.Collections.Generic;
+using SistemaPasantes.Core.Entities;
 
 namespace SistemaPasantes.Api.Controllers
 {

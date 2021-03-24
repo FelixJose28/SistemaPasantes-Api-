@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using SistemaPasantes.Core.Entities;
 
 #nullable disable
 
-namespace SistemaPasantes.Core.entities
+namespace SistemaPasantes.Core.Entities
 {
     public partial class Grupo
     {
@@ -15,7 +14,9 @@ namespace SistemaPasantes.Core.entities
 
         public int Id { get; set; }
         public string Nombre { get; set; }
+        public int? IdConvocatoria { get; set; }
 
+        public virtual Convocatorium IdConvocatoriaNavigation { get; set; }
         public virtual ICollection<Usuario> Usuarios { get; set; }
     }
 }

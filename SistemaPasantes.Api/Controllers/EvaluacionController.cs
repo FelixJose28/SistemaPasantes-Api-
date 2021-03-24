@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SistemaPasantes.Core.entities;
+using SistemaPasantes.Core.Entities;
 using SistemaPasantes.Core.Interfaces;
 
 namespace SistemaPasantes.Api.Controllers

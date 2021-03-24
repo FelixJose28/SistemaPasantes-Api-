@@ -1,4 +1,4 @@
-﻿using SistemaPasantes.Core.entities;
+﻿using SistemaPasantes.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;

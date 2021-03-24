@@ -11,9 +11,9 @@ namespace SistemaPasantes.Infrastructure.Repositories
 {
     public class GrupoRepository : GenericRepository<Grupo>, IGrupoRepository
     {
-        private readonly SistemaPasantesContext _context;
+        private readonly sistemapasanteContext _context;
 
-        public GrupoRepository(SistemaPasantesContext context) : base(context)
+        public GrupoRepository(sistemapasanteContext context) : base(context)
         {
             _context = context;
         }

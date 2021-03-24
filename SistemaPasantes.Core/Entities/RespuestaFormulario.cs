@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 
-namespace SistemaPasantes.Core.entities
+#nullable disable
+
+namespace SistemaPasantes.Core.Entities
 {
     public partial class RespuestaFormulario
     {

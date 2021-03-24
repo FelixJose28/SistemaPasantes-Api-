@@ -1,4 +1,4 @@
-﻿using SistemaPasantes.Core.entities;
+﻿using SistemaPasantes.Core.Entities;
 using SistemaPasantes.Core.Interfaces;
 using SistemaPasantes.Infrastructure.Data;
 using System;
@@ -9,8 +9,8 @@ namespace SistemaPasantes.Infrastructure.Repositories
 {
     public class TareaEntregaRepository: GenericRepository<TareaEntrega>, ITareaEntregaRepository
     {
-        private readonly SistemaPasantesContext _context;
-        public TareaEntregaRepository(SistemaPasantesContext context) : base(context)
+        private readonly sistemapasanteContext _context;
+        public TareaEntregaRepository(sistemapasanteContext context) : base(context)
         {
             _context = context;
         }

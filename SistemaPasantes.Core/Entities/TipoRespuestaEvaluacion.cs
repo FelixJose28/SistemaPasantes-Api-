@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using SistemaPasantes.Core.Entities;
 
 #nullable disable
 
-namespace SistemaPasantes.Core.entities
+namespace SistemaPasantes.Core.Entities
 {
-    public partial class TipoRespuestaEvaluacion 
+    public partial class TipoRespuestaEvaluacion
     {
         public TipoRespuestaEvaluacion()
         {

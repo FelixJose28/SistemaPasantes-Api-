@@ -11,9 +11,9 @@ namespace SistemaPasantes.Infrastructure.Repositories
 {
     public class PasanteRepository : GenericRepository<Pasante>, IPasanteRepository
     {
-        private readonly SistemaPasantesContext _context;
+        private readonly sistemapasanteContext _context;
 
-        public PasanteRepository(SistemaPasantesContext context) : base(context)
+        public PasanteRepository(sistemapasanteContext context) : base(context)
         {
             _context = context;
         }

@@ -1,24 +1,24 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using SistemaPasantes.Core.entities;
+using SistemaPasantes.Core.Entities;
 
 #nullable disable
 
 namespace SistemaPasantes.Infrastructure.Data
 {
-    public partial class SistemaPasantesContext : DbContext
+    public partial class sistemapasanteContext : DbContext
     {
-        public SistemaPasantesContext()
+        public sistemapasanteContext()
         {
         }
 
-        public SistemaPasantesContext(DbContextOptions<SistemaPasantesContext> options)
+        public sistemapasanteContext(DbContextOptions<sistemapasanteContext> options)
             : base(options)
         {
         }
 
-        public virtual DbSet<Convocatoria> Convocatoria { get; set; }
+        public virtual DbSet<Convocatorium> Convocatoria { get; set; }
         public virtual DbSet<EstadoTarea> EstadoTareas { get; set; }
         public virtual DbSet<Evaluacion> Evaluacions { get; set; }
         public virtual DbSet<Formulario> Formularios { get; set; }
@@ -28,6 +28,7 @@ namespace SistemaPasantes.Infrastructure.Data
         public virtual DbSet<Rol> Rols { get; set; }
         public virtual DbSet<Tarea> Tareas { get; set; }
         public virtual DbSet<TareaEntrega> TareaEntregas { get; set; }
+        public virtual DbSet<TareaEntregaGrupo> TareaEntregaGrupos { get; set; }
         public virtual DbSet<TipoRespuestaEvaluacion> TipoRespuestaEvaluacions { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
 
@@ -36,7 +37,7 @@ namespace SistemaPasantes.Infrastructure.Data
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
 
-            modelBuilder.Entity<Convocatoria>(entity =>
+            modelBuilder.Entity<Convocatorium>(entity =>
             {
                 entity.ToTable("convocatoria");
 
@@ -144,17 +145,24 @@ namespace SistemaPasantes.Infrastructure.Data
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
+                entity.Property(e => e.IdConvocatoria).HasColumnName("idConvocatoria");
+
                 entity.Property(e => e.Nombre)
                     .IsRequired()
                     .HasMaxLength(100)
                     .HasColumnName("nombre");
+
+                entity.HasOne(d => d.IdConvocatoriaNavigation)
+                    .WithMany(p => p.Grupos)
+                    .HasForeignKey(d => d.IdConvocatoria)
+                    .HasConstraintName("fk_idConvocatoriaG");
             });
 
             modelBuilder.Entity<Pasante>(entity =>
             {
                 entity.ToTable("pasante");
 
-                entity.HasIndex(e => e.IdUsuario, "UQ__pasante__645723A750CFFF10")
+                entity.HasIndex(e => e.IdUsuario, "UQ__pasante__645723A7E3B9A610")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("id");
@@ -271,6 +279,10 @@ namespace SistemaPasantes.Infrastructure.Data
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
+                entity.Property(e => e.Archivo).HasColumnName("archivo");
+
+                entity.Property(e => e.Calificacion).HasColumnName("calificacion");
+
                 entity.Property(e => e.Comentarios).HasColumnName("comentarios");
 
                 entity.Property(e => e.FechaEntrega)
@@ -281,8 +293,6 @@ namespace SistemaPasantes.Infrastructure.Data
                 entity.Property(e => e.IdTarea).HasColumnName("idTarea");
 
                 entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");
-
-                entity.Property(e => e.RutaArchivo).HasColumnName("ruta_archivo");
 
                 entity.HasOne(d => d.IdTareaNavigation)
                     .WithMany(p => p.TareaEntregas)
@@ -295,6 +305,23 @@ namespace SistemaPasantes.Infrastructure.Data
                     .HasForeignKey(d => d.IdUsuario)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_entrega_usuario");
+            });
+
+            modelBuilder.Entity<TareaEntregaGrupo>(entity =>
+            {
+                entity.ToTable("tareaEntregaGrupo");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Calificacion).HasColumnName("calificacion");
+
+                entity.Property(e => e.IdTareaEntregada).HasColumnName("idTareaEntregada");
+
+                entity.HasOne(d => d.IdTareaEntregadaNavigation)
+                    .WithMany(p => p.TareaEntregaGrupos)
+                    .HasForeignKey(d => d.IdTareaEntregada)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_idTareaEntregadaPorUsuario");
             });
 
             modelBuilder.Entity<TipoRespuestaEvaluacion>(entity =>
@@ -313,6 +340,9 @@ namespace SistemaPasantes.Infrastructure.Data
             modelBuilder.Entity<Usuario>(entity =>
             {
                 entity.ToTable("usuario");
+
+                entity.HasIndex(e => e.Correo, "UQ__usuario__2A586E0B7E4D6093")
+                    .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("id");
 

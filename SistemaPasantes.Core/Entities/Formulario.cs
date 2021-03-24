@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using SistemaPasantes.Core.Entities;
 
 #nullable disable
 
-namespace SistemaPasantes.Core.entities
+namespace SistemaPasantes.Core.Entities
 {
     public partial class Formulario
     {
         public Formulario()
         {
-            Convocatoria = new HashSet<Convocatoria>();
+            Convocatoria = new HashSet<Convocatorium>();
             Evaluacions = new HashSet<Evaluacion>();
             RespuestaFormularios = new HashSet<RespuestaFormulario>();
         }
@@ -19,7 +18,7 @@ namespace SistemaPasantes.Core.entities
         public string Nombre { get; set; }
         public string JsonData { get; set; }
 
-        public virtual ICollection<Convocatoria> Convocatoria { get; set; }
+        public virtual ICollection<Convocatorium> Convocatoria { get; set; }
         public virtual ICollection<Evaluacion> Evaluacions { get; set; }
         public virtual ICollection<RespuestaFormulario> RespuestaFormularios { get; set; }
     }

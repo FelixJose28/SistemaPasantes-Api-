@@ -10,8 +10,8 @@ namespace SistemaPasantes.Infrastructure.Repositories
 {
     public class AuthenticationCRepository: GenericRepository<Usuario>, IAuthenticationCRepository
     {
-        private readonly SistemaPasantesContext _context;
-        public AuthenticationCRepository(SistemaPasantesContext context) : base(context)
+        private readonly sistemapasanteContext _context;
+        public AuthenticationCRepository(sistemapasanteContext context) : base(context)
         {
             _context = context;
         }

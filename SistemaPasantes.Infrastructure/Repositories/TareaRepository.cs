@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SistemaPasantes.Core.entities;
 using SistemaPasantes.Core.Entities;
 using SistemaPasantes.Core.Interfaces;
 using SistemaPasantes.Infrastructure.Data;
@@ -12,9 +11,9 @@ namespace SistemaPasantes.Infrastructure.Repositories
 
     public class TareaRepository : GenericRepository<Tarea>, ITareaRepository
     {
-        private readonly SistemaPasantesContext _context;
+        private readonly sistemapasanteContext _context;
 
-        public TareaRepository(SistemaPasantesContext context): base(context)
+        public TareaRepository(sistemapasanteContext context): base(context)
         {
             _context = context;
         }
