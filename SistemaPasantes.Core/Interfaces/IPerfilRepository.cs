@@ -10,6 +10,6 @@ namespace SistemaPasantes.Core.Interfaces
 {
     public interface IPerfilRepository : IGenericRepository<Usuario>
     {
-        Task<Usuario> GetDataByCredentials(UserLoginCustom usuario);
+        Task<Usuario> GetDataByCredentials(string usuario);
     }
 }

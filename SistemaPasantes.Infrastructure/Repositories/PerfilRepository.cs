@@ -19,9 +19,9 @@ namespace SistemaPasantes.Infrastructure.Repositories
             _context = context;
         }
 
-        public async Task<Usuario> GetDataByCredentials(UserLoginCustom usuario)
+        public async Task<Usuario> GetDataByCredentials(string usuario)
         {
-            var user = await _context.Usuarios.Where(x => x.Correo == usuario.Correo && x.Clave == usuario.Clave).SingleOrDefaultAsync();
+            var user = await _context.Usuarios.Where(x => x.Correo == usuario).SingleOrDefaultAsync();
             return  user;
         }
     }

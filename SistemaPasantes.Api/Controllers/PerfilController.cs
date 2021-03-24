@@ -60,17 +60,17 @@ namespace SistemaPasantes.Api.Controllers
             var usersDto = _mapper.Map<IEnumerable<UsuarioDTO>>(users);
             return Ok(usersDto);
         }
-        [HttpPost(nameof(GetUserByCredentials))]
+        [HttpGet(nameof(GetUserByCredentials)+ "/{usuario}")]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetUserByCredentials(UserLoginCustom userLoginCustom )
+        public async Task<IActionResult> GetUserByCredentials(string usuario )
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest("Modelo de datos invalido");
             }
-            var user = await _unitOfWork.perfilRepository.GetDataByCredentials(userLoginCustom);
+            var user = await _unitOfWork.perfilRepository.GetDataByCredentials(usuario);
             if(user == null)
             {
                 return NotFound("Los datos del usuario no coinciden con ninguno registrado");
