@@ -11,7 +11,7 @@ namespace SistemaPasantes.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ConvocatoriaController : GenericController<Convocatorium, ConvocatoriaDTO, IConvocatoriaRepository>
+    public class ConvocatoriaController : GenericController<Convocatoria, ConvocatoriaDTO, IConvocatoriaRepository>
     {
         public ConvocatoriaController(IUnitOfWork unitOfWork, IConvocatoriaRepository repository, IMapper mapper) 
             : base(unitOfWork, repository, mapper) { }

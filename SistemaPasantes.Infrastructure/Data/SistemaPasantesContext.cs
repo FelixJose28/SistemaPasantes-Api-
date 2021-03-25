@@ -7,18 +7,18 @@ using SistemaPasantes.Core.Entities;
 
 namespace SistemaPasantes.Infrastructure.Data
 {
-    public partial class sistemapasanteContext : DbContext
+    public partial class SistemaPasantesContext : DbContext
     {
-        public sistemapasanteContext()
+        public SistemaPasantesContext()
         {
         }
 
-        public sistemapasanteContext(DbContextOptions<sistemapasanteContext> options)
+        public SistemaPasantesContext(DbContextOptions<SistemaPasantesContext> options)
             : base(options)
         {
         }
 
-        public virtual DbSet<Convocatorium> Convocatoria { get; set; }
+        public virtual DbSet<Convocatoria> Convocatoria { get; set; }
         public virtual DbSet<EstadoTarea> EstadoTareas { get; set; }
         public virtual DbSet<Evaluacion> Evaluacions { get; set; }
         public virtual DbSet<Formulario> Formularios { get; set; }
@@ -37,7 +37,7 @@ namespace SistemaPasantes.Infrastructure.Data
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
 
-            modelBuilder.Entity<Convocatorium>(entity =>
+            modelBuilder.Entity<Convocatoria>(entity =>
             {
                 entity.ToTable("convocatoria");
 

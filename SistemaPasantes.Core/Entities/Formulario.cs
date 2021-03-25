@@ -9,7 +9,7 @@ namespace SistemaPasantes.Core.Entities
     {
         public Formulario()
         {
-            Convocatoria = new HashSet<Convocatorium>();
+            Convocatoria = new HashSet<Convocatoria>();
             Evaluacions = new HashSet<Evaluacion>();
             RespuestaFormularios = new HashSet<RespuestaFormulario>();
         }
@@ -18,7 +18,7 @@ namespace SistemaPasantes.Core.Entities
         public string Nombre { get; set; }
         public string JsonData { get; set; }
 
-        public virtual ICollection<Convocatorium> Convocatoria { get; set; }
+        public virtual ICollection<Convocatoria> Convocatoria { get; set; }
         public virtual ICollection<Evaluacion> Evaluacions { get; set; }
         public virtual ICollection<RespuestaFormulario> RespuestaFormularios { get; set; }
     }

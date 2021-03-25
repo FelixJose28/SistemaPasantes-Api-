@@ -87,9 +87,8 @@ namespace SistemaPasantes.Api
             });
 
             // Base de datos
-            services.AddDbContext<sistemapasanteContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("ConnectionSqlServer")));
-            //services.AddDbContext<SistemaPasantesContext>(options => options.UseInMemoryDatabase("SistemaDePasantes"));
+            //services.AddDbContext<SistemaPasantesContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ConnectionSqlServer")));
+            services.AddDbContext<SistemaPasantesContext>(options => options.UseInMemoryDatabase("SistemaDePasantes"));
 
             // configuracion para los cors
             services.AddCors(options =>

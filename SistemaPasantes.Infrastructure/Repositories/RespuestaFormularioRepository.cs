@@ -6,6 +6,6 @@ namespace SistemaPasantes.Infrastructure.Repositories
 {
     public class RespuestaFormularioRepository : GenericRepository<RespuestaFormulario>, IRespuestaFormularioRepository
     {
-        public RespuestaFormularioRepository(sistemapasanteContext context) : base(context) { }
+        public RespuestaFormularioRepository(SistemaPasantesContext context) : base(context) { }
     }
 }

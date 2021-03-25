@@ -6,6 +6,6 @@ namespace SistemaPasantes.Infrastructure.Repositories
 {
     public class EvaluacionRepository : GenericRepository<Evaluacion>, IEvaluacionRepository
     {
-        public EvaluacionRepository(sistemapasanteContext context) : base(context) { }
+        public EvaluacionRepository(SistemaPasantesContext context) : base(context) { }
     }
 }

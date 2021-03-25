@@ -9,11 +9,11 @@ namespace SistemaPasantes.Infrastructure.Repositories
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        private readonly sistemapasanteContext _context;
+        private readonly SistemaPasantesContext _context;
 
         private readonly DbSet<T> _dbSetEntities;
 
-        public GenericRepository(sistemapasanteContext context)
+        public GenericRepository(SistemaPasantesContext context)
         {
             _context = context;
             _dbSetEntities = _context.Set<T>();

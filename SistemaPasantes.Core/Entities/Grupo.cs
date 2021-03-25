@@ -16,7 +16,7 @@ namespace SistemaPasantes.Core.Entities
         public string Nombre { get; set; }
         public int? IdConvocatoria { get; set; }
 
-        public virtual Convocatorium IdConvocatoriaNavigation { get; set; }
+        public virtual Convocatoria IdConvocatoriaNavigation { get; set; }
         public virtual ICollection<Usuario> Usuarios { get; set; }
     }
 }
