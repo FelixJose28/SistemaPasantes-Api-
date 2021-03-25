@@ -14,5 +14,6 @@ namespace SistemaPasantes.Infrastructure.Repositories
         {
             _context = context;
         }
+
     }
 }

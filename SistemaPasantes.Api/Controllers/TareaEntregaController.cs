@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SistemaPasantes.Core.DTOs;
@@ -8,21 +9,25 @@ using SistemaPasantes.Core.Interfaces;
 using SistemaPasantes.Infrastructure.Data;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace SistemaPasantes.Api.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class TareaEntregaController : ControllerBase
     {
+        private readonly IWebHostEnvironment _enviroment;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        public TareaEntregaController(IUnitOfWork unitOfWork, IMapper mapper)
+        public TareaEntregaController(IUnitOfWork unitOfWork, IMapper mapper, IWebHostEnvironment enviroment)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _enviroment = enviroment;
         }
         [HttpGet]
         public IActionResult GetAllTareaEntregadas()
@@ -32,19 +37,36 @@ namespace SistemaPasantes.Api.Controllers
             {
                 return NotFound("No hay tareas entregadas");
             }
-            var tareadto = _mapper.Map<IEnumerable<TareaEntregaDTO>>(allTareas);
-            return Ok(tareadto);
+            return Ok(allTareas);
         }
-        [HttpPost]
-        public async Task<IActionResult> EntregarTarea(TareaEntregaDTO tareaEntregaDTO)
-        {
-            if (!ModelState.IsValid) return BadRequest("Modelo no valido");
 
-            var tarea = _mapper.Map<TareaEntrega>(tareaEntregaDTO);
-            await _unitOfWork.tareaEntregaRepository.Add(tarea);
-            await _unitOfWork.CommitAsync();
+
+
+        [HttpPost]
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> EntregarTarea([FromForm]TareaEntregaDTO tareaEntregaDTO)
+        {
+            
+
+            var upload = tareaEntregaDTO.Archivo;
+            using (var ms = new MemoryStream())
+            {
+                var tareaEntrega = new TareaEntrega();
+                await upload.CopyToAsync(ms);
+                tareaEntrega.FechaEntrega = tareaEntregaDTO.FechaEntrega;
+                tareaEntrega.Archivo = ms.ToArray();
+                tareaEntrega.Comentarios = tareaEntregaDTO.Comentarios;
+                tareaEntrega.Calificacion = tareaEntregaDTO.Calificacion;
+                tareaEntrega.IdUsuario = tareaEntregaDTO.IdUsuario;
+                tareaEntrega.IdTarea = tareaEntregaDTO.IdTarea;
+                await _unitOfWork.tareaEntregaRepository.Add(tareaEntrega);
+                await _unitOfWork.CommitAsync();
+            }
+
             return Ok(tareaEntregaDTO);
         }
+
+
         [HttpDelete("/{id}")]
         public async Task<IActionResult> DeleteTareaEntregada(int id)
         {
