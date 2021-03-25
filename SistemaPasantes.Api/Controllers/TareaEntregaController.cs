@@ -30,6 +30,7 @@ namespace SistemaPasantes.Api.Controllers
             _enviroment = enviroment;
         }
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult GetAllTareaEntregadas()
         {
             var allTareas = _unitOfWork.tareaEntregaRepository.GetAll();
@@ -42,7 +43,8 @@ namespace SistemaPasantes.Api.Controllers
 
 
 
-        [HttpPost]
+        [HttpPost(nameof(EntregarTarea))]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [Consumes("multipart/form-data")]
         public async Task<IActionResult> EntregarTarea([FromForm]TareaEntregaDTO tareaEntregaDTO)
         {
@@ -67,7 +69,9 @@ namespace SistemaPasantes.Api.Controllers
         }
 
 
-        [HttpDelete("/{id}")]
+        [HttpDelete(nameof(DeleteTareaEntregada)+"/{id}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> DeleteTareaEntregada(int id)
         {
             var existeTarea = await _unitOfWork.tareaEntregaRepository.GetById(id);
@@ -79,7 +83,10 @@ namespace SistemaPasantes.Api.Controllers
             await _unitOfWork.CommitAsync();
             return NoContent();
         }
-        [HttpGet("/{id}")]
+
+        [HttpGet(nameof(GetTareaEntregada) +"/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetTareaEntregada(int id)
         {
             var existeTarea = await _unitOfWork.tareaEntregaRepository.GetById(id);
@@ -90,19 +97,12 @@ namespace SistemaPasantes.Api.Controllers
             var tarea = _mapper.Map<TareaEntregaDTO>(existeTarea);
             return Ok(tarea);
         }
-        [HttpPut]
+        [HttpPut(nameof(UpdateTareaEntregada))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> UpdateTareaEntregada(TareaEntregaDTO tareaEntregaDTO)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest("Modelo de tarea no valido");
-            }
-
-            //var existeTarea = await _unitOfWork.tareaEntregaRepository.GetById(tareaEntregaDTO.Id);
-            //if (existeTarea == null)
-            //{
-            //    return NotFound($"La tarea con el id {tareaEntregaDTO.Id} que desea actualizar no existe");
-            //}
             var entregatarea = _mapper.Map<TareaEntrega>(tareaEntregaDTO);
             await _unitOfWork.tareaEntregaRepository.Update(entregatarea);
             await _unitOfWork.CommitAsync();
