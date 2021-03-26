@@ -9,9 +9,8 @@ namespace SistemaPasantes.Core.DTOs
         public int Id { get; set; }
         public string Titulo { get; set; }
         public string Descripcion { get; set; }
-        public DateTime FechaEntrega { get; set; }
-        public string RutaArchivo { get; set; }
-        public int IdUsuario { get; set; }
+        public DateTime FechaCierre { get; set; }
+        public int IdAdminUsuario { get; set; }
         public int IdEstado { get; set; }
     }
 }
