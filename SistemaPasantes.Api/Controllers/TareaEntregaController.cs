@@ -29,7 +29,9 @@ namespace SistemaPasantes.Api.Controllers
             _mapper = mapper;
             _enviroment = enviroment;
         }
-        [HttpGet]
+
+
+        [HttpGet(nameof(GetAllTareaEntregadas))]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult GetAllTareaEntregadas()
         {
@@ -48,11 +50,10 @@ namespace SistemaPasantes.Api.Controllers
         [Consumes("multipart/form-data")]
         public async Task<IActionResult> EntregarTarea([FromForm]TareaEntregaDTO tareaEntregaDTO)
         {
-            
-
             var upload = tareaEntregaDTO.Archivo;
             using (var ms = new MemoryStream())
             {
+                //IFormFile TO BYTE[]
                 var tareaEntrega = new TareaEntrega();
                 await upload.CopyToAsync(ms);
                 tareaEntrega.FechaEntrega = tareaEntregaDTO.FechaEntrega;
@@ -66,6 +67,32 @@ namespace SistemaPasantes.Api.Controllers
             }
 
             return Ok(tareaEntregaDTO);
+        }
+
+
+        [HttpGet(nameof(GetTareaEntregada) + "/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetTareaEntregada(int id)
+        {
+            var existeTarea = await _unitOfWork.tareaEntregaRepository.GetById(id);
+            if (existeTarea == null)
+            {
+                return NotFound($"La tarea con el id {id} que desea buscar no existe");
+            }
+
+            var tareaRetorno = File(existeTarea.Archivo, "*/*", fileDownloadName: "tarea");
+
+            //BYTE[] to IFormFile
+
+            if (tareaRetorno is FileContentResult data)
+            {
+                var content = data.FileContents;
+                existeTarea.Archivo = content;
+            }
+            //existeTarea.Archivo = tareaRetorno;
+
+            return Ok(existeTarea);
         }
 
 
@@ -84,19 +111,16 @@ namespace SistemaPasantes.Api.Controllers
             return NoContent();
         }
 
-        [HttpGet(nameof(GetTareaEntregada) +"/{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetTareaEntregada(int id)
-        {
-            var existeTarea = await _unitOfWork.tareaEntregaRepository.GetById(id);
-            if (existeTarea == null)
-            {
-                return NotFound($"La tarea con el id {id} que desea buscar no existe");
-            }
-            var tarea = _mapper.Map<TareaEntregaDTO>(existeTarea);
-            return Ok(tarea);
-        }
+        //public async Task<FileContentResult> Descargar(int id)
+        //{
+        //    var file = await _unitOfWork.tareaEntregaRepository.GetById(id);
+        //    var archive = file.Archivo;
+        //    var response = File(archive, "image/png", fileDownloadName: "tarea");
+        //    return response;
+        //}
+
+
+
         [HttpPut(nameof(UpdateTareaEntregada))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
