@@ -4,8 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SistemaPasantes.Core.DTOs;
 using SistemaPasantes.Core.Entities;
 using SistemaPasantes.Core.Interfaces;
 
@@ -129,7 +131,6 @@ namespace SistemaPasantes.Api.Controllers
             }
         }
 
-
         [HttpPut] // PUT: api/[controller]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -194,5 +195,22 @@ namespace SistemaPasantes.Api.Controllers
         where TEntity : class
     {
         public GenericController(IUnitOfWork unitOfWork, TRepository repository, IMapper mapper) : base(unitOfWork, repository, mapper) { }
+    }
+
+    public static class Utils
+    {
+        public static string ObjectToString<T>(T obj) where T: class
+        {
+            var fields = typeof(T).GetFields();
+            var values = new List<string>();
+            
+            foreach (var f in fields)
+            {
+                var value = f.GetValue(obj);
+                values.Add(value?.ToString()?? "null");
+            }
+
+            return values.Aggregate((prev, cur) => $"{prev} {cur}");
+        }
     }
 }

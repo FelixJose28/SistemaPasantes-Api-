@@ -58,7 +58,7 @@ namespace SistemaPasantes.Api.Controllers
 
             var userToken = GenerateToken(user);
 
-            return Ok(new { token = userToken });
+            return Ok(new { token = userToken, user });
             //var usertoDto = _mapper.Map<UsuarioDTO>(user);
             //return Ok(usertoDto);
         }
