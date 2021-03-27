@@ -33,13 +33,13 @@ namespace SistemaPasantes.Api.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> DeleteUser(int id)
         {
-            var userFind = await _unitOfWork.perfilRepository.GetById(id);
+            var userFind = await _unitOfWork.usuarioRepository.GetById(id);
             if (userFind == null)
             {
                 return NotFound($"Usuario con el id: {id} no encontrado");
             }
 
-            await _unitOfWork.perfilRepository.Remove(userFind.Id);
+            await _unitOfWork.usuarioRepository.Remove(userFind.Id);
             await _unitOfWork.CommitAsync();
             return NoContent();
         }
@@ -52,7 +52,7 @@ namespace SistemaPasantes.Api.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult GetAllUser()
         {
-            var users = _unitOfWork.perfilRepository.GetAll();
+            var users = _unitOfWork.usuarioRepository.GetAll();
             if (users == null)
             {
                 return NotFound("No hay usuarios registrados");
@@ -70,7 +70,7 @@ namespace SistemaPasantes.Api.Controllers
             {
                 return BadRequest("Modelo de datos invalido");
             }
-            var user = await _unitOfWork.perfilRepository.GetDataByCredentials(usuario);
+            var user = await _unitOfWork.usuarioRepository.GetDataByCredentials(usuario);
             if(user == null)
             {
                 return NotFound("Los datos del usuario no coinciden con ninguno registrado");
@@ -87,7 +87,7 @@ namespace SistemaPasantes.Api.Controllers
 
         public async Task<ActionResult<Usuario>> GetUsuarioById(int id)
         {
-            var usuario = await _unitOfWork.perfilRepository.GetById(id);
+            var usuario = await _unitOfWork.usuarioRepository.GetById(id);
 
             if (usuario == null)
             {
@@ -110,7 +110,7 @@ namespace SistemaPasantes.Api.Controllers
 
             try
             {
-                var updatedUsuario = await _unitOfWork.perfilRepository.Update(usuario);
+                var updatedUsuario = await _unitOfWork.usuarioRepository.Update(usuario);
                 await _unitOfWork.CommitAsync();
                 return Ok(usuarioDTO);
             }

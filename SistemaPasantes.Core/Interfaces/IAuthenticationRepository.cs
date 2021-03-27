@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SistemaPasantes.Core.Interfaces
 {
-    public interface IAuthenticationCRepository: IGenericRepository<Usuario>
+    public interface IAuthenticationRepository: IGenericRepository<Usuario>
     {
         Task<Usuario> Loggin(UserLoginCustom usuario);
         Task<Usuario> ValidateCorreo(Usuario usuario);

@@ -1,6 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SistemaPasantes.Core.DTOs;
-using SistemaPasantes.Core.entities;
 using SistemaPasantes.Core.Entities;
 using SistemaPasantes.Core.Interfaces;
 using SistemaPasantes.Infrastructure.Data;
@@ -8,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace SistemaPasantes.Infrastructure.Repositories
 {
-    public class AuthenticationCRepository: GenericRepository<Usuario>, IAuthenticationCRepository
+    public class AuthenticationRepository: GenericRepository<Usuario>, IAuthenticationRepository
     {
         private readonly SistemaPasantesContext _context;
-        public AuthenticationCRepository(SistemaPasantesContext context) : base(context)
+        public AuthenticationRepository(SistemaPasantesContext context) : base(context)
         {
             _context = context;
         }

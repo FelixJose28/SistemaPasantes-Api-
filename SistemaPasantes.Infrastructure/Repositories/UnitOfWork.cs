@@ -9,13 +9,13 @@ namespace SistemaPasantes.Infrastructure.Repositories
     {
         private readonly SistemaPasantesContext _context;
 
-        public IAuthenticationCRepository authenticationRepository { get;  }
+        public IAuthenticationRepository authenticationRepository { get;  }
 
         public IConvocatoriaRepository convocatoriaRepository { get; }
 
         public IFormularioRepository formularioRepository { get; }
 
-        public IUsuarioRepository perfilRepository  { get;  }
+        public IUsuarioRepository usuarioRepository  { get;  }
 
         public ITareaRepository tareaRepository { get;  }
 
@@ -32,17 +32,15 @@ namespace SistemaPasantes.Infrastructure.Repositories
         public UnitOfWork(SistemaPasantesContext context)
         {
             _context = context;
-            authenticationRepository = new AuthenticationCRepository(_context);
+            authenticationRepository = new AuthenticationRepository(_context);
             convocatoriaRepository = new ConvocatoriaRepository(_context);
             formularioRepository = new FormularioRepository(_context);
-            perfilRepository = new UsuarioRepository(_context);
+            usuarioRepository = new UsuarioRepository(_context);
             tareaRepository = new TareaRepository(_context);
             tareaEntregaRepository = new TareaEntregaRepository(_context);
             respuestaFormulario = new RespuestaFormularioRepository(_context);
             grupoRepository = new GrupoRepository(_context);
             pasanteRepository = new PasanteRepository(_context);
-
-
         }
 
         public async Task CommitAsync()

@@ -5,13 +5,13 @@ namespace SistemaPasantes.Core.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {
-        IAuthenticationCRepository authenticationRepository { get; }
+        IAuthenticationRepository authenticationRepository { get; }
 
         IConvocatoriaRepository convocatoriaRepository { get; }
 
         IFormularioRepository formularioRepository { get; }
 
-        IUsuarioRepository perfilRepository { get; }
+        IUsuarioRepository usuarioRepository { get; }
 
         ITareaRepository tareaRepository { get; }
 
