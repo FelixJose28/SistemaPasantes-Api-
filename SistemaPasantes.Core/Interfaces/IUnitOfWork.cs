@@ -11,7 +11,7 @@ namespace SistemaPasantes.Core.Interfaces
 
         IFormularioRepository formularioRepository { get; }
 
-        IPerfilRepository perfilRepository { get; }
+        IUsuarioRepository perfilRepository { get; }
 
         ITareaRepository tareaRepository { get; }
 

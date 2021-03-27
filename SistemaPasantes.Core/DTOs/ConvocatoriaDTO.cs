@@ -11,7 +11,7 @@ namespace SistemaPasantes.Core.DTOs
         public string Descripcion { get; set; }
         public DateTime FechaInicio { get; set; }
         public DateTime FechaCierre { get; set; }
-        public int IdUsuario { get; set; }
+        public int IdAdminUsuario { get; set; }
         public int IdFormulario { get; set; }
     }
 }

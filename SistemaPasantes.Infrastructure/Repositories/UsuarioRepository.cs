@@ -11,10 +11,10 @@ using System.Threading.Tasks;
 
 namespace SistemaPasantes.Infrastructure.Repositories
 {
-    public class PerfilRepository :  GenericRepository<Usuario>, IPerfilRepository
+    public class UsuarioRepository :  GenericRepository<Usuario>, IUsuarioRepository
     {
         private readonly SistemaPasantesContext _context;
-        public PerfilRepository(SistemaPasantesContext context) : base (context)
+        public UsuarioRepository(SistemaPasantesContext context) : base (context)
         {
             _context = context;
         }

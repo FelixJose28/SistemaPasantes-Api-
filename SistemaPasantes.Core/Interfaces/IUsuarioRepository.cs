@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SistemaPasantes.Core.Interfaces
 {
-    public interface IPerfilRepository : IGenericRepository<Usuario>
+    public interface IUsuarioRepository : IGenericRepository<Usuario>
     {
         Task<Usuario> GetDataByCredentials(string usuario);
     }

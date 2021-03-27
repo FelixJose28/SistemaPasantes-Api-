@@ -13,13 +13,13 @@ namespace SistemaPasantes.Api.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
-    public class PerfilController : ControllerBase
+    public class UsuarioController : ControllerBase
     {
 
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public PerfilController(IUnitOfWork unitOfWork, IMapper mapper)
+        public UsuarioController(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;

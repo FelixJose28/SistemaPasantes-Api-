@@ -4,17 +4,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using SistemaPasantes.Core.DTOs;
-using SistemaPasantes.Core.Entities;
 using SistemaPasantes.Core.Interfaces;
 
 namespace SistemaPasantes.Api.Controllers
 {
     /// <summary>
-    /// A generic implementation of a <a cref="ControllerBase"/> with a mapper.
+    /// A generic implementation of a <a cref="ControllerBase"/> with a mapper, that provides operations for POST, PUT, GET and DELETE,
+    /// this requires the type of the entity, the entity data transfer object and the repository used for the entity.
     /// </summary>
     /// <typeparam name="TEntity">The type of the entity to store in the repositoy.</typeparam>
     /// <typeparam name="TEntityDTO">The type of the entity data transfer object, don't needed must be the same as TEntity.</typeparam>
@@ -43,7 +41,8 @@ namespace SistemaPasantes.Api.Controllers
 
         public GenericController(IUnitOfWork unitOfWork, TRepository repository) : this(unitOfWork, repository, null) { }
 
-        [HttpGet("{id}")] // GET: api/[controller]/id
+        // GET: api/[controller]/:id
+        [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async virtual Task<ActionResult<TEntityDTO>> GetByID(int id)
@@ -67,7 +66,8 @@ namespace SistemaPasantes.Api.Controllers
             }
         }
 
-        [HttpGet] // GET: api/[controller]/
+        // GET: api/[controller]
+        [HttpGet] 
         [ProducesResponseType(StatusCodes.Status200OK)]
         public virtual ActionResult<IEnumerable<TEntityDTO>> GetAll()
         {
@@ -85,7 +85,8 @@ namespace SistemaPasantes.Api.Controllers
             }
         }
 
-        [HttpPost] // POST: api/[controller]/
+        // POST: api/[controller]
+        [HttpPost] 
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async virtual Task<ActionResult<TEntityDTO>> Create(TEntityDTO entity)
@@ -131,7 +132,8 @@ namespace SistemaPasantes.Api.Controllers
             }
         }
 
-        [HttpPut] // PUT: api/[controller]
+        // PUT: api/[controller]
+        [HttpPut] 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async virtual Task<ActionResult<TEntityDTO>> Update(TEntityDTO entity)
@@ -165,7 +167,8 @@ namespace SistemaPasantes.Api.Controllers
             }
         }
 
-        [HttpDelete("{id}")] // DELETE: api/[controller]/id
+        // DELETE: api/[controller]/:id
+        [HttpDelete("{id}")] 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async virtual Task<ActionResult<TEntityDTO>> Delete(int id)
@@ -190,27 +193,17 @@ namespace SistemaPasantes.Api.Controllers
         }
     }
 
+    /// <summary>
+    /// A generic implementation of a <a cref="ControllerBase"/> with a mapper, that provides operations for POST, PUT, GET and DELETE,
+    /// this requires the type of the entity and the repository used for the entity.
+    /// </summary>
+    /// <typeparam name="TEntity">The type of the entity to store in the repositoy.</typeparam>
+    /// <typeparam name="TRepository">The type of the repository.</typeparam>
+    /// <seealso cref="ControllerBase" />
     public abstract class GenericController<TEntity, TRepository> : GenericController<TEntity, TEntity, TRepository> 
         where TRepository : IGenericRepository<TEntity>
         where TEntity : class
     {
         public GenericController(IUnitOfWork unitOfWork, TRepository repository, IMapper mapper) : base(unitOfWork, repository, mapper) { }
-    }
-
-    public static class Utils
-    {
-        public static string ObjectToString<T>(T obj) where T: class
-        {
-            var fields = typeof(T).GetFields();
-            var values = new List<string>();
-            
-            foreach (var f in fields)
-            {
-                var value = f.GetValue(obj);
-                values.Add(value?.ToString()?? "null");
-            }
-
-            return values.Aggregate((prev, cur) => $"{prev} {cur}");
-        }
     }
 }

@@ -15,7 +15,7 @@ namespace SistemaPasantes.Infrastructure.Repositories
 
         public IFormularioRepository formularioRepository { get; }
 
-        public IPerfilRepository perfilRepository  { get;  }
+        public IUsuarioRepository perfilRepository  { get;  }
 
         public ITareaRepository tareaRepository { get;  }
 
@@ -35,7 +35,7 @@ namespace SistemaPasantes.Infrastructure.Repositories
             authenticationRepository = new AuthenticationCRepository(_context);
             convocatoriaRepository = new ConvocatoriaRepository(_context);
             formularioRepository = new FormularioRepository(_context);
-            perfilRepository = new PerfilRepository(_context);
+            perfilRepository = new UsuarioRepository(_context);
             tareaRepository = new TareaRepository(_context);
             tareaEntregaRepository = new TareaEntregaRepository(_context);
             respuestaFormulario = new RespuestaFormularioRepository(_context);

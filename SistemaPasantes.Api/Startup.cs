@@ -63,7 +63,7 @@ namespace SistemaPasantes.Api
             // Repositories
             services.AddTransient<IAuthenticationCRepository, AuthenticationCRepository>();
             services.AddTransient<ITareaRepository, TareaRepository>();
-            services.AddTransient<IPerfilRepository, PerfilRepository>();
+            services.AddTransient<IUsuarioRepository, UsuarioRepository>();
             services.AddTransient<IConvocatoriaRepository, ConvocatoriaRepository>();
             services.AddTransient<IFormularioRepository, FormularioRepository>();
             services.AddTransient<IRespuestaFormularioRepository, RespuestaFormularioRepository>();
