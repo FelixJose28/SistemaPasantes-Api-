@@ -4,6 +4,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SistemaPasantes.Core.DTOs;
+using SistemaPasantes.Core.Entities;
 using SistemaPasantes.Core.Interfaces;
 
 namespace SistemaPasantes.Api.Controllers
@@ -12,8 +13,6 @@ namespace SistemaPasantes.Api.Controllers
     [ApiController]
     public class AspiranteController : ControllerBase
     {
-        const int RolAspiranteID = 1;
-
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
@@ -29,7 +28,7 @@ namespace SistemaPasantes.Api.Controllers
         {
             var aspirantes = _unitOfWork.authenticationRepository
                 .GetAll()
-                .Where(e => e.Id == RolAspiranteID);
+                .Where(e => e.Id == (int)Roles.Usuario);
 
             var aspirantesDTO = _mapper.Map<IEnumerable<UsuarioDTO>>(aspirantes);
             return Ok(aspirantesDTO);
@@ -41,7 +40,7 @@ namespace SistemaPasantes.Api.Controllers
         {
             var aspirante = _unitOfWork.authenticationRepository
                 .GetAll()
-                .Where(e => e.Id == RolAspiranteID)
+                .Where(e => e.Id == (int)Roles.Usuario)
                 .FirstOrDefault(e => e.Id == usuarioId);
 
             if (aspirante == null)
