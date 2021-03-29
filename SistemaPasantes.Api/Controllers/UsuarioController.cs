@@ -46,6 +46,9 @@ namespace SistemaPasantes.Api.Controllers
 
         //SOLO ADMIN
         //[Authorize]
+
+            
+
         [HttpGet(nameof(GetAllUser))]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status200OK)]

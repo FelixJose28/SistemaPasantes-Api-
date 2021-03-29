@@ -47,7 +47,7 @@ namespace SistemaPasantes.Api.Controllers
 
         [HttpPost(nameof(EntregarTarea))]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [Consumes("multipart/form-data")]
+        ////[Consumes("multipart/form-data")]
         public async Task<IActionResult> EntregarTarea([FromForm]TareaEntregaDTO tareaEntregaDTO)
         {
             var upload = tareaEntregaDTO.Archivo;
@@ -56,7 +56,8 @@ namespace SistemaPasantes.Api.Controllers
                 //IFormFile TO BYTE[]
                 var tareaEntrega = new TareaEntrega();
                 await upload.CopyToAsync(ms);
-                tareaEntrega.FechaEntrega = tareaEntregaDTO.FechaEntrega;
+                tareaEntrega.Id = 0;
+                tareaEntrega.FechaEntrega = DateTime.Now;
                 tareaEntrega.Archivo = ms.ToArray();
                 tareaEntrega.Comentarios = tareaEntregaDTO.Comentarios;
                 tareaEntrega.Calificacion = tareaEntregaDTO.Calificacion;

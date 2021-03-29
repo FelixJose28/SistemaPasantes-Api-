@@ -17,5 +17,10 @@ namespace SistemaPasantes.Infrastructure.Repositories
         {
             _context = context;
         }
+        public async Task<IEnumerable<Usuario>> GetAspirantes()
+        {
+            var usuarios = await _context.Usuarios.Where(x => x.IdRol == (int)Roles.Usuario).ToListAsync();
+            return usuarios;
+        }
     }
 }

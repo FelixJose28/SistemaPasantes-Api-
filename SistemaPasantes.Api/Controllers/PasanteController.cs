@@ -25,6 +25,18 @@ namespace SistemaPasantes.Api.Controllers
             _mapper = mapper;
         }
 
+        [HttpGet(nameof(GetAspirantes))]
+        public async Task<IActionResult> GetAspirantes()
+        {
+            var aspirantes = await _unitOfWork.pasanteRepository.GetAspirantes();
+            var userSort = _mapper.Map<IEnumerable<UsuarioDTO>>(aspirantes);
+            if (aspirantes == null)
+            {
+                return NotFound("No hay aspirates registrados");
+            }
+            return Ok(userSort);
+        }
+
         [HttpGet(nameof(GetAllPasantes))]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
