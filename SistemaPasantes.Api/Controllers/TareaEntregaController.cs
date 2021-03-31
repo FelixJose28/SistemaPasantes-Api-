@@ -31,19 +31,29 @@ namespace SistemaPasantes.Api.Controllers
         }
 
 
+
         [HttpGet(nameof(GetAllTareaEntregadas))]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult GetAllTareaEntregadas()
         {
             var allTareas = _unitOfWork.tareaEntregaRepository.GetAll();
-            if(allTareas == null)
+            if (allTareas == null)
             {
                 return NotFound("No hay tareas entregadas");
             }
+            
             return Ok(allTareas);
         }
 
-
+        [HttpGet(nameof(Descargar)+"/{id}")]
+        public async Task<FileContentResult> Descargar(int id)
+        {
+            var file = await _unitOfWork.tareaEntregaRepository.GetById(id);
+            var archive = file.Archivo;
+            var mime = ContentType.GetMimeType(archive.ToString());
+            var response = File(archive, mime, fileDownloadName: "tarea");
+            return response;
+        }
 
         [HttpPost(nameof(EntregarTarea))]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -81,7 +91,7 @@ namespace SistemaPasantes.Api.Controllers
             {
                 return NotFound($"La tarea con el id {id} que desea buscar no existe");
             }
-
+            var archivoTarea = Descargar(id);
             var tareaRetorno = File(existeTarea.Archivo, "*/*", fileDownloadName: "tarea");
 
             //BYTE[] to IFormFile
@@ -112,13 +122,6 @@ namespace SistemaPasantes.Api.Controllers
             return NoContent();
         }
 
-        //public async Task<FileContentResult> Descargar(int id)
-        //{
-        //    var file = await _unitOfWork.tareaEntregaRepository.GetById(id);
-        //    var archive = file.Archivo;
-        //    var response = File(archive, "image/png", fileDownloadName: "tarea");
-        //    return response;
-        //}
 
 
 

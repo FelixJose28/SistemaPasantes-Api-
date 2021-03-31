@@ -7,10 +7,13 @@
   <ItemGroup>
     <Compile Remove="Enumerations\**" />
     <Compile Remove="Exceptions\**" />
+    <Compile Remove="Services\**" />
     <EmbeddedResource Remove="Enumerations\**" />
     <EmbeddedResource Remove="Exceptions\**" />
+    <EmbeddedResource Remove="Services\**" />
     <None Remove="Enumerations\**" />
     <None Remove="Exceptions\**" />
+    <None Remove="Services\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,10 +23,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.4" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>
