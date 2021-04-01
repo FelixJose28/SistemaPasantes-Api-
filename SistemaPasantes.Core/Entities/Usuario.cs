@@ -10,10 +10,10 @@ namespace SistemaPasantes.Core.Entities
         public Usuario()
         {
             Convocatoria = new HashSet<Convocatoria>();
-            Evaluacions = new HashSet<Evaluacion>();
-            RespuestaFormularios = new HashSet<RespuestaFormulario>();
-            TareaEntregas = new HashSet<TareaEntrega>();
-            Tareas = new HashSet<Tarea>();
+            Evaluacion = new HashSet<Evaluacion>();
+            RespuestaFormulario = new HashSet<RespuestaFormulario>();
+            Tarea = new HashSet<Tarea>();
+            TareaEntrega = new HashSet<TareaEntrega>();
         }
 
         public int Id { get; set; }
@@ -29,9 +29,9 @@ namespace SistemaPasantes.Core.Entities
         public virtual Rol IdRolNavigation { get; set; }
         public virtual Pasante Pasante { get; set; }
         public virtual ICollection<Convocatoria> Convocatoria { get; set; }
-        public virtual ICollection<Evaluacion> Evaluacions { get; set; }
-        public virtual ICollection<RespuestaFormulario> RespuestaFormularios { get; set; }
-        public virtual ICollection<TareaEntrega> TareaEntregas { get; set; }
-        public virtual ICollection<Tarea> Tareas { get; set; }
+        public virtual ICollection<Evaluacion> Evaluacion { get; set; }
+        public virtual ICollection<RespuestaFormulario> RespuestaFormulario { get; set; }
+        public virtual ICollection<Tarea> Tarea { get; set; }
+        public virtual ICollection<TareaEntrega> TareaEntrega { get; set; }
     }
 }

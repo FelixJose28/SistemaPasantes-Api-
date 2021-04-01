@@ -19,19 +19,18 @@ namespace SistemaPasantes.Infrastructure.Data
         }
 
         public virtual DbSet<Convocatoria> Convocatoria { get; set; }
-        public virtual DbSet<EstadoTarea> EstadoTareas { get; set; }
-        public virtual DbSet<Evaluacion> Evaluacions { get; set; }
-        public virtual DbSet<Formulario> Formularios { get; set; }
-        public virtual DbSet<Grupo> Grupos { get; set; }
-        public virtual DbSet<Pasante> Pasantes { get; set; }
-        public virtual DbSet<RespuestaFormulario> RespuestaFormularios { get; set; }
-        public virtual DbSet<Rol> Rols { get; set; }
-        public virtual DbSet<Tarea> Tareas { get; set; }
-        public virtual DbSet<TareaEntrega> TareaEntregas { get; set; }
-        public virtual DbSet<TareaEntregaGrupo> TareaEntregaGrupos { get; set; }
-        public virtual DbSet<TipoRespuestaEvaluacion> TipoRespuestaEvaluacions { get; set; }
-        public virtual DbSet<Usuario> Usuarios { get; set; }
-
+        public virtual DbSet<EstadoTarea> EstadoTarea { get; set; }
+        public virtual DbSet<Evaluacion> Evaluacion { get; set; }
+        public virtual DbSet<Formulario> Formulario { get; set; }
+        public virtual DbSet<Grupo> Grupo { get; set; }
+        public virtual DbSet<Pasante> Pasante { get; set; }
+        public virtual DbSet<RespuestaFormulario> RespuestaFormulario { get; set; }
+        public virtual DbSet<Rol> Rol { get; set; }
+        public virtual DbSet<Tarea> Tarea { get; set; }
+        public virtual DbSet<TareaEntrega> TareaEntrega { get; set; }
+        public virtual DbSet<TareaEntregaGrupo> TareaEntregaGrupo { get; set; }
+        public virtual DbSet<TipoFormulario> TipoFormulario { get; set; }
+        public virtual DbSet<Usuario> Usuario { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -111,13 +110,13 @@ namespace SistemaPasantes.Infrastructure.Data
                     .HasColumnName("titulo");
 
                 entity.HasOne(d => d.IdAdminUsuarioNavigation)
-                    .WithMany(p => p.Evaluacions)
+                    .WithMany(p => p.Evaluacion)
                     .HasForeignKey(d => d.IdAdminUsuario)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_evaluacion_usuario");
 
                 entity.HasOne(d => d.IdFormularioNavigation)
-                    .WithMany(p => p.Evaluacions)
+                    .WithMany(p => p.Evaluacion)
                     .HasForeignKey(d => d.IdFormulario)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_evaluacion_formulario");
@@ -129,6 +128,8 @@ namespace SistemaPasantes.Infrastructure.Data
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
+                entity.Property(e => e.IdTipoFormulario).HasColumnName("idTipoFormulario");
+
                 entity.Property(e => e.JsonData)
                     .IsRequired()
                     .HasColumnName("json_data");
@@ -137,6 +138,12 @@ namespace SistemaPasantes.Infrastructure.Data
                     .IsRequired()
                     .HasMaxLength(255)
                     .HasColumnName("nombre");
+
+                entity.HasOne(d => d.IdTipoFormularioNavigation)
+                    .WithMany(p => p.Formulario)
+                    .HasForeignKey(d => d.IdTipoFormulario)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__formulari__idTip__619B8048");
             });
 
             modelBuilder.Entity<Grupo>(entity =>
@@ -153,7 +160,7 @@ namespace SistemaPasantes.Infrastructure.Data
                     .HasColumnName("nombre");
 
                 entity.HasOne(d => d.IdConvocatoriaNavigation)
-                    .WithMany(p => p.Grupos)
+                    .WithMany(p => p.Grupo)
                     .HasForeignKey(d => d.IdConvocatoria)
                     .HasConstraintName("fk_idConvocatoriaG");
             });
@@ -172,7 +179,7 @@ namespace SistemaPasantes.Infrastructure.Data
                 entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");
 
                 entity.HasOne(d => d.IdConvocatoriaNavigation)
-                    .WithMany(p => p.Pasantes)
+                    .WithMany(p => p.Pasante)
                     .HasForeignKey(d => d.IdConvocatoria)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_pasante_convocatoria");
@@ -207,19 +214,19 @@ namespace SistemaPasantes.Infrastructure.Data
                     .HasColumnName("json_data");
 
                 entity.HasOne(d => d.IdFormularioNavigation)
-                    .WithMany(p => p.RespuestaFormularios)
+                    .WithMany(p => p.RespuestaFormulario)
                     .HasForeignKey(d => d.IdFormulario)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_respuesta_formulario");
 
                 entity.HasOne(d => d.IdTipoRespuestaNavigation)
-                    .WithMany(p => p.RespuestaFormularios)
+                    .WithMany(p => p.RespuestaFormulario)
                     .HasForeignKey(d => d.IdTipoRespuesta)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_tipo_respuesta");
 
                 entity.HasOne(d => d.IdUsuarioNavigation)
-                    .WithMany(p => p.RespuestaFormularios)
+                    .WithMany(p => p.RespuestaFormulario)
                     .HasForeignKey(d => d.IdUsuario)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_respuesta_usuario");
@@ -261,13 +268,13 @@ namespace SistemaPasantes.Infrastructure.Data
                     .HasColumnName("titulo");
 
                 entity.HasOne(d => d.IdAdminUsuarioNavigation)
-                    .WithMany(p => p.Tareas)
+                    .WithMany(p => p.Tarea)
                     .HasForeignKey(d => d.IdAdminUsuario)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_tarea_usuario_admin");
 
                 entity.HasOne(d => d.IdEstadoNavigation)
-                    .WithMany(p => p.Tareas)
+                    .WithMany(p => p.Tarea)
                     .HasForeignKey(d => d.IdEstado)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_tarea_estadoTarea");
@@ -295,13 +302,13 @@ namespace SistemaPasantes.Infrastructure.Data
                 entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");
 
                 entity.HasOne(d => d.IdTareaNavigation)
-                    .WithMany(p => p.TareaEntregas)
+                    .WithMany(p => p.TareaEntrega)
                     .HasForeignKey(d => d.IdTarea)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_entrega_tarea");
 
                 entity.HasOne(d => d.IdUsuarioNavigation)
-                    .WithMany(p => p.TareaEntregas)
+                    .WithMany(p => p.TareaEntrega)
                     .HasForeignKey(d => d.IdUsuario)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_entrega_usuario");
@@ -318,15 +325,18 @@ namespace SistemaPasantes.Infrastructure.Data
                 entity.Property(e => e.IdTareaEntregada).HasColumnName("idTareaEntregada");
 
                 entity.HasOne(d => d.IdTareaEntregadaNavigation)
-                    .WithMany(p => p.TareaEntregaGrupos)
+                    .WithMany(p => p.TareaEntregaGrupo)
                     .HasForeignKey(d => d.IdTareaEntregada)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_idTareaEntregadaPorUsuario");
             });
 
-            modelBuilder.Entity<TipoRespuestaEvaluacion>(entity =>
+            modelBuilder.Entity<TipoFormulario>(entity =>
             {
-                entity.ToTable("tipoRespuestaEvaluacion");
+                entity.ToTable("tipoFormulario");
+
+                entity.HasIndex(e => e.Nombre, "IX_tipoFormulario")
+                    .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
@@ -378,12 +388,12 @@ namespace SistemaPasantes.Infrastructure.Data
                     .HasColumnName("telefono");
 
                 entity.HasOne(d => d.IdGrupoNavigation)
-                    .WithMany(p => p.Usuarios)
+                    .WithMany(p => p.Usuario)
                     .HasForeignKey(d => d.IdGrupo)
                     .HasConstraintName("fk_grupo_usuario");
 
                 entity.HasOne(d => d.IdRolNavigation)
-                    .WithMany(p => p.Usuarios)
+                    .WithMany(p => p.Usuario)
                     .HasForeignKey(d => d.IdRol)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_rol_usuario");

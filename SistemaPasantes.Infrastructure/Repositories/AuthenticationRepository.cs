@@ -16,13 +16,13 @@ namespace SistemaPasantes.Infrastructure.Repositories
 
         public async Task<Usuario> Loggin(UserLoginCustom usuario)
         {   
-            Usuario userLogger = await _context.Usuarios.FirstOrDefaultAsync(x=>x.Correo == usuario.Correo && x.Clave == usuario.Clave);
+            Usuario userLogger = await _context.Usuario.FirstOrDefaultAsync(x=>x.Correo == usuario.Correo && x.Clave == usuario.Clave);
             return userLogger;
         }
 
         public async Task<Usuario> ValidateCorreo(Usuario usuario)
         {
-            Usuario user =  await _context.Usuarios.FirstOrDefaultAsync(x =>x.Correo == usuario.Correo);
+            Usuario user =  await _context.Usuario.FirstOrDefaultAsync(x =>x.Correo == usuario.Correo);
             return user;
         }
     }

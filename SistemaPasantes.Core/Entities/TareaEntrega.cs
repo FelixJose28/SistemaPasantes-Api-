@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 #nullable disable
@@ -10,7 +9,7 @@ namespace SistemaPasantes.Core.Entities
     {
         public TareaEntrega()
         {
-            TareaEntregaGrupos = new HashSet<TareaEntregaGrupo>();
+            TareaEntregaGrupo = new HashSet<TareaEntregaGrupo>();
         }
 
         public int Id { get; set; }
@@ -23,6 +22,6 @@ namespace SistemaPasantes.Core.Entities
 
         public virtual Tarea IdTareaNavigation { get; set; }
         public virtual Usuario IdUsuarioNavigation { get; set; }
-        public virtual ICollection<TareaEntregaGrupo> TareaEntregaGrupos { get; set; }
+        public virtual ICollection<TareaEntregaGrupo> TareaEntregaGrupo { get; set; }
     }
 }

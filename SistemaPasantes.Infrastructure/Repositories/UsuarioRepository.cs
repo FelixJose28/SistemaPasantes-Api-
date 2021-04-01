@@ -21,7 +21,7 @@ namespace SistemaPasantes.Infrastructure.Repositories
 
         public async Task<Usuario> GetDataByCredentials(string usuario)
         {
-            var user = await _context.Usuarios.Where(x => x.Correo == usuario).SingleOrDefaultAsync();
+            var user = await _context.Usuario.Where(x => x.Correo == usuario).SingleOrDefaultAsync();
             return user;
         }
 

@@ -29,7 +29,7 @@ namespace SistemaPasantes.Api.Controllers
                 return NotFound();
             }
 
-            var respuestas = formulario.RespuestaFormularios;
+            var respuestas = formulario.RespuestaFormulario;
             var respuestasFormularioDTO = mapper.Map<IEnumerable<RespuestaFormularioDTO>>(respuestas);
             return Ok(respuestasFormularioDTO);
         }

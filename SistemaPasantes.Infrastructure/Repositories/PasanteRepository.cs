@@ -19,7 +19,7 @@ namespace SistemaPasantes.Infrastructure.Repositories
         }
         public async Task<IEnumerable<Usuario>> GetAspirantes()
         {
-            var usuarios = await _context.Usuarios.Where(x => x.IdRol == (int)Roles.Usuario).ToListAsync();
+            var usuarios = await _context.Usuario.Where(x => x.IdRol == (int)Roles.Usuario).ToListAsync();
             return usuarios;
         }
     }

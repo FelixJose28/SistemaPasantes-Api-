@@ -9,12 +9,12 @@ namespace SistemaPasantes.Core.Entities
     {
         public EstadoTarea()
         {
-            Tareas = new HashSet<Tarea>();
+            Tarea = new HashSet<Tarea>();
         }
 
         public int Id { get; set; }
         public string NombreEstado { get; set; }
 
-        public virtual ICollection<Tarea> Tareas { get; set; }
+        public virtual ICollection<Tarea> Tarea { get; set; }
     }
 }

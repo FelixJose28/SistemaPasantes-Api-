@@ -9,8 +9,8 @@ namespace SistemaPasantes.Core.Entities
     {
         public Convocatoria()
         {
-            Grupos = new HashSet<Grupo>();
-            Pasantes = new HashSet<Pasante>();
+            Grupo = new HashSet<Grupo>();
+            Pasante = new HashSet<Pasante>();
         }
 
         public int Id { get; set; }
@@ -24,7 +24,7 @@ namespace SistemaPasantes.Core.Entities
 
         public virtual Usuario IdAdminUsuarioNavigation { get; set; }
         public virtual Formulario IdFormularioNavigation { get; set; }
-        public virtual ICollection<Grupo> Grupos { get; set; }
-        public virtual ICollection<Pasante> Pasantes { get; set; }
+        public virtual ICollection<Grupo> Grupo { get; set; }
+        public virtual ICollection<Pasante> Pasante { get; set; }
     }
 }

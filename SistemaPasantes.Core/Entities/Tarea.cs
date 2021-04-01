@@ -9,7 +9,7 @@ namespace SistemaPasantes.Core.Entities
     {
         public Tarea()
         {
-            TareaEntregas = new HashSet<TareaEntrega>();
+            TareaEntrega = new HashSet<TareaEntrega>();
         }
 
         public int Id { get; set; }
@@ -21,6 +21,6 @@ namespace SistemaPasantes.Core.Entities
 
         public virtual Usuario IdAdminUsuarioNavigation { get; set; }
         public virtual EstadoTarea IdEstadoNavigation { get; set; }
-        public virtual ICollection<TareaEntrega> TareaEntregas { get; set; }
+        public virtual ICollection<TareaEntrega> TareaEntrega { get; set; }
     }
 }
