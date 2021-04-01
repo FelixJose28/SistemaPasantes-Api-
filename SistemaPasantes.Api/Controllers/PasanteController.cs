@@ -14,7 +14,7 @@ namespace SistemaPasantes.Api.Controllers
 {
     [EnableCors("CorsApi")]
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class PasanteController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -37,20 +37,7 @@ namespace SistemaPasantes.Api.Controllers
             return Ok(userSort);
         }
 
-        [HttpGet(nameof(GetAllPasantes))]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-
-        public ActionResult<PasanteDTO> GetAllPasantes()
-        {
-            var allPasante = _unitOfWork.grupoRepository.GetAll();
-            if (allPasante == null)
-            {
-                return NotFound("No se encontraron pasantes");
-            }
-            var cleanData = _mapper.Map<IEnumerable<PasanteDTO>>(allPasante);
-            return Ok(cleanData);
-        }
+        
 
         [HttpPost(nameof(CreatePasante))]
         [ProducesResponseType(StatusCodes.Status200OK)]

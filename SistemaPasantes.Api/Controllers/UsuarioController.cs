@@ -63,6 +63,10 @@ namespace SistemaPasantes.Api.Controllers
             var usersDto = _mapper.Map<IEnumerable<UsuarioDTO>>(users);
             return Ok(usersDto);
         }
+
+
+ 
+
         [HttpGet(nameof(GetUserByCredentials)+ "/{usuario}")]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -82,7 +86,6 @@ namespace SistemaPasantes.Api.Controllers
             return Ok(userDto);
 
         }
-
 
 
 
