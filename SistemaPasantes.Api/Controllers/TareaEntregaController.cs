@@ -48,11 +48,12 @@ namespace SistemaPasantes.Api.Controllers
         [HttpGet(nameof(Descargar)+"/{id}")]
         public async Task<FileContentResult> Descargar(int id)
         {
-            var file = await _unitOfWork.tareaEntregaRepository.GetById(id);
-            var archive = file.Archivo;
-            var mime = ContentType.GetMimeType(archive.ToString());
-            var response = File(archive, mime, fileDownloadName: "tarea");
-            return response;
+            //var file = await _unitOfWork.tareaEntregaRepository.GetById(id);
+            //var archive = file.Archivo;
+            //var mime = ContentType.GetMimeType(archive.ToString());
+            //var response = File(archive, mime, fileDownloadName: "tarea");
+            //return response;
+            throw new NotImplementedException();
         }
 
         [HttpPost(nameof(EntregarTarea))]
