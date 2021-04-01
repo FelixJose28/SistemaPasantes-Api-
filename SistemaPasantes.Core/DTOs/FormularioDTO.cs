@@ -7,5 +7,6 @@ namespace SistemaPasantes.Core.DTOs
         public int Id { get; set; }
         public string Nombre { get; set; }
         public string JsonData { get; set; }
+        public int IdTipoFormulario { get; set; }
     }
 }
