@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using SistemaPasantes.Core.Entities;
+using SistemaPasantes.Infrastructure;
 
 #nullable disable
 
@@ -31,6 +32,7 @@ namespace SistemaPasantes.Infrastructure.Data
         public virtual DbSet<TareaEntregaGrupo> TareaEntregaGrupo { get; set; }
         public virtual DbSet<TipoFormulario> TipoFormulario { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -102,6 +104,8 @@ namespace SistemaPasantes.Infrastructure.Data
 
                 entity.Property(e => e.IdAdminUsuario).HasColumnName("idAdminUsuario");
 
+                entity.Property(e => e.IdConvocatoria).HasColumnName("idConvocatoria");
+
                 entity.Property(e => e.IdFormulario).HasColumnName("idFormulario");
 
                 entity.Property(e => e.Titulo)
@@ -114,6 +118,12 @@ namespace SistemaPasantes.Infrastructure.Data
                     .HasForeignKey(d => d.IdAdminUsuario)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_evaluacion_usuario");
+
+                entity.HasOne(d => d.IdConvocatoriaNavigation)
+                    .WithMany(p => p.Evaluacion)
+                    .HasForeignKey(d => d.IdConvocatoria)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__evaluacio__idCon__656C112C");
 
                 entity.HasOne(d => d.IdFormularioNavigation)
                     .WithMany(p => p.Evaluacion)
@@ -260,6 +270,8 @@ namespace SistemaPasantes.Infrastructure.Data
 
                 entity.Property(e => e.IdAdminUsuario).HasColumnName("idAdminUsuario");
 
+                entity.Property(e => e.IdConvocatoria).HasColumnName("idConvocatoria");
+
                 entity.Property(e => e.IdEstado).HasColumnName("idEstado");
 
                 entity.Property(e => e.Titulo)
@@ -272,6 +284,12 @@ namespace SistemaPasantes.Infrastructure.Data
                     .HasForeignKey(d => d.IdAdminUsuario)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_tarea_usuario_admin");
+
+                entity.HasOne(d => d.IdConvocatoriaNavigation)
+                    .WithMany(p => p.Tarea)
+                    .HasForeignKey(d => d.IdConvocatoria)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__tarea__idConvoca__6477ECF3");
 
                 entity.HasOne(d => d.IdEstadoNavigation)
                     .WithMany(p => p.Tarea)
@@ -300,6 +318,10 @@ namespace SistemaPasantes.Infrastructure.Data
                 entity.Property(e => e.IdTarea).HasColumnName("idTarea");
 
                 entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");
+
+                entity.Property(e => e.NombreArchivo)
+                    .IsRequired()
+                    .HasColumnName("nombreArchivo");
 
                 entity.HasOne(d => d.IdTareaNavigation)
                     .WithMany(p => p.TareaEntrega)

@@ -140,6 +140,7 @@ namespace SistemaPasantes.Api.Controllers
         {
             if (entity == null)
             {
+                throw new Exception("Vacio");
                 return NotFound();
             }
 
@@ -161,9 +162,9 @@ namespace SistemaPasantes.Api.Controllers
                 await unitOfWork.CommitAsync();
                 return entityTDO;
             }
-            catch
+            catch (Exception e)
             {
-                return NotFound();
+                return NotFound(e);
             }
         }
 

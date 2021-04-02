@@ -13,8 +13,10 @@ namespace SistemaPasantes.Core.Entities
         public DateTime FechaCierre { get; set; }
         public int IdAdminUsuario { get; set; }
         public int IdFormulario { get; set; }
+        public int IdConvocatoria { get; set; }
 
         public virtual Usuario IdAdminUsuarioNavigation { get; set; }
+        public virtual Convocatoria IdConvocatoriaNavigation { get; set; }
         public virtual Formulario IdFormularioNavigation { get; set; }
     }
 }

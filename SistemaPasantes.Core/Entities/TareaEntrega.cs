@@ -19,6 +19,7 @@ namespace SistemaPasantes.Core.Entities
         public int? Calificacion { get; set; }
         public int IdUsuario { get; set; }
         public int IdTarea { get; set; }
+        public string NombreArchivo { get; set; }
 
         public virtual Tarea IdTareaNavigation { get; set; }
         public virtual Usuario IdUsuarioNavigation { get; set; }
