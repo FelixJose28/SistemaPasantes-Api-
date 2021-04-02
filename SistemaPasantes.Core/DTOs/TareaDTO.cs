@@ -12,5 +12,6 @@ namespace SistemaPasantes.Core.DTOs
         public DateTime FechaCierre { get; set; }
         public int IdAdminUsuario { get; set; }
         public int IdEstado { get; set; }
+        public int IdConvocatoria { get; set; }
     }
 }
