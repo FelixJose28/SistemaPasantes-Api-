@@ -62,18 +62,20 @@ namespace SistemaPasantes.Api.Controllers
         public async Task<IActionResult> EntregarTarea([FromForm]TareaEntregaDTO tareaEntregaDTO)
         {
             var upload = tareaEntregaDTO.Archivo;
+            var tareaEntrega = new TareaEntrega();
+            tareaEntrega.Id = 0;
+            tareaEntrega.FechaEntrega = DateTime.Now;
+            tareaEntrega.Comentarios = tareaEntregaDTO.Comentarios;
+            tareaEntrega.Calificacion = tareaEntregaDTO.Calificacion;
+            tareaEntrega.IdUsuario = tareaEntregaDTO.IdUsuario;
+            tareaEntrega.IdTarea = tareaEntregaDTO.IdTarea;
             using (var ms = new MemoryStream())
             {
                 //IFormFile TO BYTE[]
-                var tareaEntrega = new TareaEntrega();
+
                 await upload.CopyToAsync(ms);
-                tareaEntrega.Id = 0;
-                tareaEntrega.FechaEntrega = DateTime.Now;
+                
                 tareaEntrega.Archivo = ms.ToArray();
-                tareaEntrega.Comentarios = tareaEntregaDTO.Comentarios;
-                tareaEntrega.Calificacion = tareaEntregaDTO.Calificacion;
-                tareaEntrega.IdUsuario = tareaEntregaDTO.IdUsuario;
-                tareaEntrega.IdTarea = tareaEntregaDTO.IdTarea;
                 await _unitOfWork.tareaEntregaRepository.Add(tareaEntrega);
                 await _unitOfWork.CommitAsync();
             }
@@ -130,12 +132,29 @@ namespace SistemaPasantes.Api.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> UpdateTareaEntregada(TareaEntregaDTO tareaEntregaDTO)
+        public async Task<IActionResult> UpdateTareaEntregada([FromForm]TareaEntregaDTO tareaEntregaDTO)
         {
-            var entregatarea = _mapper.Map<TareaEntrega>(tareaEntregaDTO);
-            await _unitOfWork.tareaEntregaRepository.Update(entregatarea);
-            await _unitOfWork.CommitAsync();
-            return Ok(entregatarea);
+            var upload = tareaEntregaDTO.Archivo;
+            var tareaEntrega = new TareaEntrega();
+            tareaEntrega.Id = tareaEntregaDTO.Id;
+            tareaEntrega.FechaEntrega = DateTime.Now;
+            tareaEntrega.Comentarios = tareaEntregaDTO.Comentarios;
+            tareaEntrega.Calificacion = tareaEntregaDTO.Calificacion;
+            tareaEntrega.IdUsuario = tareaEntregaDTO.IdUsuario;
+            tareaEntrega.IdTarea = tareaEntregaDTO.IdTarea;
+
+
+            using (var ms = new MemoryStream())
+            {
+                //IFormFile TO BYTE[]
+
+                await upload.CopyToAsync(ms);
+                tareaEntrega.Archivo = ms.ToArray();
+                await _unitOfWork.tareaEntregaRepository.Update(tareaEntrega);
+                await _unitOfWork.CommitAsync();
+            }
+
+            return Ok(tareaEntregaDTO);
         }
     }
 }
