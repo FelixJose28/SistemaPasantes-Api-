@@ -46,7 +46,7 @@ namespace SistemaPasantes.Api.Controllers
         }
 
         [HttpGet(nameof(Descargar)+"/{id}")]
-        public async Task<FileContentResult> Descargar(int id)
+        public async Task<IActionResult> Descargar(int id)
         {
             var file = await _unitOfWork.tareaEntregaRepository.GetById(id);
             var fullFileName = Path.Combine(_enviroment.ContentRootPath,"archivos",Path.GetFileName(file.Ruta));
@@ -149,15 +149,13 @@ namespace SistemaPasantes.Api.Controllers
             tareaEntrega.IdTarea = tareaEntregaDTO.IdTarea;
 
 
-            using (var ms = new MemoryStream())
-            {
-                //IFormFile TO BYTE[]
+            var fileName = Path.Combine(_enviroment.ContentRootPath, "archivos", upload.FileName);
+            await upload.CopyToAsync(new FileStream(fileName, FileMode.Create));
 
-                await upload.CopyToAsync(ms);
-                tareaEntrega.Archivo = ms.ToArray();
-                await _unitOfWork.tareaEntregaRepository.Update(tareaEntrega);
-                await _unitOfWork.CommitAsync();
-            }
+            tareaEntrega.Ruta = upload.FileName;
+            await _unitOfWork.tareaEntregaRepository.Update(tareaEntrega);
+            await _unitOfWork.CommitAsync();
+
 
             return Ok(tareaEntregaDTO);
         }
