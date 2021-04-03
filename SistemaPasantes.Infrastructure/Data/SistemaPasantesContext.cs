@@ -314,14 +314,16 @@ namespace SistemaPasantes.Infrastructure.Data
                     .HasColumnType("datetime")
                     .HasColumnName("fecha_entrega")
                     .HasDefaultValueSql("(getdate())");
+                entity.Property(e => e.Ruta)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("ruta");
 
                 entity.Property(e => e.IdTarea).HasColumnName("idTarea");
 
                 entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");
 
-                entity.Property(e => e.NombreArchivo)
-                    .IsRequired()
-                    .HasColumnName("nombreArchivo");
+
 
                 entity.HasOne(d => d.IdTareaNavigation)
                     .WithMany(p => p.TareaEntrega)

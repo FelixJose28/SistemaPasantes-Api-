@@ -23,4 +23,8 @@
     <ProjectReference Include="..\SistemaPasantes.Infrastructure\SistemaPasantes.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="archivos\" />
+  </ItemGroup>
+
 </Project>

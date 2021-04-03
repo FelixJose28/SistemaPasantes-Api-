@@ -48,12 +48,17 @@ namespace SistemaPasantes.Api.Controllers
         [HttpGet(nameof(Descargar)+"/{id}")]
         public async Task<FileContentResult> Descargar(int id)
         {
-            //var file = await _unitOfWork.tareaEntregaRepository.GetById(id);
-            //var archive = file.Archivo;
-            //var mime = ContentType.GetMimeType(archive.ToString());
-            //var response = File(archive, mime, fileDownloadName: "tarea");
-            //return response;
-            throw new NotImplementedException();
+            var file = await _unitOfWork.tareaEntregaRepository.GetById(id);
+            var fullFileName = Path.Combine(_enviroment.ContentRootPath,"archivos",Path.GetFileName(file.Ruta));
+            using (var fs = new FileStream(fullFileName, FileMode.Open, FileAccess.Read))
+            {
+                using (var ms = new MemoryStream())
+                {
+                    await fs.CopyToAsync(ms);
+                    return File(ms.ToArray(),"*/*",fileDownloadName:file.Ruta);
+                }
+            }
+
         }
 
         [HttpPost(nameof(EntregarTarea))]
@@ -69,16 +74,15 @@ namespace SistemaPasantes.Api.Controllers
             tareaEntrega.Calificacion = tareaEntregaDTO.Calificacion;
             tareaEntrega.IdUsuario = tareaEntregaDTO.IdUsuario;
             tareaEntrega.IdTarea = tareaEntregaDTO.IdTarea;
-            using (var ms = new MemoryStream())
-            {
-                //IFormFile TO BYTE[]
 
-                await upload.CopyToAsync(ms);
-                
-                tareaEntrega.Archivo = ms.ToArray();
-                await _unitOfWork.tareaEntregaRepository.Add(tareaEntrega);
-                await _unitOfWork.CommitAsync();
-            }
+
+            var fileName = Path.Combine(_enviroment.ContentRootPath, "archivos", upload.FileName);
+            await upload.CopyToAsync(new FileStream(fileName, FileMode.Create));
+
+            tareaEntrega.Ruta = upload.FileName;
+            await _unitOfWork.tareaEntregaRepository.Add(tareaEntrega);
+            await _unitOfWork.CommitAsync();
+      
 
             return Ok(tareaEntregaDTO);
         }
@@ -94,7 +98,8 @@ namespace SistemaPasantes.Api.Controllers
             {
                 return NotFound($"La tarea con el id {id} que desea buscar no existe");
             }
-            var archivoTarea = Descargar(id);
+
+            //var archivoTarea = Descargar(id);
             var tareaRetorno = File(existeTarea.Archivo, "*/*", fileDownloadName: "tarea");
 
             //BYTE[] to IFormFile
