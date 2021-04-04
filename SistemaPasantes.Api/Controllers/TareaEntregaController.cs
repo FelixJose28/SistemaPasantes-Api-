@@ -41,8 +41,9 @@ namespace SistemaPasantes.Api.Controllers
             {
                 return NotFound("No hay tareas entregadas");
             }
+            var dto = _mapper.Map<IEnumerable<TareaEntregaDTO>>(allTareas);
             
-            return Ok(allTareas);
+            return Ok(dto);
         }
 
         [HttpGet(nameof(Descargar)+"/{id}")]
@@ -98,18 +99,6 @@ namespace SistemaPasantes.Api.Controllers
             {
                 return NotFound($"La tarea con el id {id} que desea buscar no existe");
             }
-
-            //var archivoTarea = Descargar(id);
-            var tareaRetorno = File(existeTarea.Archivo, "*/*", fileDownloadName: "tarea");
-
-            //BYTE[] to IFormFile
-
-            if (tareaRetorno is FileContentResult data)
-            {
-                var content = data.FileContents;
-                existeTarea.Archivo = content;
-            }
-            //existeTarea.Archivo = tareaRetorno;
 
             return Ok(existeTarea);
         }
