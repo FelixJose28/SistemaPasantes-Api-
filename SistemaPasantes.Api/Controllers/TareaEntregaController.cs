@@ -41,9 +41,8 @@ namespace SistemaPasantes.Api.Controllers
             {
                 return NotFound("No hay tareas entregadas");
             }
-            var dto = _mapper.Map<IEnumerable<TareaEntregaDTO>>(allTareas);
             
-            return Ok(dto);
+            return Ok(allTareas);
         }
 
         [HttpGet(nameof(Descargar)+"/{id}")]
@@ -67,6 +66,11 @@ namespace SistemaPasantes.Api.Controllers
         ////[Consumes("multipart/form-data")]
         public async Task<IActionResult> EntregarTarea([FromForm]TareaEntregaDTO tareaEntregaDTO)
         {
+            bool siEstaEntregada = await _unitOfWork.tareaEntregaRepository.validateTareaEnviada(tareaEntregaDTO);
+            if (siEstaEntregada)
+            {
+                return NotFound("Esta tarea ya ha sido entregada por este usuario");
+            }
             var upload = tareaEntregaDTO.Archivo;
             var tareaEntrega = new TareaEntrega();
             tareaEntrega.Id = 0;
@@ -100,6 +104,7 @@ namespace SistemaPasantes.Api.Controllers
                 return NotFound($"La tarea con el id {id} que desea buscar no existe");
             }
 
+     
             return Ok(existeTarea);
         }
 

@@ -15,7 +15,7 @@ namespace SistemaPasantes.Api.Controllers
 {
     [EnableCors("CorsApi")]
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class TareaController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
