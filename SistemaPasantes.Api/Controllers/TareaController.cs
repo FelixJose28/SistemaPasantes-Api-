@@ -66,7 +66,8 @@ namespace SistemaPasantes.Api.Controllers
             {
                 return NotFound("Tarea no encontrada");
             }
-            return Ok(tarea);
+            var tareaDto = _mapper.Map<TareaDTO>(tarea);
+            return Ok(tareaDto);
         }
 
         [HttpPut(nameof(UpdateTarea))]
@@ -87,7 +88,7 @@ namespace SistemaPasantes.Api.Controllers
             await _unitOfWork.tareaRepository.Update(tarea);
             await _unitOfWork.CommitAsync();
 
-            return Ok(tarea);
+            return Ok(tareaDTO);
         }
 
 

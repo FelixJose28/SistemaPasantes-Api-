@@ -20,6 +20,7 @@ namespace SistemaPasantes.Api.Controllers
     [ApiController]
     public class TareaEntregaController : ControllerBase
     {
+      
         private readonly IWebHostEnvironment _enviroment;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
@@ -41,7 +42,6 @@ namespace SistemaPasantes.Api.Controllers
             {
                 return NotFound("No hay tareas entregadas");
             }
-            
             return Ok(allTareas);
         }
 
@@ -66,11 +66,11 @@ namespace SistemaPasantes.Api.Controllers
         ////[Consumes("multipart/form-data")]
         public async Task<IActionResult> EntregarTarea([FromForm]TareaEntregaDTO tareaEntregaDTO)
         {
-            bool siEstaEntregada = await _unitOfWork.tareaEntregaRepository.validateTareaEnviada(tareaEntregaDTO);
-            if (siEstaEntregada)
-            {
-                return NotFound("Esta tarea ya ha sido entregada por este usuario");
-            }
+            //bool siEstaEntregada = await _unitOfWork.tareaEntregaRepository.validateTareaEnviada(tareaEntregaDTO);
+            //if (siEstaEntregada)
+            //{
+            //    return NotFound("Esta tarea ya ha sido entregada por este usuario");
+            //}
             var upload = tareaEntregaDTO.Archivo;
             var tareaEntrega = new TareaEntrega();
             tareaEntrega.Id = 0;
@@ -119,6 +119,16 @@ namespace SistemaPasantes.Api.Controllers
             {
                 return NotFound($"La tarea con el id {id} que desea borrar no existe");
             }
+
+            //string rutaString = Path.Combine(_enviroment.ContentRootPath, "archivos");
+            //var files = Directory.GetFiles(rutaString);
+            //if (rutaDelArchivo)
+            //{
+            //    System.IO.File.Delete(rutaString);
+            //}
+
+            //var esto = existeTarea.Ruta;
+
             await _unitOfWork.tareaEntregaRepository.Remove(id);
             await _unitOfWork.CommitAsync();
             return NoContent();
